@@ -9,7 +9,7 @@
 }
 
 .header {
-    position: fixed;
+    position: relative;
     padding: 20px;
     background-color: white;
     /* z-index: -1; */
