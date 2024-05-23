@@ -64,12 +64,10 @@ export function MailDetails() {
       })
   }
 
-  console.log(mail)
-
   if (!mail) return <div>Loading...</div>
   return (
     <main className="mail-details-container">
-      <MailDetailsHeader removeMail={onRemoveMail} onToggleIsRead={onToggleIsRead} />
+      <MailDetailsHeader removeMail={onRemoveMail} onToggleIsRead={() => onToggleIsRead(false)} />
       <MailDetailsMain mail={mail} />
     </main>
   )

@@ -1,3 +1,4 @@
+import { ComposeButton } from './ComposeButton.jsx'
 import { SidebarLabel } from './SidebarLabel.jsx'
 const { useState, useEffect } = React
 
@@ -17,6 +18,7 @@ export function SidebarMenu({ filterBy, onSetFilterBy, unreadMails }) {
 
   return (
     <section className="sidebar-menu" onMouseEnter={() => setSidebarHover(true)} onMouseLeave={() => setSidebarHover(false)}>
+      <ComposeButton />
       {labels.map(label => {
         return <SidebarLabel key={label} label={label} folder={folder} handleChange={handleChange} sidebarHover={sidebarHover} unreadMails={unreadMails} />
       })}

@@ -1,5 +1,4 @@
 const { useState, useEffect } = React
-import { ComposeButton } from '../cmps/ComposeButton.jsx'
 // import gmailLogo from "../../../assets/img/mail-img";
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
@@ -50,6 +49,24 @@ export function MailIndex() {
       })
   }
 
+  function onToggleIsRead(mailId, isRead) {
+    mailService
+      .get(mailId)
+      .then(mailToUpdate => {
+        const mailIndex = emails.findIndex(mail => mail.id === mailId)
+
+        if (mailIndex !== -1) {
+          const updatedMails = [...emails]
+          updatedMails[mailIndex] = { ...mailToUpdate, isRead: isRead }
+          setEmails(updatedMails)
+        }
+        return mailService.save({ ...mailToUpdate, isRead: isRead })
+      })
+      .catch(err => {
+        console.log('err:', err)
+      })
+  }
+
   function onRemove(mailId) {
     mailService.remove(mailId).then(setEmails(prevMails => prevMails.filter(mail => mail.id !== mailId)))
   }
@@ -66,6 +83,8 @@ export function MailIndex() {
     return unreadMails.length
   }
 
+  console.log(emails)
+
   return (
     <React.Fragment>
       {!emails ? (
@@ -80,10 +99,9 @@ export function MailIndex() {
             <MailFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           </div>
           <main className="grid full">
-            <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} mails={emails} />
+            <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
           </main>
           <aside>
-            <ComposeButton />
             <SidebarMenu filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMails={countUnreadMails()} />
           </aside>
         </div>
