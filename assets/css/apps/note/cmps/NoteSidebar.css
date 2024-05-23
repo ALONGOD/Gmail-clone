@@ -9,7 +9,7 @@
 }
 
 .header {
-    position: relative;
+    position: fixed;
     padding: 20px;
     background-color: white;
     /* z-index: -1; */
@@ -73,4 +73,8 @@
 
 .note-sidebar-menu ul li a:hover {
     color: #000;
+}
+
+.note-sidebar-menu ul li:hover {
+    background-color: #ffe45e;
 }
