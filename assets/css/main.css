@@ -28,6 +28,7 @@
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/SidebarMenu.css';
+@import './apps/mail/cmps/SidebarLabel.css';
 @import './apps/mail/cmps/MailDetailsMain.css';
 @import './apps/mail/cmps/MailDetailsHeader.css';
 
