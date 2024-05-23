@@ -1,11 +1,11 @@
 .header-icon {
-    width: 6em;
-    height: 7em;
+    width: 5em;
+    height: 6em;
 }
 
 .sidebar-menu-btn {
-    width: 6em;
-    height: 7em;
+    width: 5em;
+    height: 6em;
 }
 
 .header {
@@ -25,4 +25,56 @@
     position: absolute;
     bottom: 0;
     left: 0;
+}
+
+.note-sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #f0f0f0;
+    padding-top: 20px;
+}
+
+.note-sidebar-header {
+    padding: 10px;
+    text-align: center;
+}
+
+.note-sidebar-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.note-sidebar-menu {
+    padding: 0 10px;
+}
+
+.note-sidebar-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.note-sidebar-menu ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.note-sidebar-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.note-sidebar-menu ul li a {
+    text-decoration: none;
+    color: #555;
+    margin-left: 10px;
+}
+
+.note-sidebar-menu ul li a:hover {
+    color: #000;
+}
+
+.note-sidebar-menu ul li:hover {
+    background-color: #ffe45e;
 }
