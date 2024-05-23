@@ -1,7 +1,9 @@
 import { utilService } from '../../../services/util.service.js'
+import { MailToolsHover } from './MailToolsHover.jsx'
 const { useParams, useNavigate } = ReactRouter
+const { useState, useEffect, useRef } = React
 
-export function MailPreview({ email, onRemove, onToggleIsStar, onToggleIsRead }) {
+export function MailPreview({ email, onRemove, onToggleIsStar, onToggleIsRead, hoverMailId }) {
   const { subject, body, isRead, sentAt, from, to, isStar, id } = email
   const navigate = useNavigate()
 
@@ -10,9 +12,6 @@ export function MailPreview({ email, onRemove, onToggleIsStar, onToggleIsRead })
     onToggleIsRead(id, isRead)
     navigate(`/mail/details/${id}`)
   }
-
-  const isStarredClass = isStar ? `star starred fa-solid fa-star ` : `star fa-regular fa-star`
-  const isReadClass = isRead ? 'read' : ''
 
   function addThreeDots(txt, limit) {
     if (txt.length > limit) {
@@ -23,10 +22,9 @@ export function MailPreview({ email, onRemove, onToggleIsStar, onToggleIsRead })
   }
 
   return (
-    <li className={`${isReadClass} mail flex flex-row align-center`}>
+    <React.Fragment>
       <div className="mail-options-1 flex flex-row align-center justify-center">
         <input type="checkbox" />
-        <i className={isStarredClass} onClick={() => onToggleIsStar(id, !isStar)}></i>
       </div>
 
       <div className="mail-preview" onClick={() => mailDetailsNavigation(id, true)}>
@@ -39,9 +37,11 @@ export function MailPreview({ email, onRemove, onToggleIsStar, onToggleIsRead })
           {body.slice(0, 50)}
           {addThreeDots(body, 50)}
         </p>
-        <h4 className="sent-at">{utilService.getTimeOfSent(sentAt)}</h4>
       </div>
-      <i className="delete-btn fa-solid fa-trash" onClick={() => onRemove(id)}></i>
-    </li>
+      <div className="mail-tools flex flex-row align-center">
+        {hoverMailId !== id && <h4 className="sent-at">{utilService.getTimeOfSent(sentAt)}</h4>}
+        {hoverMailId === id && <MailToolsHover id={id} isRead={isRead} isStar={isStar} onRemove={onRemove} onToggleIsRead={onToggleIsRead} onToggleIsStar={onToggleIsStar} />}
+      </div>
+    </React.Fragment>
   )
 }
