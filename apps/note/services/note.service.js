@@ -26,6 +26,7 @@ function query(filterBy = {}) {
             if (filterBy.search) {
                 const regExp = new RegExp(filterBy.search, 'i')
                 notes = notes.filter(note => regExp.test(note.info.txt || note.info.title))
+
             }
 
 
@@ -100,11 +101,11 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n102',
+                id: 'n103',
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
-                    url: 'http://some-img/me',
+                    url: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
                     title: 'Bobi and Me'
                 },
                 style: {
@@ -112,7 +113,19 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n103',
+                id: 'n102',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: 'orange'
+                },
+                info: {
+                    txt: 'Thank You Morrrr!'
+                }
+            },
+            {
+                id: 'n104',
                 type: 'NoteTodos',
                 isPinned: false,
                 info: {
