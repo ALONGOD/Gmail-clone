@@ -21,14 +21,14 @@ export function NoteIndex() {
 
 
     useEffect(() => {
-        setIsLoading(true)
+        // setIsLoading(true)
         noteService.query(filterBy)
             .then(notesRes => setNotes(notesRes))
             .finally(() => {
-                setIsLoading(false)
+                // setIsLoading(false)
             })
 
-    }, [])
+    }, [filterBy])
 
 
 
@@ -54,7 +54,7 @@ export function NoteIndex() {
 
 
     // console.log(notes)
-    if (isLoading) return <h3>Loading...</h3>
+    // if (isLoading) return <h3>Loading...</h3>
 
 
     return <React.Fragment>

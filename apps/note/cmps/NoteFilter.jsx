@@ -10,6 +10,7 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
     function handleChange({ target }) {
         const { name, value } = target
         setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }))
+        console.log(filterByToEdit)
     }
 
     const { search } = filterBy

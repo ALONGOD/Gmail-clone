@@ -3,7 +3,7 @@ export function NoteTodos({ note }) {
         <article className="note-preview">
             <ul>
                 {note.info.todos.map((todo) => (
-                    <li key={todo.id}>
+                    <li key={todo.doneAt}>
                         <span
                             onClick={() => handleTodoClick(todo)}
                         // className={isDoneClass(todo)}

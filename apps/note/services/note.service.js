@@ -23,8 +23,8 @@ function query(filterBy = {}) {
     console.log(filterBy)
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
+            if (filterBy.search) {
+                const regExp = new RegExp(filterBy.search, 'i')
                 notes = notes.filter(note => regExp.test(note.info.txt || note.info.title))
             }
 
