@@ -8,6 +8,7 @@ import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
 import { NoteFilter } from '../cmps/NoteFilter.jsx'
 import { AddNote } from '../cmps/AddNote.jsx'
+import { NotesSidebar } from '../cmps/NotesSidebar.jsx'
 
 // import { NoteHeader } from '../cmps/NoteHeader.jsx'
 // import { noteUtilsService } from '../services/note.utils.service.js'
@@ -76,7 +77,7 @@ export function NoteIndex() {
             </div>
         </div>
         <div className='note-grid'>
-            <aside>sidebar</aside>
+            <aside><NotesSidebar /></aside>
             <main>
                 <AddNote onAddNote={onAddNote} />
 
