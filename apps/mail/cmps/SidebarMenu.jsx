@@ -1,26 +1,25 @@
+import { SidebarLabel } from './SidebarLabel.jsx'
 const { useState, useEffect } = React
 
-export function SidebarMenu({filterBy, onSetFilterBy, unreadMails}) {
-    const [folderToEdit, setFolderToEdit] = useState({folder: filterBy.folder});
-    const labels = ['inbox', 'starred', 'sent', 'drafts']
-    const { folder } = filterBy
+export function SidebarMenu({ filterBy, onSetFilterBy, unreadMails }) {
+  const [folderToEdit, setFolderToEdit] = useState({ folder: filterBy.folder })
+  const labels = ['inbox', 'starred', 'sent', 'drafts']
+  const { folder } = filterBy
+  const [sidebarHover, setSidebarHover] = useState(false)
 
-    useEffect(() => {
-        onSetFilterBy({...filterBy, ...folderToEdit})
-    }, [folderToEdit])
+  useEffect(() => {
+    onSetFilterBy({ ...filterBy, ...folderToEdit })
+  }, [folderToEdit])
 
-    function handleChange(value) {
-        setFolderToEdit({folder: value })
-    }
+  function handleChange(value) {
+    setFolderToEdit({ folder: value })
+  }
 
   return (
-    <section className="sidebar-menu">
+    <section className="sidebar-menu" onMouseEnter={() => setSidebarHover(true)} onMouseLeave={() => setSidebarHover(false)}>
       {labels.map(label => {
-        return <div key={label} onClick={() => handleChange(label)} className={`sidebar-label ${folder === label ? 'active' : ''}`}>
-          {label}{label === 'inbox' ? <span>{unreadMails}</span> : ''}
-          </div>
-        }
-      )}
+        return <SidebarLabel key={label} label={label} folder={folder} handleChange={handleChange} sidebarHover={sidebarHover} unreadMails={unreadMails} />
+      })}
     </section>
   )
 }
