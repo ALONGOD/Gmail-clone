@@ -1,6 +1,6 @@
 /* Setup */
-
 @import './setup/variables.css';
+
 /* @import './setup/fonts.css'; */
 
 /* Basics */
@@ -28,9 +28,10 @@
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/SidebarMenu.css';
+@import './apps/mail/cmps/MailDetailsMain.css';
+@import './apps/mail/cmps/MailDetailsHeader.css';
 
 /* note app cmps  */
 @import './apps/note/cmps/NoteList.css';
 @import './apps/note/cmps/NoteFilter.css';
 @import './apps/note/cmps/NoteSidebar.css';
-@import './apps/note/cmps/MailDetailsMain.css';

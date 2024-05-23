@@ -7,7 +7,7 @@ div.email-grid {
   height: 100vh;
 }
 
-.email-grid > main {
+.email-grid>main {
   background-color: white;
   grid-column: 2 / 3;
   align-content: start;
@@ -31,13 +31,9 @@ div.email-grid {
   grid-column: 1;
 }
 
-.sidebar-menu-btn {
+.sidebar-mail-btn {
   width: 2em;
   height: 2em;
   fill: darkgray;
   cursor: pointer;
 }
-
-
-
-

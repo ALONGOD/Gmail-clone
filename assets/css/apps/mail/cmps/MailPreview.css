@@ -7,7 +7,7 @@
     padding-inline-start: 0.5em;
 }
 
-.mail-details {
+.mail-preview {
     grid-column: 2;
     display: grid;
     align-items: center;
@@ -32,18 +32,27 @@
     background-color: transparent;
 }
 
-.mail.read .mail-details :is(h3, .mail-subject, h4) {
+.mail.read .mail-preview :is(h3, .mail-subject, h4) {
     font-weight: 200;
 }
 
 .mail p.mail-subject {
     grid-column: 3;
     font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .mail p.mail-body {
     grid-column: 4;
+    font-size: 14px;
 }
+
+.mail-preview .sent-at {
+    font-size: 14px;
+}
+
+
 
 .mail h4 {
     grid-column: 5;
@@ -57,6 +66,8 @@
 
 .email-sender {
     grid-column: 2;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .mail .star {
