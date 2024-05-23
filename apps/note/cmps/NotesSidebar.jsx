@@ -8,10 +8,10 @@ export function NotesSidebar() {
             </div>
             <div className="note-sidebar-menu">
                 <ul>
-                    <li><i className="fas fa-lightbulb"></i> <a href="#">Notes</a></li>
-                    <li><i className="fas fa-bell"></i> <a href="#">Reminders</a></li>
+                    <li><i className="far fa-lightbulb"></i> <a href="#">Notes</a></li>
+                    <li><i className="far fa-bell"></i> <a href="#">Reminders</a></li>
                     <li><i className="fas fa-archive"></i> <a href="#">Archive</a></li>
-                    <li><i className="fas fa-trash"></i> <a href="#">Trash</a></li>
+                    <li><i className="far fa-trash"></i> <a href="#">Trash</a></li>
                 </ul>
             </div>
         </div>
