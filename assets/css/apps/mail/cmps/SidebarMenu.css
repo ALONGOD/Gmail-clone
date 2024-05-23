@@ -1,0 +1,48 @@
+.compose-btn {
+    background-color: var(--compose-btn-blue);
+    padding: 1em;
+    border-radius: 16px;
+    font-size: 1.3em;
+    margin-inline-start: 1em;
+    cursor: pointer;
+  }
+
+  .email-grid > aside {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0;
+  }
+
+  aside .sidebar-menu {
+    margin-block-start: 2em;
+  }
+
+  aside .sidebar-label {
+    width: 8em;
+    padding-block: 0.5em;
+    padding-inline-start: 3em;
+    margin-inline-end: 2em;
+    cursor: pointer;
+    border-radius: 0 1em 1em 0;
+    text-transform: capitalize;
+  }
+  
+  aside .sidebar-label.active {
+    background-color: rgb(211,227,253);
+    font-weight: 600;
+  }
+
+  .sidebar-label.active:hover {
+    background-color: rgb(211,227,253);
+  }
+
+  aside .sidebar-label:hover {
+    background-color: rgb(236, 236, 236);
+
+  }
+
+  aside .sidebar-label span {
+    margin-inline-start: 2em;
+  }
+
+  

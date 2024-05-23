@@ -1,0 +1,47 @@
+.mail-details-main {
+    padding: 1em;
+}
+
+.mail-details-main .subject {
+    margin: 1em 1em 2em 0;
+    font-weight: 200;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: start;
+    text-transform: capitalize;
+}
+
+.mail-details-main .mail-from span{
+    line-height: 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.mail-details-main .mail-from {
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 0.4em;
+}
+
+.mail-details-main .mail-to {
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: start;
+    letter-spacing: normal;
+    color: #5e5e5e;
+    text-transform: capitalize;
+}
+
+.mail-details-main .sent-at {
+    font-weight: 200;
+    color: #5e5e5e;
+    font-size: 11px;
+    line-height: 20px;
+}
+
+.mail-details-main .dates {
+    display: flex;
+    align-items: center;
+}

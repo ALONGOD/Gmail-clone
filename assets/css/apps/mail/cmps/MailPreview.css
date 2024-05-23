@@ -1,0 +1,83 @@
+.mail {
+    display: grid;
+    /* grid-template-columns: 1fr 7fr 8fr 14fr 5em 3em; */
+    grid-template-columns: 1fr 20fr 3em;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    padding-inline-start: 0.5em;
+}
+
+.mail-details {
+    grid-column: 2;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 7fr 8fr 14fr 5em;
+}
+
+.mail:hover {
+    box-shadow: 0px 2px 20px 0px lightgray;
+}
+
+.mail-options-1 {
+    grid-column: 1;
+    margin-inline-end: 1em;
+}
+
+.mail-options-1 input[type="checkbox"] {
+    margin-inline-end: 1em;
+    border-radius: 0;
+}
+
+.mail-options-1 input[type="checkbox"]:checked {
+    background-color: transparent;
+}
+
+.mail.read .mail-details :is(h3, .mail-subject, h4) {
+    font-weight: 200;
+}
+
+.mail p.mail-subject {
+    grid-column: 3;
+    font-weight: 600;
+}
+
+.mail p.mail-body {
+    grid-column: 4;
+}
+
+.mail h4 {
+    grid-column: 5;
+}
+
+.mail .delete-btn {
+    grid-column: 3;
+    justify-self: center;
+    opacity: 0.5;
+}
+
+.email-sender {
+    grid-column: 2;
+}
+
+.mail .star {
+    justify-content: center;
+}
+
+
+.mail .subject {
+    font-weight: 600;
+}
+
+.mail footer {
+    grid-column: 3;
+}
+
+.mail img.delete-btn {
+    width: 2em;
+    height: auto;
+    margin-inline-start: 1em;
+}
+
+.starred {
+    color: gold;
+}

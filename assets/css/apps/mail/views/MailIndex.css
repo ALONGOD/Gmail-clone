@@ -1,0 +1,43 @@
+div.email-grid {
+  background-color: var(--main-bg-color-email);
+  display: grid;
+  align-content: start;
+  grid-template-columns: 1fr 5fr 2em;
+  width: 100vw;
+  height: 100vh;
+}
+
+.email-grid > main {
+  background-color: white;
+  grid-column: 2 / 3;
+  align-content: start;
+  height: max-content;
+}
+
+.email-header {
+  margin: 1em 4em 1em 2.5em;
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 5fr 2em;
+}
+
+.email-logo {
+  width: 3.125em;
+  height: auto;
+  margin-inline-start: 2em;
+}
+
+.email-heading {
+  grid-column: 1;
+}
+
+.sidebar-menu-btn {
+  width: 2em;
+  height: 2em;
+  fill: darkgray;
+  cursor: pointer;
+}
+
+
+
+

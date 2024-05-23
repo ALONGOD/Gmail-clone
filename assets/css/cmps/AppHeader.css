@@ -1,0 +1,55 @@
+header {
+    position: fixed;
+    right: 0;
+    border-bottom: 2px solid white;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+header div.nav-container {
+    position: relative;
+    margin-inline-end: 3em;
+}
+
+header nav {
+    position: absolute;
+    margin-top: 1em;
+    right: 0;
+    border-radius: 1em;
+    border: 3px rgb(246,248,252) solid;
+    padding: 4em;
+    background-color: white;
+}
+
+header h1 {
+    margin-inline-start: 2em;
+}
+
+header nav a {
+    margin: .5em;
+}
+
+
+
+nav a.active {
+    scale: 1.1;
+    font-weight: bold;
+    text-decoration: overline;
+}
+
+.sidebar-toggle-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline-end: 1em;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.sidebar-toggle-btn:hover {
+    opacity: 0.5;
+}
