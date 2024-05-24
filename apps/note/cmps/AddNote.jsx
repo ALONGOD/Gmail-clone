@@ -6,12 +6,23 @@ export function AddNote({ onAddNote }) {
     const [noteText, setNoteText] = useState('');
     const [noteType, setNoteType] = useState('NoteTxt');
     const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
+    const [imageUrl, setImageUrl] = useState(''); // For NoteImg type
+    const [todoText, setTodoText] = useState(''); // For NoteTodos type
 
     function handleSubmit(ev) {
         ev.preventDefault();
+        let info;
+        if (noteType === 'NoteImg') {
+            info = { url: imageUrl };
+        } else if (noteType === 'NoteTodos') {
+            const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
+            info = { title: 'Todos', todos };
+        } else {
+            info = { txt: noteText };
+        }
         const newNote = {
             type: noteType,
-            info: { txt: noteText },
+            info,
             createdAt: Date.now(),
             style: {
                 backgroundColor: noteColor
@@ -27,6 +38,47 @@ export function AddNote({ onAddNote }) {
         });
     }
 
+    const renderFormInputs = () => {
+        switch (noteType) {
+            case 'NoteImg':
+                return (
+                    <label>
+                        Image URL:
+                        <input
+                            type="text"
+                            value={imageUrl}
+                            onChange={(e) => setImageUrl(e.target.value)}
+                            required
+                        />
+                    </label>
+                );
+            case 'NoteTodos':
+                return (
+                    <label>
+                        Todos (comma separated):
+                        <input
+                            type="text"
+                            value={todoText}
+                            onChange={(e) => setTodoText(e.target.value)}
+                            required
+                        />
+                    </label>
+                );
+            default:
+                return (
+                    <label>
+                        Note Text:
+                        <input
+                            type="text"
+                            value={noteText}
+                            onChange={(e) => setNoteText(e.target.value)}
+                            required
+                        />
+                    </label>
+                );
+        }
+    };
+
     return (
         <div>
             <button onClick={() => setIsModalOpen(true)}>Add Note</button>
@@ -37,15 +89,7 @@ export function AddNote({ onAddNote }) {
                         <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
                         <h2>Add a new Note</h2>
                         <form onSubmit={handleSubmit}>
-                            <label>
-                                Note Text:
-                                <input
-                                    type="text"
-                                    value={noteText}
-                                    onChange={(e) => setNoteText(e.target.value)}
-                                    required
-                                />
-                            </label>
+                            {renderFormInputs()}
                             <label>
                                 Note Type:
                                 <select
