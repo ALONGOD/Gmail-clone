@@ -41,6 +41,17 @@ export function NoteIndex() {
         });
     }
 
+    function onDuplicate(noteId) {
+        noteService.duplicate(noteId)
+            .then(duplicatedNote => {
+                console.log(duplicatedNote)
+                // duplicatedNote.isDuplicated = false
+                setNotes(prevNotes => sortNotes([...prevNotes, duplicatedNote]));
+            }).catch(err => {
+                console.log('err:', err);
+            });
+    }
+
 
     function removeNote(noteId) {
         noteService.remove(noteId)
@@ -91,7 +102,7 @@ export function NoteIndex() {
                 <AddNote onAddNote={onAddNote} />
 
 
-                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} />
+                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} />
             </main>
         </div>
     </React.Fragment>
