@@ -8,7 +8,7 @@ import { mailService } from '../services/mail.service.js'
 import { MailAppHeader } from '../cmps/MailAppHeader.jsx'
 
 export function MailIndex() {
-  const [toggleMenu, setToggleMenu] = useState(false)
+  const [toggleSidebar, setToggleSidebar] = useState(false)
   const [filterBy, setFilterBy] = useState({
     folder: 'inbox',
     search: '', // no need to support complex text search
@@ -76,13 +76,13 @@ export function MailIndex() {
     setFilterBy({ ...newFilter })
   }
 
-  countUnreadMails()
-
   function countUnreadMails() {
     if (!emails) return
     const unreadMails = emails.filter(email => !email.isRead)
     return unreadMails.length
   }
+
+  const hoveredSidebar = sidebarHover || toggleSidebar
 
   console.log(emails)
 
@@ -91,16 +91,10 @@ export function MailIndex() {
       {!emails ? (
         <h3>...Loading</h3>
       ) : (
-        <div className={`email-grid ${sidebarHover ? 'sidebar-open' : ''}`}>
-          <div className="email-header">
-            <MailAppHeader setToggleMenu={setToggleMenu} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
-          </div>
-          <main className="grid full">
-            <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
-          </main>
-          <aside>
-            <SidebarMenu sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMails={countUnreadMails()} />
-          </aside>
+        <div className={`email-grid ${hoveredSidebar ? 'sidebar-open' : ''}`}>
+          <MailAppHeader setSidebarHover={setSidebarHover} setToggleSidebar={setToggleSidebar} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
+          <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
+          <SidebarMenu hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMails={countUnreadMails()} />
         </div>
       )}
     </React.Fragment>

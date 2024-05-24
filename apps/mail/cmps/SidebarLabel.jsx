@@ -1,4 +1,4 @@
-export function SidebarLabel({ label, folder, handleChange, sidebarHover, unreadMails }) {
+export function SidebarLabel({ hoveredSidebar, label, folder, handleChange, unreadMails }) {
   function folderLogo(label) {
     var logo
     switch (label) {
@@ -26,7 +26,7 @@ export function SidebarLabel({ label, folder, handleChange, sidebarHover, unread
           `}
     >
       <i className={folderLogo(label)}></i>
-      {sidebarHover && (
+      {hoveredSidebar && (
         <React.Fragment>
           <p>{label}</p>
           {label === 'inbox' && <span>{unreadMails}</span>}
