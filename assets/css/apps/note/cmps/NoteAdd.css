@@ -1,49 +1,51 @@
-.note-modal {
+.note-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.note-modal-content {
+    /* Align items horizontally */
     background-color: white;
-    padding: 20px;
+    padding: 10px 20px;
+    /* Reduced padding for flatter height */
     border-radius: 8px;
-    width: 400px;
-}
-
-.note-close {
-    float: right;
-    cursor: pointer;
+    box-shadow: none;
+    /* Removed the box-shadow for a flatter design */
+    width: 35vw;
+    /* Set width to 35% of viewport width */
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    /* Added a border for a flatter look */
+    box-sizing: border-box;
 }
 
 .note-form {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    /* Align items horizontally */
+    flex-grow: 1;
 }
 
 .note-input-label {
-    margin-bottom: 10px;
+    margin-right: 10px;
+    /* Spacing between label and input */
+    font-size: 14px;
+    color: #333;
+    /* Darker color for better readability */
 }
 
-.note-input {
+.note-input,
+.note-input-color {
     padding: 10px;
-    margin-bottom: 10px;
+    margin-right: 10px;
+    /* Spacing between inputs */
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    outline: none;
 }
 
-.note-input-color {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.note-input:focus,
+.note-input-color:focus {
+    border-color: #4CAF50;
+    /* Green border on focus for better accessibility */
 }
 
 .note-submit-button {
@@ -53,15 +55,31 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.note-submit-button:hover {
+    background-color: #45a049;
+    /* Darker green on hover */
 }
 
 .note-type-icons {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    flex-direction: column;
+    margin-left: 20px;
+    /* Move icons to the right */
 }
 
 .note-type-icon {
     font-size: 24px;
     cursor: pointer;
+    margin-bottom: 10px;
+    color: #888;
+    transition: color 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.note-type-icon:hover {
+    color: #000;
 }

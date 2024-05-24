@@ -23,3 +23,7 @@
  .note-preview-todo li {
      list-style: circle;
  }
+
+ .note-done {
+     text-decoration: line-through;
+ }
