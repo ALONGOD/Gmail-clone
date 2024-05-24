@@ -17,8 +17,8 @@ export function SidebarMenu({ filterBy, onSetFilterBy, unreadMails }) {
   }
 
   return (
-    <section className="sidebar-menu" onMouseEnter={() => setSidebarHover(true)} onMouseLeave={() => setSidebarHover(false)}>
-      <ComposeButton />
+    <section className={`sidebar-menu ${sidebarHover ? 'hovered' : ''}`} onMouseEnter={() => setSidebarHover(true)} onMouseLeave={() => setSidebarHover(false)}>
+      <ComposeButton sidebarHover={sidebarHover} />
       {labels.map(label => {
         return <SidebarLabel key={label} label={label} folder={folder} handleChange={handleChange} sidebarHover={sidebarHover} unreadMails={unreadMails} />
       })}

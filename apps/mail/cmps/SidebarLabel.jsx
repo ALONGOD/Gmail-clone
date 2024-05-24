@@ -23,7 +23,7 @@ export function SidebarLabel({ label, folder, handleChange, sidebarHover, unread
       key={label}
       onClick={() => handleChange(label)}
       className={`sidebar-label ${folder === label ? 'active' : ''}
-          ${sidebarHover && 'hovered'}`}
+          `}
     >
       <i className={folderLogo(label)}></i>
       {sidebarHover && (

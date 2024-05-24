@@ -1,0 +1,59 @@
+aside .sidebar-label {
+    display: grid;
+    grid-template-columns: 2em;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 2em;
+    padding: 0.5em 0.8em;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 1em;
+    text-transform: capitalize;
+    transition: 0.2s;
+}
+
+
+.sidebar-menu.hovered .sidebar-label {
+    padding-inline: 1.8em;
+    width: 10em;
+    grid-template-columns: 3em 3em 2em;
+    border-radius: 0 1em 1em 0;
+}
+
+.sidebar-menu.hovered .sidebar-label * {
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-label i {
+    grid-column: 1;
+}
+
+.sidebar-label p {
+    grid-column: 2;
+    margin: 0;
+}
+
+.sidebar-label span {
+    grid-column: 3;
+    margin-inline-start: 1em;
+}
+
+aside .sidebar-label>* {
+    margin-inline-end: 1em;
+}
+
+
+aside .sidebar-label.active {
+    background-color: rgb(211, 227, 253);
+}
+
+aside .sidebar-label.active>* {
+    font-weight: 600;
+}
+
+aside .sidebar-label:hover:not(.sidebar-label.active) {
+    background-color: rgb(236, 236, 236);
+
+}

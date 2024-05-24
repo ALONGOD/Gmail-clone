@@ -1,10 +1,27 @@
-.compose-btn {
+.sidebar-menu .compose-btn {
   background-color: var(--compose-btn-blue);
   padding: 1em;
+  width: 100%;
   border-radius: 16px;
   font-size: 14px;
-  margin-inline-start: 1em;
+  margin-block-end: 1em;
   cursor: pointer;
+}
+
+.sidebar-menu .compose-btn p {
+  padding: 0;
+  margin: 0;
+}
+
+
+
+.sidebar-menu.hovered .compose-btn i {
+  margin-inline-end: 1em;
+}
+
+.sidebar-menu.hovered .compose-btn {
+  width: 8em;
+  margin-inline-start: 1em;
 }
 
 .email-grid>aside {
@@ -14,62 +31,19 @@
 }
 
 aside .sidebar-menu {
-
-  display: grid;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  width: 5em;
+  padding-inline: 1em;
   background-color: rgb(246, 248, 252);
-
   margin-block-start: 2em;
-}
-
-aside .sidebar-label {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 2em;
-
-  width: 1.5em;
-  height: 1.5em;
-  padding: 0.5em 0.8em;
-  padding-inline-start: 2em;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 0 1em 1em 0;
-  text-transform: capitalize;
   transition: 0.2s;
 }
 
-.sidebar-label i {
-  grid-column: 1;
-}
-
-.sidebar-label p {
-  grid-column: 2;
-  margin: 0;
-}
-
-.sidebar-label span {
-  grid-column: 3;
-  margin-inline-start: 1em;
-}
-
-.sidebar-label.hovered {
-  width: 8em;
-  grid-template-columns: 3em 3em 2em;
-}
-
-aside .sidebar-label>* {
-  margin-inline-end: 1em;
-}
 
 
-aside .sidebar-label.active {
-  background-color: rgb(211, 227, 253);
-}
-
-aside .sidebar-label.active>* {
-  font-weight: 600;
-}
-
-aside .sidebar-label:hover:not(.sidebar-label.active) {
-  background-color: rgb(236, 236, 236);
-
+.sidebar-menu.hovered {
+  padding-inline: 0;
 }
