@@ -3,8 +3,6 @@ div.email-grid {
   display: grid;
   align-content: start;
   grid-template-columns: 4.5em 5fr 2em;
-  width: 100vw;
-  height: 100vh;
 }
 
 div.email-grid.sidebar-open {

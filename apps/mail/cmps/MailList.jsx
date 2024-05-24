@@ -1,3 +1,4 @@
+import { MailListActions } from './MailListActions.jsx'
 import { MailPreview } from './MailPreview.jsx'
 const { useState } = React
 
@@ -5,7 +6,8 @@ export function MailList({ emails, onRemove, onToggleIsStar, onToggleIsRead }) {
   const [hoverMailId, setHoverMailId] = useState()
 
   return (
-    <main className="grid full">
+    <main className="content-container grid full">
+      <MailListActions />
       <section className="mail-list full">
         <ul>
           {emails.map(email => {

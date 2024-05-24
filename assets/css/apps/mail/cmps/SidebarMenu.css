@@ -1,7 +1,38 @@
+/* aside */
+
+.email-grid>aside {
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+}
+
+/* Sidebar Menu */
+
+aside .sidebar-menu {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  /* margin-inline-start: 0.5em; */
+  width: 100%;
+  padding-inline: 1em;
+  background-color: rgb(246, 248, 252);
+  margin-block-start: 2em;
+  transition: 0.2s;
+}
+
+div.email-grid.sidebar-open .sidebar-menu {
+  padding-inline: 0;
+}
+
+/* Compose Button */
+
+
 .sidebar-menu .compose-btn {
   background-color: var(--compose-btn-blue);
   padding: 1em;
-  width: 100%;
+  width: 3em;
+  /* margin-inline: 0.5em; */
   border-radius: 16px;
   font-size: 14px;
   margin-block-end: 1em;
@@ -14,37 +45,11 @@
   margin: 0;
 }
 
-
-
-.sidebar-menu.hovered .compose-btn i {
+div.email-grid.sidebar-open .compose-btn i {
   margin-inline-end: 1em;
 }
 
-.sidebar-menu.hovered .compose-btn {
+div.email-grid.sidebar-open .compose-btn {
   width: 8em;
   margin-inline-start: 1em;
-}
-
-.email-grid>aside {
-  grid-column: 1;
-  grid-row: 2;
-  margin: 0;
-}
-
-aside .sidebar-menu {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background-color: white;
-  width: 100%;
-  padding-inline: 1em;
-  background-color: rgb(246, 248, 252);
-  margin-block-start: 2em;
-  transition: 0.2s;
-}
-
-
-
-.sidebar-menu.hovered {
-  padding-inline: 0;
 }

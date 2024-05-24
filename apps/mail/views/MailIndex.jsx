@@ -12,7 +12,7 @@ export function MailIndex() {
   const [filterBy, setFilterBy] = useState({
     folder: 'inbox',
     search: '', // no need to support complex text search
-    isRead: false, // (optional property, if missing: show all)
+    isRead: '', // (optional property, if missing: show all)
     isStarred: false, // (optional property, if missing: show all)
     lables: [], // has any of the labels
   })
@@ -83,8 +83,6 @@ export function MailIndex() {
     setFilterBy({ ...newFilter })
   }
 
-  console.log(countUnreadMails())
-
   function countUnreadMails() {
     return mailService
       .query()
@@ -101,8 +99,6 @@ export function MailIndex() {
   }
 
   const hoveredSidebar = sidebarHover || toggleSidebar
-
-  console.log(emails)
 
   return (
     <React.Fragment>
