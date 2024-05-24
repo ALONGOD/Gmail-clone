@@ -1,8 +1,6 @@
-const { useState, useEffect } = React
-
+const { useState } = React;
 
 export function AddNote({ onAddNote }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [noteText, setNoteText] = useState('');
     const [noteType, setNoteType] = useState('NoteTxt');
     const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
@@ -33,7 +31,8 @@ export function AddNote({ onAddNote }) {
         setNoteText('');
         setNoteType('NoteTxt');
         setNoteColor('#ADD8E6'); // Reset to default color
-        setIsModalOpen(false);
+        setImageUrl(''); // Reset imageUrl
+        setTodoText(''); // Reset todoText
     }
 
     const renderFormInputs = () => {
@@ -81,39 +80,25 @@ export function AddNote({ onAddNote }) {
     };
 
     return (
-        <div>
-            <button onClick={() => setIsModalOpen(true)} className="note-button">
-                Add Note
-            </button>
-
-            {isModalOpen && (
-                <div className="note-modal">
-                    <div className="note-modal-content">
-                        <span className="note-close" onClick={() => setIsModalOpen(false)}>
-                            &times;
-                        </span>
-                        <h2>Add a new Note</h2>
-                        <form className="note-form" onSubmit={handleSubmit}>
-                            <div className="note-type-icons">
-                                <i className="far fa-sticky-note note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
-                                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
-                                <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
-                            </div>
-                            {renderFormInputs()}
-                            <label className="note-input-label">
-                                Note Color:
-                                <input
-                                    type="color"
-                                    value={noteColor}
-                                    onChange={(e) => setNoteColor(e.target.value)}
-                                    className="note-input-color"
-                                />
-                            </label>
-                            <button type="submit" className="note-submit-button">Save Note</button>
-                        </form>
-                    </div>
-                </div>
-            )}
+        <div className="note-container">
+            <div className="note-type-icons">
+                <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
+                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
+                <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
+            </div>
+            <form className="note-form" onSubmit={handleSubmit}>
+                {renderFormInputs()}
+                <label className="note-input-label">
+                    Note Color:
+                    <input
+                        type="color"
+                        value={noteColor}
+                        onChange={(e) => setNoteColor(e.target.value)}
+                        className="note-input-color"
+                    />
+                </label>
+                <button type="submit" className="note-submit-button">Save Note</button>
+            </form>
         </div>
     );
 }

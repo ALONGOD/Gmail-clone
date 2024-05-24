@@ -1,28 +1,33 @@
-.note-modal {
+.note-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.note-modal-content {
+    align-items: flex-start;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 400px;
+    margin: 20px auto;
 }
 
-.note-close {
-    float: right;
+.note-type-icons {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.note-type-icon {
+    font-size: 24px;
     cursor: pointer;
+    margin-bottom: 10px;
+    color: #888;
+}
+
+.note-type-icon:hover {
+    color: #000;
 }
 
 .note-form {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
@@ -52,16 +57,5 @@
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-}
-
-.note-type-icons {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.note-type-icon {
-    font-size: 24px;
     cursor: pointer;
 }
