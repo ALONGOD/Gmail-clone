@@ -31,7 +31,20 @@ function query(filterBy = {}) {
       console.log(mails)
     }
 
-    mails.sort((a, b) => b.sentAt - a.sentAt)
+    if (filterBy.folder) {
+      switch (filterBy.folder) {
+        case 'inbox':
+          mails = mails.filter(mail => mail.type === 'inbox')
+          break
+        case 'starred':
+          mails = mails.filter(mail => mail.isStar)
+          break
+        case '':
+          break
+      }
+    }
+
+    mails = mails.sort((a, b) => b.sentAt - a.sentAt)
 
     return mails
   })
@@ -80,13 +93,13 @@ function _createMails() {
   let emails = storageService.loadFromStorage(MAIL_KEY)
   if (!emails || !emails.length) {
     emails = []
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 20; i++) {
       emails.push({
         id: utilService.makeId(4),
         subject: utilService.makeLorem(3),
         body: utilService.makeLorem(40),
         isRead: false,
-        sentAt: utilService.getRandomTimestamp('2023-12-01', '2024-05-22'),
+        sentAt: utilService.getRandomTimestamp('2022-12-01', '2024-05-22'),
         removedAt: null,
         isStar: false,
         from: 'momo@momo.com',
