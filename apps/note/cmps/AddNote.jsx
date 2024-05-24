@@ -1,28 +1,30 @@
-const { useState, useEffect } = React
-import { noteService } from '../services/note.service.js'
+const { useState } = React;
+import { noteService } from '../services/note.service.js';
 
 export function AddNote({ onAddNote }) {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const [noteText, setNoteText] = useState('')
-    const [noteType, setNoteType] = useState('NoteTxt')
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [noteText, setNoteText] = useState('');
+    const [noteType, setNoteType] = useState('NoteTxt');
+    const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
 
     function handleSubmit(ev) {
-        ev.preventDefault()
+        ev.preventDefault();
         const newNote = {
             type: noteType,
             info: { txt: noteText },
             createdAt: Date.now(),
             style: {
-                backgroundColor: 'lightblue'
+                backgroundColor: noteColor
             },
             isPinned: false
-        }
+        };
         noteService.save(newNote).then(savedNote => {
-            onAddNote && onAddNote(savedNote)
-            setNoteText('')
-            setNoteType('NoteTxt')
-            setIsModalOpen(false)
-        })
+            onAddNote && onAddNote(savedNote);
+            setNoteText('');
+            setNoteType('NoteTxt');
+            setNoteColor('#ADD8E6'); // Reset to default color
+            setIsModalOpen(false);
+        });
     }
 
     return (
@@ -55,11 +57,19 @@ export function AddNote({ onAddNote }) {
                                     <option value="NoteTodos">Todos</option>
                                 </select>
                             </label>
+                            <label>
+                                Note Color:
+                                <input
+                                    type="color"
+                                    value={noteColor}
+                                    onChange={(e) => setNoteColor(e.target.value)}
+                                />
+                            </label>
                             <button type="submit">Save Note</button>
                         </form>
                     </div>
                 </div>
             )}
         </div>
-    )
+    );
 }
