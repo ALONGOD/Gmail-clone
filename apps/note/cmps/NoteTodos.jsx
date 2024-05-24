@@ -1,6 +1,6 @@
 export function NoteTodos({ note }) {
     return (
-        <article className="note-preview">
+        <article className="note-preview-todo">
             <ul>
                 {note.info.todos.map((todo) => (
                     <li key={todo.doneAt}>

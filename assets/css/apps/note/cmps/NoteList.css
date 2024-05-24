@@ -19,3 +19,7 @@
  li {
      list-style: none;
  }
+
+ .note-preview-todo li {
+     list-style: circle;
+ }

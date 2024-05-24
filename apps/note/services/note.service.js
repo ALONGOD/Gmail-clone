@@ -14,13 +14,15 @@ export const noteService = {
     getDefaultFilter,
     getSpeedStats,
     getVendorStats,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    togglePin,
+    duplicate,
 }
 // For Debug (easy access from console):
 // window.cs = noteService
 
 function query(filterBy = {}) {
-    console.log(filterBy)
+    // console.log(filterBy)
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.search) {
@@ -103,7 +105,7 @@ function _createNotes() {
             {
                 id: 'n103',
                 type: 'NoteImg',
-                isPinned: false,
+                isPinned: true,
                 info: {
                     url: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
                     title: 'Bobi and Me'
@@ -116,7 +118,7 @@ function _createNotes() {
                 id: 'n102',
                 createdAt: 1112222,
                 type: 'NoteTxt',
-                isPinned: true,
+                isPinned: false,
                 style: {
                     backgroundColor: 'orange'
                 },
@@ -194,3 +196,24 @@ function _getnoteCountByVendorMap(notes) {
     return noteCountByVendorMap
 }
 
+function togglePin(noteId) {
+    return get(noteId).then(note => {
+        note.isPinned = !note.isPinned;
+        return save(note);
+    });
+}
+
+function duplicate(noteId) {
+    return get(noteId).then(note => {
+        const { id, ...noteWithoutId } = note;  // Destructure to exclude the `id` property
+        const duplicatedNote = {
+            ...noteWithoutId,
+            createdAt: Date.now(),
+            isPinned: false // Assuming you want the duplicated note to not be pinned by default
+        };
+        console.log(duplicatedNote);
+        return save(duplicatedNote).then(savedDuplicatedNote => {
+            return savedDuplicatedNote;
+        });
+    });
+}

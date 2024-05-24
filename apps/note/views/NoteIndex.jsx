@@ -20,17 +20,37 @@ export function NoteIndex() {
         search: ''
     })
 
-
     useEffect(() => {
-        // setIsLoading(true)
-        noteService.query(filterBy)
-            .then(notesRes => setNotes(notesRes))
-            .finally(() => {
-                // setIsLoading(false)
-            })
+        loadNotes();
+    }, [filterBy]);
 
-    }, [filterBy])
+    function loadNotes() {
+        noteService.query(filterBy).then(notesRes => {
+            setNotes(sortNotes(notesRes));
+        });
+    }
 
+    function sortNotes(notes) {
+        return notes.sort((a, b) => b.isPinned - a.isPinned);
+    }
+    function onPin(noteId) {
+        noteService.togglePin(noteId).then(() => {
+            loadNotes();
+        }).catch(err => {
+            console.log('err:', err);
+        });
+    }
+
+    function onDuplicate(noteId) {
+        noteService.duplicate(noteId)
+            .then(duplicatedNote => {
+                console.log(duplicatedNote)
+                // duplicatedNote.isDuplicated = false
+                setNotes(prevNotes => sortNotes([...prevNotes, duplicatedNote]));
+            }).catch(err => {
+                console.log('err:', err);
+            });
+    }
 
 
     function removeNote(noteId) {
@@ -82,7 +102,7 @@ export function NoteIndex() {
                 <AddNote onAddNote={onAddNote} />
 
 
-                <NoteList notes={notes} onRemove={removeNote} />
+                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} />
             </main>
         </div>
     </React.Fragment>
