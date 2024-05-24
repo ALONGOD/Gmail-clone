@@ -5,8 +5,7 @@ export function MailDetailsMain({ mail }) {
   function getUser(user, type = 'to') {
     const loggedInUser = mailService.getLoggedInUser()
     const { email, fullName } = loggedInUser
-    console.log(loggedInUser)
-    return loggedInUser.email === user ? type + ' me' : type + ': ' + user
+    return email === user ? type + ' me' : type + ': ' + user
   }
 
   console.log(mail)

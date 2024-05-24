@@ -59,7 +59,6 @@ function remove(mailId) {
 }
 
 function save(mail) {
-  console.log(mail)
   if (mail.id) {
     return asyncStorageService.put(MAIL_KEY, mail)
   } else {
@@ -96,13 +95,13 @@ function _createMails() {
     for (var i = 0; i < 20; i++) {
       emails.push({
         id: utilService.makeId(4),
-        subject: utilService.makeLorem(3),
-        body: utilService.makeLorem(40),
+        subject: utilService.generateRandomSubject(),
+        body: utilService.generateRandomSentence(),
         isRead: false,
         sentAt: utilService.getRandomTimestamp('2022-12-01', '2024-05-22'),
         removedAt: null,
         isStar: false,
-        from: 'momo@momo.com',
+        from: utilService.generateRandomEmailSender(),
         to: 'user@appsus.com',
         type: 'inbox',
       })

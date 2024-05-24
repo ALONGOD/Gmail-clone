@@ -26,7 +26,6 @@ export function MailDetails() {
       .get(mailId)
       .then(mail => {
         setMail(mail)
-        showSuccessMsg(`Mail successfully removed! ${mailId}`)
       })
       .catch(() => {
         showErrorMsg('Couldnt get mail...')

@@ -25,9 +25,8 @@ export function MailIndex() {
   }, [filterBy])
 
   useEffect(() => {
-    countUnreadMails().then(count => {
-      setUnreadMailsCount(count)
-    })
+    if (!emails) return
+    setUnreadMailsCount(emails.filter(mail => !mail.isRead).length)
   }, [emails])
 
   function loadMails() {
@@ -36,6 +35,8 @@ export function MailIndex() {
       .then(setEmails)
       .catch(err => console.log('err:', err))
   }
+
+  console.log(unreadMailsCount)
 
   function onToggleIsStar(mailId, isStar) {
     mailService
@@ -48,12 +49,10 @@ export function MailIndex() {
           updatedMails[mailIndex] = { ...mailToUpdate, isStar: isStar }
           setEmails(updatedMails)
         }
-        showSuccessMsg(`Mail marked as ${isStar ? 'starred' : 'unstarred'}! ${mailId}`)
         return mailService.save({ ...mailToUpdate, isStar: isStar })
       })
       .catch(err => {
         console.log('err:', err)
-        showErrorMsg("Error - coudn't mark as starred")
       })
   }
 
@@ -68,15 +67,30 @@ export function MailIndex() {
           updatedMails[mailIndex] = { ...mailToUpdate, isRead: isRead }
           setEmails(updatedMails)
         }
-        return mailService.save({ ...mailToUpdate, isRead: isRead })
+        mailService.save({ ...mailToUpdate, isRead: isRead })
       })
       .catch(err => {
         console.log('err:', err)
       })
+    // .finally(
+    //   countUnreadMails().then(count => {
+    //     setUnreadMailsCount(count)
+    //     console.log('finally')
+    //   })
+    // )
   }
 
   function onRemove(mailId) {
-    mailService.remove(mailId).then(setEmails(prevMails => prevMails.filter(mail => mail.id !== mailId)))
+    mailService
+      .remove(mailId)
+      .then(() => {
+        setEmails(prevMails => prevMails.filter(mail => mail.id !== mailId))
+        showSuccessMsg(`Mail successfully removed!`)
+      })
+      .catch(err => {
+        console.log('err:', err)
+        showErrorMsg("Error - couldn't remove the mail")
+      })
   }
 
   function onSetFilterBy(newFilter) {
@@ -87,14 +101,15 @@ export function MailIndex() {
     return mailService
       .query()
       .then(mails => {
-        if (!mails) return 0 // Return 0 if mails is undefined or null
+        if (!mails) return 0
         const unreadMails = mails.filter(mail => !mail.isRead)
         console.log(unreadMails.length)
-        return unreadMails.length
+        // return unreadMails.length
+        setUnreadMailsCount(unreadMails.length)
       })
       .catch(error => {
         console.error('Error fetching mails:', error)
-        return 0 // Return 0 or handle the error as needed
+        return 0
       })
   }
 
