@@ -1,13 +1,13 @@
 .mail {
     display: grid;
     /* grid-template-columns: 1fr 7fr 8fr 14fr 5em 3em; */
-    grid-template-columns: 1fr 20fr 3em;
+    grid-template-columns: 1fr 20fr 5em;
     cursor: pointer;
     border-bottom: 1px solid rgb(221, 221, 221);
     padding-inline-start: 0.5em;
 }
 
-.mail-details {
+.mail-preview {
     grid-column: 2;
     display: grid;
     align-items: center;
@@ -32,17 +32,24 @@
     background-color: transparent;
 }
 
-.mail.read .mail-details :is(h3, .mail-subject, h4) {
+.mail.read .mail-preview :is(h3, .mail-subject, h4) {
     font-weight: 200;
 }
 
 .mail p.mail-subject {
     grid-column: 3;
     font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .mail p.mail-body {
     grid-column: 4;
+    font-size: 14px;
+}
+
+.mail-tools .sent-at {
+    font-size: 14px;
 }
 
 .mail h4 {
@@ -52,11 +59,12 @@
 .mail .delete-btn {
     grid-column: 3;
     justify-self: center;
-    opacity: 0.5;
 }
 
 .email-sender {
     grid-column: 2;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .mail .star {
@@ -72,12 +80,10 @@
     grid-column: 3;
 }
 
-.mail img.delete-btn {
-    width: 2em;
-    height: auto;
-    margin-inline-start: 1em;
-}
-
 .starred {
     color: gold;
+}
+
+.mail-tools>* {
+    margin-right: 0.5em;
 }

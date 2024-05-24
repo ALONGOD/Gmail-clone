@@ -1,0 +1,17 @@
+
+section.mail-details-header {
+    border-radius: 1em;
+}
+
+
+section.mail-details-header > * {
+    /* margin-inline-start: 1em; */
+    cursor: pointer;
+    padding: 1em;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+section.mail-details-header > *:hover {
+    background-color: lightgray;
+}

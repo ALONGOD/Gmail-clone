@@ -1,48 +1,75 @@
 .compose-btn {
-    background-color: var(--compose-btn-blue);
-    padding: 1em;
-    border-radius: 16px;
-    font-size: 1.3em;
-    margin-inline-start: 1em;
-    cursor: pointer;
-  }
+  background-color: var(--compose-btn-blue);
+  padding: 1em;
+  border-radius: 16px;
+  font-size: 14px;
+  margin-inline-start: 1em;
+  cursor: pointer;
+}
 
-  .email-grid > aside {
-    grid-column: 1;
-    grid-row: 2;
-    margin: 0;
-  }
+.email-grid>aside {
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+}
 
-  aside .sidebar-menu {
-    margin-block-start: 2em;
-  }
+aside .sidebar-menu {
 
-  aside .sidebar-label {
-    width: 8em;
-    padding-block: 0.5em;
-    padding-inline-start: 3em;
-    margin-inline-end: 2em;
-    cursor: pointer;
-    border-radius: 0 1em 1em 0;
-    text-transform: capitalize;
-  }
-  
-  aside .sidebar-label.active {
-    background-color: rgb(211,227,253);
-    font-weight: 600;
-  }
+  display: grid;
+  background-color: rgb(246, 248, 252);
 
-  .sidebar-label.active:hover {
-    background-color: rgb(211,227,253);
-  }
+  margin-block-start: 2em;
+}
 
-  aside .sidebar-label:hover {
-    background-color: rgb(236, 236, 236);
+aside .sidebar-label {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2em;
 
-  }
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.5em 0.8em;
+  padding-inline-start: 2em;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 0 1em 1em 0;
+  text-transform: capitalize;
+  transition: 0.2s;
+}
 
-  aside .sidebar-label span {
-    margin-inline-start: 2em;
-  }
+.sidebar-label i {
+  grid-column: 1;
+}
 
-  
+.sidebar-label p {
+  grid-column: 2;
+  margin: 0;
+}
+
+.sidebar-label span {
+  grid-column: 3;
+  margin-inline-start: 1em;
+}
+
+.sidebar-label.hovered {
+  width: 8em;
+  grid-template-columns: 3em 3em 2em;
+}
+
+aside .sidebar-label>* {
+  margin-inline-end: 1em;
+}
+
+
+aside .sidebar-label.active {
+  background-color: rgb(211, 227, 253);
+}
+
+aside .sidebar-label.active>* {
+  font-weight: 600;
+}
+
+aside .sidebar-label:hover:not(.sidebar-label.active) {
+  background-color: rgb(236, 236, 236);
+
+}

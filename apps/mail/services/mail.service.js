@@ -16,7 +16,7 @@ export const mailService = {
   remove,
   save,
   getFilterFromSearchParams,
-  getLoggedInUser
+  getLoggedInUser,
 }
 
 function getLoggedInUser() {
@@ -27,7 +27,7 @@ function query(filterBy = {}) {
   return asyncStorageService.query(MAIL_KEY).then(mails => {
     if (filterBy.search) {
       const regExp = new RegExp(filterBy.search, 'i')
-      mails = mails.filter(mail => regExp.test(mail.subject))
+      mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body))
       console.log(mails)
     }
 
@@ -41,13 +41,12 @@ function get(mailId) {
   return asyncStorageService.get(MAIL_KEY, mailId)
 }
 
-
 function remove(mailId) {
   return asyncStorageService.remove(MAIL_KEY, mailId)
 }
 
 function save(mail) {
-  console.log(mail);
+  console.log(mail)
   if (mail.id) {
     return asyncStorageService.put(MAIL_KEY, mail)
   } else {
@@ -70,9 +69,7 @@ function _setNextPrevmailId(mail) {
   return asyncStorageService.query(MAIL_KEY).then(mails => {
     const mailIdx = mails.findIndex(currMail => currMail.id === mail.id)
     const nextmail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
-    const prevmail = mails[mailIdx - 1]
-      ? mails[mailIdx - 1]
-      : mails[mails.length - 1]
+    const prevmail = mails[mailIdx - 1] ? mails[mailIdx - 1] : mails[mails.length - 1]
     mail.nextmailId = nextmail.id
     mail.prevmailId = prevmail.id
     return mail
@@ -89,7 +86,7 @@ function _createMails() {
         subject: utilService.makeLorem(3),
         body: utilService.makeLorem(40),
         isRead: false,
-        sentAt: utilService.getRandomTimestamp('2023-05-01', '2024-05-22'),
+        sentAt: utilService.getRandomTimestamp('2023-12-01', '2024-05-22'),
         removedAt: null,
         isStar: false,
         from: 'momo@momo.com',

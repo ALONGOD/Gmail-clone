@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
-import { ComposeButton } from '../cmps/ComposeButton.jsx'
 // import gmailLogo from "../../../assets/img/mail-img";
 import { MailFilter } from '../cmps/MailFilter.jsx'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { MailList } from '../cmps/MailList.jsx'
 import { SidebarMenu } from '../cmps/SidebarMenu.jsx'
 import { mailService } from '../services/mail.service.js'
@@ -23,36 +23,52 @@ export function MailIndex() {
   }, [filterBy])
 
   function loadMails() {
-    mailService.query(filterBy)
-        .then(setEmails)
-        .catch(err => console.log('err:', err))
-}
+    mailService
+      .query(filterBy)
+      .then(setEmails)
+      .catch(err => console.log('err:', err))
+  }
 
-
-function onToggleIsStar(mailId, isStar) {
-  mailService.get(mailId)
+  function onToggleIsStar(mailId, isStar) {
+    mailService
+      .get(mailId)
       .then(mailToUpdate => {
-          const mailIndex = emails.findIndex(mail => mail.id === mailId)
+        const mailIndex = emails.findIndex(mail => mail.id === mailId)
 
-          if (mailIndex !== -1) {
-              const updatedMails = [...emails];
-              updatedMails[mailIndex] = { ...mailToUpdate, isStar: isStar }
-              setEmails(updatedMails)
-          }
-          // showSuccessMsg(`Mail marked as ${isStarred ? 'starred' : 'unstarred'}! ${mailId}`)
-          return mailService.save({ ...mailToUpdate, isStar: isStar })
+        if (mailIndex !== -1) {
+          const updatedMails = [...emails]
+          updatedMails[mailIndex] = { ...mailToUpdate, isStar: isStar }
+          setEmails(updatedMails)
+        }
+        showSuccessMsg(`Mail marked as ${isStar ? 'starred' : 'unstarred'}! ${mailId}`)
+        return mailService.save({ ...mailToUpdate, isStar: isStar })
       })
       .catch(err => {
-          console.log('err:', err)
-          // showErrorMsg('Error - coudn\'t mark as starred')
+        console.log('err:', err)
+        showErrorMsg("Error - coudn't mark as starred")
       })
-}
+  }
+
+  function onToggleIsRead(mailId, isRead) {
+    mailService
+      .get(mailId)
+      .then(mailToUpdate => {
+        const mailIndex = emails.findIndex(mail => mail.id === mailId)
+
+        if (mailIndex !== -1) {
+          const updatedMails = [...emails]
+          updatedMails[mailIndex] = { ...mailToUpdate, isRead: isRead }
+          setEmails(updatedMails)
+        }
+        return mailService.save({ ...mailToUpdate, isRead: isRead })
+      })
+      .catch(err => {
+        console.log('err:', err)
+      })
+  }
 
   function onRemove(mailId) {
-    mailService.remove(mailId)
-      .then(
-        setEmails(prevMails => prevMails.filter(mail => mail.id !== mailId))
-      )
+    mailService.remove(mailId).then(setEmails(prevMails => prevMails.filter(mail => mail.id !== mailId)))
   }
 
   function onSetFilterBy(newFilter) {
@@ -67,6 +83,8 @@ function onToggleIsStar(mailId, isStar) {
     return unreadMails.length
   }
 
+  console.log(emails)
+
   return (
     <React.Fragment>
       {!emails ? (
@@ -75,30 +93,16 @@ function onToggleIsStar(mailId, isStar) {
         <div className="email-grid">
           <div className="email-header">
             <div className="email-heading">
-              <img
-                className="sidebar-menu-btn"
-                src="assets/img/menu-btn.svg"
-                onClick={() => setToggleMenu(state => !state)}
-              />
-              <img
-                src="assets/img/mail-img/Gmail_Logo.svg"
-                alt="email-logo"
-                className="email-logo"
-              />
+              <i className="sidebar-mail-btn fa-solid fa-bars" src="assets/img/menu-btn.svg" onClick={() => setToggleMenu(state => !state)}></i>
+              <img src="assets/img/mail-img/Gmail_Logo.svg" alt="email-logo" className="email-logo" />
             </div>
             <MailFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           </div>
           <main className="grid full">
-            <MailList
-              emails={emails}
-              onRemove={onRemove}
-              onToggleIsStar={onToggleIsStar}
-              mails={emails}
-            />
+            <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
           </main>
           <aside>
-            <ComposeButton />
-            <SidebarMenu filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMails={countUnreadMails()}/>
+            <SidebarMenu filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMails={countUnreadMails()} />
           </aside>
         </div>
       )}
