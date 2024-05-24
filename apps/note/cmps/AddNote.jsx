@@ -1,4 +1,4 @@
-const { useState } = React;
+const { useState, useEffect } = React
 
 export function AddNote({ onAddNote }) {
     const [noteText, setNoteText] = useState('');
@@ -81,11 +81,6 @@ export function AddNote({ onAddNote }) {
 
     return (
         <div className="note-container">
-            <div className="note-type-icons">
-                <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
-                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
-                <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
-            </div>
             <form className="note-form" onSubmit={handleSubmit}>
                 {renderFormInputs()}
                 <label className="note-input-label">
@@ -99,6 +94,11 @@ export function AddNote({ onAddNote }) {
                 </label>
                 <button type="submit" className="note-submit-button">Save Note</button>
             </form>
+            <div className="note-type-icons">
+                <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
+                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
+                <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
+            </div>
         </div>
     );
 }
