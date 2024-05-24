@@ -26,7 +26,12 @@ export function MailIndex() {
 
   useEffect(() => {
     if (!emails) return
-    setUnreadMailsCount(emails.filter(mail => !mail.isRead).length)
+    if (filterBy.folder === 'starred') {
+      countUnreadMails()
+    }
+    if (filterBy.folder === 'inbox') {
+      setUnreadMailsCount(emails.filter(mail => !mail.isRead).length)
+    }
   }, [emails])
 
   function loadMails() {
