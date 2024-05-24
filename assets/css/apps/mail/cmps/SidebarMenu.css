@@ -35,7 +35,7 @@ aside .sidebar-menu {
   justify-content: center;
   flex-direction: column;
   background-color: white;
-  width: 5em;
+  width: 100%;
   padding-inline: 1em;
   background-color: rgb(246, 248, 252);
   margin-block-start: 2em;

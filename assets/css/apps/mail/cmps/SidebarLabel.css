@@ -1,6 +1,6 @@
 aside .sidebar-label {
     display: grid;
-    grid-template-columns: 2em;
+    grid-template-columns: 100%;
     align-items: center;
     justify-content: start;
     width: 100%;
@@ -14,14 +14,14 @@ aside .sidebar-label {
 }
 
 
-.sidebar-menu.hovered .sidebar-label {
+.email-grid.sidebar-open .sidebar-label {
     padding-inline: 1.8em;
     width: 10em;
     grid-template-columns: 3em 3em 2em;
     border-radius: 0 1em 1em 0;
 }
 
-.sidebar-menu.hovered .sidebar-label * {
+.email-grid.sidebar-open .sidebar-label * {
     padding: 0;
     margin: 0;
 }
