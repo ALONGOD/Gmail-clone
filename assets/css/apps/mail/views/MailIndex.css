@@ -24,18 +24,28 @@ div.email-grid.sidebar-open {
 }
 
 .email-logo {
-  width: 3.125em;
+  width: 2em;
   height: auto;
-  margin-inline-start: 2em;
+
 }
 
 .email-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   grid-column: 1;
 }
 
 .sidebar-mail-btn {
-  width: 2em;
-  height: 2em;
   fill: darkgray;
   cursor: pointer;
+  transition: 0.2s;
+  margin-inline: 1em;
+}
+
+.sidebar-mail-btn:hover {
+  margin-inline: 0;
+  padding: 1em;
+  border-radius: 50%;
+  background-color: lightgray;
 }
