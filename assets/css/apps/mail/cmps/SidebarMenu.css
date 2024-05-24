@@ -1,28 +1,4 @@
-.sidebar-menu .compose-btn {
-  background-color: var(--compose-btn-blue);
-  padding: 1em;
-  width: 100%;
-  border-radius: 16px;
-  font-size: 14px;
-  margin-block-end: 1em;
-  cursor: pointer;
-}
-
-.sidebar-menu .compose-btn p {
-  padding: 0;
-  margin: 0;
-}
-
-
-
-.sidebar-menu.hovered .compose-btn i {
-  margin-inline-end: 1em;
-}
-
-.sidebar-menu.hovered .compose-btn {
-  width: 8em;
-  margin-inline-start: 1em;
-}
+/* aside */
 
 .email-grid>aside {
   grid-column: 1;
@@ -30,11 +6,14 @@
   margin: 0;
 }
 
+/* Sidebar Menu */
+
 aside .sidebar-menu {
   display: flex;
   justify-content: center;
   flex-direction: column;
   background-color: white;
+  /* margin-inline-start: 0.5em; */
   width: 100%;
   padding-inline: 1em;
   background-color: rgb(246, 248, 252);
@@ -42,8 +21,35 @@ aside .sidebar-menu {
   transition: 0.2s;
 }
 
-
-
-.sidebar-menu.hovered {
+div.email-grid.sidebar-open .sidebar-menu {
   padding-inline: 0;
+}
+
+/* Compose Button */
+
+
+.sidebar-menu .compose-btn {
+  background-color: var(--compose-btn-blue);
+  padding: 1em;
+  width: 3em;
+  /* margin-inline: 0.5em; */
+  border-radius: 16px;
+  font-size: 14px;
+  margin-block-end: 1em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar-menu .compose-btn p {
+  padding: 0;
+  margin: 0;
+}
+
+div.email-grid.sidebar-open .compose-btn i {
+  margin-inline-end: 1em;
+}
+
+div.email-grid.sidebar-open .compose-btn {
+  width: 8em;
+  margin-inline-start: 1em;
 }

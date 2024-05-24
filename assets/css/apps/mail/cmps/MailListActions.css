@@ -1,0 +1,29 @@
+.mail-list-actions {
+    border-radius: 1em 1em 0 0;
+    padding: 0 0.5em;
+}
+
+.mail-list-checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.mail-list-checkbox-container>*,
+.mark-all-read {
+    cursor: pointer;
+    padding: 0.8em 0.5em;
+    border-radius: 10px;
+}
+
+:is(.mail-list-checkbox-container>*, .mark-all-read):hover {
+    background-color: lightgray;
+}
+
+.mail-list-checkbox-container .arrow-down {
+    font-size: 10px;
+}
+
+.mail-list-actions .mark-all-read {
+    margin-inline-start: 1em;
+}

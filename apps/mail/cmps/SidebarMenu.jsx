@@ -2,7 +2,7 @@ import { ComposeButton } from './ComposeButton.jsx'
 import { SidebarLabel } from './SidebarLabel.jsx'
 const { useState, useEffect } = React
 
-export function SidebarMenu({ hoveredSidebar, setSidebarHover, filterBy, onSetFilterBy, unreadMails }) {
+export function SidebarMenu({ hoveredSidebar, setSidebarHover, filterBy, onSetFilterBy, unreadMailsCount }) {
   const [folderToEdit, setFolderToEdit] = useState({ folder: filterBy.folder })
   const labels = ['inbox', 'starred', 'sent', 'drafts']
   const { folder } = filterBy
@@ -20,7 +20,7 @@ export function SidebarMenu({ hoveredSidebar, setSidebarHover, filterBy, onSetFi
       <section className={`sidebar-menu ${hoveredSidebar ? 'hovered' : ''}`} onMouseEnter={() => setSidebarHover(true)} onMouseLeave={() => setSidebarHover(false)}>
         <ComposeButton hoveredSidebar={hoveredSidebar} />
         {labels.map(label => {
-          return <SidebarLabel key={label} label={label} folder={folder} handleChange={handleChange} hoveredSidebar={hoveredSidebar} unreadMails={unreadMails} />
+          return <SidebarLabel key={label} label={label} folder={folder} handleChange={handleChange} hoveredSidebar={hoveredSidebar} unreadMailsCount={unreadMailsCount} />
         })}
       </section>
     </aside>
