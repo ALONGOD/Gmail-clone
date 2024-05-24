@@ -14,7 +14,8 @@ export const noteService = {
     getDefaultFilter,
     getSpeedStats,
     getVendorStats,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    togglePin,
 }
 // For Debug (easy access from console):
 // window.cs = noteService
@@ -194,3 +195,9 @@ function _getnoteCountByVendorMap(notes) {
     return noteCountByVendorMap
 }
 
+function togglePin(noteId) {
+    return get(noteId).then(note => {
+        note.isPinned = !note.isPinned;
+        return save(note);
+    });
+}
