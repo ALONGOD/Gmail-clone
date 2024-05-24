@@ -5,6 +5,7 @@ import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.servic
 import { MailList } from '../cmps/MailList.jsx'
 import { SidebarMenu } from '../cmps/SidebarMenu.jsx'
 import { mailService } from '../services/mail.service.js'
+import { MailAppHeader } from '../cmps/MailAppHeader.jsx'
 
 export function MailIndex() {
   const [toggleMenu, setToggleMenu] = useState(false)
@@ -15,7 +16,7 @@ export function MailIndex() {
     isStarred: false, // (optional property, if missing: show all)
     lables: [], // has any of the labels
   })
-
+  const [sidebarHover, setSidebarHover] = useState(false)
   const [emails, setEmails] = useState(null)
 
   useEffect(() => {
@@ -90,19 +91,15 @@ export function MailIndex() {
       {!emails ? (
         <h3>...Loading</h3>
       ) : (
-        <div className="email-grid">
+        <div className={`email-grid ${sidebarHover ? 'sidebar-open' : ''}`}>
           <div className="email-header">
-            <div className="email-heading">
-              <i className="sidebar-mail-btn fa-solid fa-bars" src="assets/img/menu-btn.svg" onClick={() => setToggleMenu(state => !state)}></i>
-              <img src="assets/img/mail-img/Gmail_Logo.svg" alt="email-logo" className="email-logo" />
-            </div>
-            <MailFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
+            <MailAppHeader setToggleMenu={setToggleMenu} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           </div>
           <main className="grid full">
             <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
           </main>
           <aside>
-            <SidebarMenu filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMails={countUnreadMails()} />
+            <SidebarMenu sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMails={countUnreadMails()} />
           </aside>
         </div>
       )}
