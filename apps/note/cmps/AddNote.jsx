@@ -1,5 +1,5 @@
-const { useState } = React;
-import { noteService } from '../services/note.service.js';
+const { useState, useEffect } = React
+
 
 export function AddNote({ onAddNote }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,50 +29,51 @@ export function AddNote({ onAddNote }) {
             },
             isPinned: false
         };
-        noteService.save(newNote).then(savedNote => {
-            onAddNote && onAddNote(savedNote);
-            setNoteText('');
-            setNoteType('NoteTxt');
-            setNoteColor('#ADD8E6'); // Reset to default color
-            setIsModalOpen(false);
-        });
+        onAddNote && onAddNote(newNote);
+        setNoteText('');
+        setNoteType('NoteTxt');
+        setNoteColor('#ADD8E6'); // Reset to default color
+        setIsModalOpen(false);
     }
 
     const renderFormInputs = () => {
         switch (noteType) {
             case 'NoteImg':
                 return (
-                    <label>
+                    <label className="note-input-label">
                         Image URL:
                         <input
                             type="text"
                             value={imageUrl}
                             onChange={(e) => setImageUrl(e.target.value)}
                             required
+                            className="note-input"
                         />
                     </label>
                 );
             case 'NoteTodos':
                 return (
-                    <label>
+                    <label className="note-input-label">
                         Todos (comma separated):
                         <input
                             type="text"
                             value={todoText}
                             onChange={(e) => setTodoText(e.target.value)}
                             required
+                            className="note-input"
                         />
                     </label>
                 );
             default:
                 return (
-                    <label>
+                    <label className="note-input-label">
                         Note Text:
                         <input
                             type="text"
                             value={noteText}
                             onChange={(e) => setNoteText(e.target.value)}
                             required
+                            className="note-input"
                         />
                     </label>
                 );
@@ -81,35 +82,34 @@ export function AddNote({ onAddNote }) {
 
     return (
         <div>
-            <button onClick={() => setIsModalOpen(true)}>Add Note</button>
+            <button onClick={() => setIsModalOpen(true)} className="note-button">
+                Add Note
+            </button>
 
             {isModalOpen && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
+                <div className="note-modal">
+                    <div className="note-modal-content">
+                        <span className="note-close" onClick={() => setIsModalOpen(false)}>
+                            &times;
+                        </span>
                         <h2>Add a new Note</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form className="note-form" onSubmit={handleSubmit}>
+                            <div className="note-type-icons">
+                                <i className="far fa-sticky-note note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
+                                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
+                                <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
+                            </div>
                             {renderFormInputs()}
-                            <label>
-                                Note Type:
-                                <select
-                                    value={noteType}
-                                    onChange={(e) => setNoteType(e.target.value)}
-                                >
-                                    <option value="NoteTxt">Text</option>
-                                    <option value="NoteImg">Image</option>
-                                    <option value="NoteTodos">Todos</option>
-                                </select>
-                            </label>
-                            <label>
+                            <label className="note-input-label">
                                 Note Color:
                                 <input
                                     type="color"
                                     value={noteColor}
                                     onChange={(e) => setNoteColor(e.target.value)}
+                                    className="note-input-color"
                                 />
                             </label>
-                            <button type="submit">Save Note</button>
+                            <button type="submit" className="note-submit-button">Save Note</button>
                         </form>
                     </div>
                 </div>

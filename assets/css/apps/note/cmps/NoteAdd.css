@@ -1,0 +1,67 @@
+.note-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.note-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+}
+
+.note-close {
+    float: right;
+    cursor: pointer;
+}
+
+.note-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.note-input-label {
+    margin-bottom: 10px;
+}
+
+.note-input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.note-input-color {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.note-submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.note-type-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.note-type-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
