@@ -20,9 +20,14 @@ export function MailIndex() {
   const [toggleComposeMail, setToggleComposeMail] = useState(false)
 
   useEffect(() => {
+    // if (searchParams.get('compose') === 'new') {
+    //   setToggleComposeMail(true)
+    // }
     setSearchParams(filterBy)
     loadMails()
   }, [filterBy])
+
+  console.log(unreadMailsCount)
 
   useEffect(() => {
     if (!emails) return

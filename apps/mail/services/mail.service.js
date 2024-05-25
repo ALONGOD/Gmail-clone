@@ -72,13 +72,6 @@ function getDefaultFilter(filterBy = { search: '', unread: 0 }) {
   return { search: filterBy.search, unread: filterBy.unread }
 }
 
-function getFilterFromSearchParams(searchParams) {
-  return {
-    search: searchParams.get('search') || '',
-    unread: +searchParams.get('unread') || '',
-  }
-}
-
 function _setNextPrevmailId(mail) {
   return asyncStorageService.query(MAIL_KEY).then(mails => {
     const mailIdx = mails.findIndex(currMail => currMail.id === mail.id)
@@ -128,7 +121,7 @@ function getEmptyMail(subject = '', body = '', to = '') {
 
 function getFilterFromSearchParams(searchParams) {
   return {
-    folder: searchParams.get('folder') || '',
+    folder: searchParams.get('folder') || 'inbox',
     search: searchParams.get('search') || '',
     isRead: searchParams.get('isRead') || '',
     isStarred: searchParams.get('isStarred') || '',
