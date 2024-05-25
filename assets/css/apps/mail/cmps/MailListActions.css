@@ -1,6 +1,7 @@
 .mail-list-actions {
     border-radius: 1em 1em 0 0;
     padding: 0 0.5em;
+    height: 5vh;
 }
 
 .mail-list-checkbox-container {
