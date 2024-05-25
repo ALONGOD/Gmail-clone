@@ -12,5 +12,5 @@
     overflow-y: auto;
     border-radius: 1em 1em 0 0;
     /* height: 100%; */
-    height: calc(100vh - var(--header-height) - var(--footer-height) - var(--mail-list-actions-height))
+    height: minmax(max-content calc(100vh - var(--header-height) - var(--footer-height) - var(--mail-list-actions-height)))
  }

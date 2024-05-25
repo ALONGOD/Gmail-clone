@@ -1,23 +1,26 @@
-const { useState, useEffect } = React
+import { utilService } from '../../../services/util.service.js'
 
-export function MailFilter({filterBy, onSetFilterBy}) {
-    const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+const { useState, useEffect, useRef } = React
 
-    useEffect(() => {
-        onSetFilterBy(filterByToEdit)
-    }, [filterByToEdit])
+export function MailFilter({ filterBy, onSetFilterBy }) {
+  const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+  // const debounceOnSearch = useRef(utilService.debounce())
 
-    function handleChange({ target }) {
-        const { name, value } = target
-        setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }))
-    }
+  useEffect(() => {
+    onSetFilterBy(filterByToEdit)
+  }, [filterByToEdit])
 
-    const { search } = filterBy
+  function handleChange({ target }) {
+    const { name, value } = target
+    setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }))
+  }
 
-    return (
-        <section className="mail-filter flex flex-row">
-            <input onChange={handleChange} value={search} name="search" type="text" placeholder="Search email..." />
-            <img src="assets/img/search-icon.png" />
-        </section>
-    )
+  const { search } = filterBy
+
+  return (
+    <section className="mail-filter flex flex-row">
+      <input onChange={handleChange} value={search} name="search" type="text" placeholder="Search email..." />
+      <img src="assets/img/search-icon.png" />
+    </section>
+  )
 }

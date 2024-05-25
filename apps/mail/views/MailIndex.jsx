@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const { Outlet, useSearchParams, useParams } = ReactRouterDOM
 // import gmailLogo from "../../../assets/img/mail-img";
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
@@ -6,21 +7,20 @@ import { MailList } from '../cmps/MailList.jsx'
 import { SidebarMenu } from '../cmps/SidebarMenu.jsx'
 import { mailService } from '../services/mail.service.js'
 import { MailAppHeader } from '../cmps/MailAppHeader.jsx'
+import { ComposeEmail } from '../cmps/ComposeEmail.jsx'
 
 export function MailIndex() {
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const [toggleSidebar, setToggleSidebar] = useState(false)
-  const [filterBy, setFilterBy] = useState({
-    folder: 'inbox',
-    search: '', // no need to support complex text search
-    isRead: '', // (optional property, if missing: show all)
-    isStarred: false, // (optional property, if missing: show all)
-    lables: [], // has any of the labels
-  })
+  const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchParams))
   const [sidebarHover, setSidebarHover] = useState(false)
   const [emails, setEmails] = useState(null)
   const [unreadMailsCount, setUnreadMailsCount] = useState(0)
+  const [toggleComposeMail, setToggleComposeMail] = useState(false)
 
   useEffect(() => {
+    setSearchParams(filterBy)
     loadMails()
   }, [filterBy])
 
@@ -40,8 +40,6 @@ export function MailIndex() {
       .then(setEmails)
       .catch(err => console.log('err:', err))
   }
-
-  console.log(unreadMailsCount)
 
   function onToggleIsStar(mailId, isStar) {
     mailService
@@ -77,12 +75,6 @@ export function MailIndex() {
       .catch(err => {
         console.log('err:', err)
       })
-    // .finally(
-    //   countUnreadMails().then(count => {
-    //     setUnreadMailsCount(count)
-    //     console.log('finally')
-    //   })
-    // )
   }
 
   function onRemove(mailId) {
@@ -128,7 +120,8 @@ export function MailIndex() {
         <div className={`email-grid ${hoveredSidebar ? 'sidebar-open' : ''}`}>
           <MailAppHeader setSidebarHover={setSidebarHover} setToggleSidebar={setToggleSidebar} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
-          <SidebarMenu hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
+          <SidebarMenu setToggleComposeMail={setToggleComposeMail} hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
+          {toggleComposeMail && <ComposeEmail />}
         </div>
       )}
     </React.Fragment>

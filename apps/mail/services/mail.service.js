@@ -17,6 +17,8 @@ export const mailService = {
   save,
   getFilterFromSearchParams,
   getLoggedInUser,
+  getEmptyMail,
+  getFilterFromSearchParams,
 }
 
 function getLoggedInUser() {
@@ -110,52 +112,25 @@ function _createMails() {
   }
 }
 
-function _createmail(vendor, maxSpeed = 250) {
-  const mail = getEmptymail(vendor, maxSpeed)
-  mail.id = utilService.makeId()
-  return mail
+function getEmptyMail(subject = '', body = '', to = '') {
+  return {
+    id: '',
+    subject,
+    body,
+    isRead: true,
+    isStarred: false,
+    sentAt: 0,
+    removedAt: null,
+    from: loggedinUser.email,
+    to,
+  }
 }
 
-// function getSpeedStats() {
-//   return asyncStorageService.query(MAIL_KEY).then(mails => {
-//     const mailCountBySpeedMap = _getmailCountBySpeedMap(mails)
-//     const data = Object.keys(mailCountBySpeedMap).map(speedName => ({
-//       title: speedName,
-//       value: mailCountBySpeedMap[speedName],
-//     }))
-//     return data
-//   })
-// }
-
-// function getVendorStats() {
-//   return asyncStorageService.query(MAIL_KEY).then(mails => {
-//     const mailCountByVendorMap = _getmailCountByVendorMap(mails)
-//     const data = Object.keys(mailCountByVendorMap).map(vendor => ({
-//       title: vendor,
-//       value: Math.round((mailCountByVendorMap[vendor] / mails.length) * 100),
-//     }))
-//     return data
-//   })
-// }
-
-// function _getmailCountBySpeedMap(mails) {
-//   const mailCountBySpeedMap = mails.reduce(
-//     (map, mail) => {
-//       if (mail.maxSpeed < 120) map.slow++
-//       else if (mail.maxSpeed < 200) map.normal++
-//       else map.fast++
-//       return map
-//     },
-//     { slow: 0, normal: 0, fast: 0 }
-//   )
-//   return mailCountBySpeedMap
-// }
-
-// function _getmailCountByVendorMap(mails) {
-//   const mailCountByVendorMap = mails.reduce((map, mail) => {
-//     if (!map[mail.vendor]) map[mail.vendor] = 0
-//     map[mail.vendor]++
-//     return map
-//   }, {})
-//   return mailCountByVendorMap
-// }
+function getFilterFromSearchParams(searchParams) {
+  return {
+    folder: searchParams.get('folder') || '',
+    search: searchParams.get('search') || '',
+    isRead: searchParams.get('isRead') || '',
+    isStarred: searchParams.get('isStarred') || '',
+  }
+}
