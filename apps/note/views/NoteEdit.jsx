@@ -1,6 +1,8 @@
 const { useState, useEffect } = React
 const { useParams, useNavigate } = ReactRouter
 import { noteService } from "../services/note.service.js"
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+
 
 const { Link } = ReactRouterDOM
 
@@ -53,11 +55,13 @@ export function NoteEdit() {
         // Save the updated note (assuming you have a saveNote function in your note service)
         noteService.save(updatedNote)
             .then(() => {
-                alert('Note saved successfully!');
+                // alert('Note saved successfully!');
+                showSuccessMsg('Successfully edited note!')
             })
             .catch(error => {
                 console.error('Error saving note:', error);
-                alert('Failed to save note. Please try again.');
+                showErrorMsg('Couldn\'t edit note...')
+                // alert('Failed to save note. Please try again.');
             })
             .finally(() => {
                 navigate('/note'); // Navigate back to '/note' regardless of success or failure

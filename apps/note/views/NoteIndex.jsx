@@ -4,6 +4,7 @@ const { Link } = ReactRouterDOM
 // import { NoteAdd } from '../cmps/NoteAdd.jsx'
 // import { NoteAsideToolBar } from '../cmps/NoteAsideToolBar.jsx'
 // import { NoteEdit } from '../cmps/NoteEdit.jsx'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
 import { NoteFilter } from '../cmps/NoteFilter.jsx'
@@ -48,8 +49,10 @@ export function NoteIndex() {
                 console.log(duplicatedNote)
                 // duplicatedNote.isDuplicated = false
                 setNotes(prevNotes => sortNotes([...prevNotes, duplicatedNote]));
+                showSuccessMsg('Successfully duplicated note!')
             }).catch(err => {
                 console.log('err:', err);
+                showErrorMsg('Couldn\'t duplicate note...')
             });
     }
 
@@ -58,10 +61,14 @@ export function NoteIndex() {
         noteService.remove(noteId)
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
+                showSuccessMsg('Successfully removed note!')
+
                 // showSuccessMsg(`Car (${noteId}) removed successfully!`)
             })
             .catch(err => {
                 console.log('err:', err)
+                showErrorMsg('Couldn\'t remove note...')
+
                 // showErrorMsg('There was a problem')
             })
     }
@@ -73,6 +80,8 @@ export function NoteIndex() {
     function onAddNote(newNote) {
         noteService.save(newNote).then(savedNote => {
             setNotes(prevNotes => [...prevNotes, savedNote]);
+            showSuccessMsg('Successfully added note!')
+
         });
     }
 
