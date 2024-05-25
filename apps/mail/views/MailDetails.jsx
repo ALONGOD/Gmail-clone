@@ -7,7 +7,7 @@ import { mailService } from '../services/mail.service.js'
 const { useParams, useNavigate } = ReactRouter
 const { useState, useEffect } = React
 
-export function MailDetails({ setMailMainContent, onRemove }) {
+export function MailDetails({ setMailMainContent }) {
   const [mail, setMail] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -40,10 +40,8 @@ export function MailDetails({ setMailMainContent, onRemove }) {
       .remove(mailId)
       .then(() => {
         showSuccessMsg(`Mail successfully removed! ${mailId}`)
-        console.log('ho')
         navigate('/mail')
         setMailMainContent('mailList')
-        console.log('ho')
       })
       .catch(err => {
         console.log('err:', err)

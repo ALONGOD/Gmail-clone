@@ -71,8 +71,10 @@ function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
 
 function getFilterFromSearchParams(searchParams) {
     return {
-        txt: searchParams.get('txt') || '',
-        minSpeed: +searchParams.get('minSpeed') || '',
+        // txt: searchParams.get('txt') || '',
+        // minSpeed: +searchParams.get('minSpeed') || '',
+        search: searchParams.get('search') || '',
+        type: searchParams.get('type') || '',
     }
 }
 

@@ -42,3 +42,32 @@
  .note-done {
      text-decoration: line-through;
  }
+
+ .note-card {
+     position: relative;
+     padding: 10px;
+     margin: 10px;
+     border-radius: 5px;
+ }
+
+ .color-palette {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 5px;
+     position: absolute;
+     top: 50px;
+     left: 10px;
+     background: white;
+     padding: 10px;
+     border: 1px solid #ddd;
+     border-radius: 5px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+ }
+
+ .color-option {
+     width: 20px;
+     height: 20px;
+     cursor: pointer;
+     border: 1px solid #ddd;
+     border-radius: 50%;
+ }

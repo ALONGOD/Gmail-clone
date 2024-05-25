@@ -49,9 +49,10 @@ export function AddNote({ onAddNote }) {
                 return (
                     <div>
                         <label className="note-input-label">
-                            Title:
                             <input
                                 type="text"
+                                placeholder="Enter note title..."
+
                                 value={imageTitle}
                                 onChange={(e) => setImageTitle(e.target.value)}
                                 required
@@ -59,8 +60,9 @@ export function AddNote({ onAddNote }) {
                             />
                         </label>
                         <label className="note-input-label">
-                            Image URL:
                             <input
+                                placeholder="Enter image URL..."
+
                                 type="text"
                                 value={imageUrl}
                                 onChange={(e) => setImageUrl(e.target.value)}
@@ -74,8 +76,9 @@ export function AddNote({ onAddNote }) {
                 return (
                     <div>
                         <label className="note-input-label">
-                            Title:
                             <input
+                                placeholder="Enter note title..."
+
                                 type="text"
                                 value={noteText}
                                 onChange={(e) => setNoteText(e.target.value)}
@@ -84,8 +87,9 @@ export function AddNote({ onAddNote }) {
                             />
                         </label>
                         <label className="note-input-label">
-                            Todos (comma separated):
                             <input
+                                placeholder="Enter todos..."
+
                                 type="text"
                                 value={todoText}
                                 onChange={(e) => setTodoText(e.target.value)}
@@ -99,8 +103,9 @@ export function AddNote({ onAddNote }) {
                 return (
                     <div>
                         <label className="note-input-label">
-                            Title:
                             <input
+                                placeholder="Enter note title..."
+
                                 type="text"
                                 value={videoTitle}
                                 onChange={(e) => setVideoTitle(e.target.value)}
@@ -109,8 +114,9 @@ export function AddNote({ onAddNote }) {
                             />
                         </label>
                         <label className="note-input-label">
-                            Video URL:
                             <input
+                                placeholder="Enter video url..."
+
                                 type="text"
                                 value={videoUrl}
                                 onChange={(e) => setVideoUrl(e.target.value)}
@@ -123,8 +129,8 @@ export function AddNote({ onAddNote }) {
             default:
                 return (
                     <label className="note-input-label">
-                        Note Text:
                         <input
+                            placeholder="Enter note text..."
                             type="text"
                             value={noteText}
                             onChange={(e) => setNoteText(e.target.value)}
