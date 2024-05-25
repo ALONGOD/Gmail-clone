@@ -7,6 +7,8 @@ export function AddNote({ onAddNote }) {
     const [imageUrl, setImageUrl] = useState('');
     const [imageTitle, setImageTitle] = useState('');
     const [todoText, setTodoText] = useState('');
+    const [videoUrl, setVideoUrl] = useState('');
+    const [videoTitle, setVideoTitle] = useState('');
 
     function handleSubmit(ev) {
         ev.preventDefault();
@@ -16,6 +18,8 @@ export function AddNote({ onAddNote }) {
         } else if (noteType === 'NoteTodos') {
             const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
             info = { title: noteText, todos };
+        } else if (noteType === 'NoteVideo') {
+            info = { title: videoTitle, url: videoUrl };
         } else {
             info = { txt: noteText };
         }
@@ -35,9 +39,10 @@ export function AddNote({ onAddNote }) {
         setImageUrl('');
         setImageTitle('');
         setTodoText('');
+        setVideoUrl('');
+        setVideoTitle('');
     }
 
-    console.log('hi please save')
     const renderFormInputs = () => {
         switch (noteType) {
             case 'NoteImg':
@@ -90,6 +95,31 @@ export function AddNote({ onAddNote }) {
                         </label>
                     </div>
                 );
+            case 'NoteVideo':
+                return (
+                    <div>
+                        <label className="note-input-label">
+                            Title:
+                            <input
+                                type="text"
+                                value={videoTitle}
+                                onChange={(e) => setVideoTitle(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            Video URL:
+                            <input
+                                type="text"
+                                value={videoUrl}
+                                onChange={(e) => setVideoUrl(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
+                );
             default:
                 return (
                     <label className="note-input-label">
@@ -125,6 +155,7 @@ export function AddNote({ onAddNote }) {
                 <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
                 <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
+                <i className="far fa-play-circle note-type-icon" onClick={() => setNoteType('NoteVideo')}></i>
             </div>
         </div>
     );
