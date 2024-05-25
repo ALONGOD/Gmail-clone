@@ -2,7 +2,7 @@ import { mailService } from '../services/mail.service.js'
 
 const { useState } = React
 
-export function ComposeEmail() {
+export function ComposeEmail({ setToggleComposeMail }) {
   const [newMail, setNewMail] = useState(mailService.getEmptyMail())
 
   function handleChange({ name, value }) {
@@ -18,24 +18,19 @@ export function ComposeEmail() {
   const { to, subject, body } = newMail
 
   return (
-    <div className="compose-container">
-      <h2>Compose Email</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="to">To:</label>
-          <input type="email" id="to" value={to} onChange={e => handleChange(e.target)} required />
+    <div className="compose-container flex flex-column">
+      <div className="compose-header-container flex flex-row justify-space-between">
+        <h2>New Message</h2>
+        <i class="fa-solid fa-xmark" onClick={() => setToggleComposeMail(false)}></i>
+      </div>
+
+      <form className="compose-body flex flex-column">
+        <input type="text" placeholder="To" />
+        <input type="text" placeholder="Subject" />
+        <textarea></textarea>
+        <div className="compose-footer">
+          <button className="send-btn">Send</button>
         </div>
-        <div className="form-group">
-          <label htmlFor="subject">Subject:</label>
-          <input type="text" id="subject" value={subject} onChange={e => handleChange(e.target)} required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="body">Body:</label>
-          <textarea id="body" value={body} onChange={e => handleChange(e.target)} required></textarea>
-        </div>
-        <button type="submit" className="send-button">
-          Send
-        </button>
       </form>
     </div>
   )

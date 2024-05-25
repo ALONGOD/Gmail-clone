@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Outlet, useSearchParams, useParams } = ReactRouterDOM
+const { useSearchParams, useParams } = ReactRouterDOM
 // import gmailLogo from "../../../assets/img/mail-img";
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
@@ -12,8 +12,8 @@ import { ComposeEmail } from '../cmps/ComposeEmail.jsx'
 export function MailIndex() {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const [toggleSidebar, setToggleSidebar] = useState(false)
   const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchParams))
+  const [toggleSidebar, setToggleSidebar] = useState(false)
   const [sidebarHover, setSidebarHover] = useState(false)
   const [emails, setEmails] = useState(null)
   const [unreadMailsCount, setUnreadMailsCount] = useState(0)
@@ -126,7 +126,7 @@ export function MailIndex() {
           <MailAppHeader setSidebarHover={setSidebarHover} setToggleSidebar={setToggleSidebar} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
           <SidebarMenu setToggleComposeMail={setToggleComposeMail} hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
-          {toggleComposeMail && <ComposeEmail />}
+          {toggleComposeMail && <ComposeEmail setToggleComposeMail={setToggleComposeMail} />}
         </div>
       )}
     </React.Fragment>
