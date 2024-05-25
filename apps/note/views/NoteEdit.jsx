@@ -7,10 +7,14 @@ const { Link } = ReactRouterDOM
 export function NoteEdit() {
     const [note, setNote] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [editedTitle, setEditedTitle] = useState('');
+    const [editedText, setEditedText] = useState('');
+    const [editedTodos, setEditedTodos] = useState([]);
+    const [editedImageUrl, setEditedImageUrl] = useState('');
+    const [editedNoteType, setEditedNoteType] = useState('');
+
     const params = useParams();
     const navigate = useNavigate();
-
-    const { noteId } = useParams();
 
     useEffect(() => {
         setIsLoading(true);
@@ -18,6 +22,11 @@ export function NoteEdit() {
             .then(note => {
                 console.log(note);
                 setNote(note);
+                setEditedTitle(note.info.title || ''); // Initialize edited fields with note data
+                setEditedText(note.info.text || '');
+                setEditedTodos(note.info.todos || []);
+                setEditedImageUrl(note.info.url || '');
+                setEditedNoteType(note.type);
             })
             .catch(() => {
                 alert('Couldnt get note...');
@@ -26,64 +35,85 @@ export function NoteEdit() {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [params.noteId]);
+    }, [params.noteId, navigate]);
+
+    const handleSave = () => {
+        // Construct updated note object
+        const updatedNote = {
+            ...note,
+            info: {
+                title: editedTitle,
+                text: editedText,
+                todos: editedTodos,
+                url: editedImageUrl
+            },
+            type: editedNoteType
+        };
+
+        // Save the updated note (assuming you have a saveNote function in your note service)
+        noteService.save(updatedNote)
+            .then(() => {
+                alert('Note saved successfully!');
+            })
+            .catch(error => {
+                console.error('Error saving note:', error);
+                alert('Failed to save note. Please try again.');
+            });
+    };
+
+    const handleTodoTextChange = (index, newText) => {
+        const updatedTodos = [...editedTodos];
+        updatedTodos[index].txt = newText;
+        setEditedTodos(updatedTodos);
+    };
+
+    const handleTodoCompletionChange = (index) => {
+        const updatedTodos = [...editedTodos];
+        updatedTodos[index].completed = !updatedTodos[index].completed;
+        setEditedTodos(updatedTodos);
+    };
 
     if (isLoading) return <h3>Loading...</h3>;
-
-    function renderEditOptions() {
-        console.log("Note type:", note.type); // Log the note type
-        if (!note) {
-            console.log("Note is null");
-            return null;
-        }
-
-        // Determine the type of note
-        switch (note.type) {
-            case 'NoteTxt':
-                console.log("Rendering text edit options");
-                return (
-                    <div>
-                        <label>Text:</label>
-                        <textarea value={note.info.text}></textarea>
-                    </div>
-                );
-            case 'NoteTodos':
-                console.log("Rendering todos edit options");
-                return (
-                    <div>
-                        <label>Title:</label>
-                        <input type="text" value={note.info.title} />
-                        <ul>
-                            {note.info.todos.map(todo => (
-                                <li key={todo.txt}>
-                                    <input type="checkbox" checked={todo.completed} />
-                                    {todo.txt}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                );
-            case 'NoteImg':
-                console.log("Rendering photo edit options");
-                return (
-                    <div>
-                        <label>Title:</label>
-                        <input type="text" value={note.info.title} />
-                        <label>Image URL:</label>
-                        <input type="text" value={note.info.url} />
-                    </div>
-                );
-            default:
-                console.log("Unknown note type:", note.type);
-                return null;
-        }
-    }
 
     return (
         <div>
             <h1>Note Details</h1>
-            <p>Note ID: {noteId}</p>
-            {renderEditOptions()}
+            <p>Note ID: {params.noteId}</p>
+            {note && (
+                <div>
+                    {editedNoteType === 'NoteTxt' && (
+                        <div>
+                            <label>Title:</label>
+                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <label>Text:</label>
+                            <textarea value={editedText} onChange={e => setEditedText(e.target.value)} />
+                        </div>
+                    )}
+                    {editedNoteType === 'NoteTodos' && (
+                        <div>
+                            <label>Title:</label>
+                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <ul>
+                                {editedTodos.map((todo, index) => (
+                                    <li key={index}>
+                                        <input type="checkbox" checked={todo.completed} onChange={() => handleTodoCompletionChange(index)} />
+                                        <input type="text" value={todo.txt} onChange={e => handleTodoTextChange(index, e.target.value)} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    {editedNoteType === 'NoteImg' && (
+                        <div>
+                            <label>Title:</label>
+                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <label>Image URL:</label>
+                            <input type="text" value={editedImageUrl} onChange={e => setEditedImageUrl(e.target.value)} />
+                        </div>
+                    )}
+                    <button onClick={handleSave}>Save</button>
+                </div>
+            )}
         </div>
     );
 }
