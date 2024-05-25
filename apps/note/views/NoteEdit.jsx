@@ -23,7 +23,7 @@ export function NoteEdit() {
                 console.log(note);
                 setNote(note);
                 setEditedTitle(note.info.title || ''); // Initialize edited fields with note data
-                setEditedText(note.info.text || '');
+                setEditedText(note.info.txt || '');
                 setEditedTodos(note.info.todos || []);
                 setEditedImageUrl(note.info.url || '');
                 setEditedNoteType(note.type);
@@ -43,7 +43,7 @@ export function NoteEdit() {
             ...note,
             info: {
                 title: editedTitle,
-                text: editedText,
+                txt: editedText,
                 todos: editedTodos,
                 url: editedImageUrl
             },
@@ -88,8 +88,8 @@ export function NoteEdit() {
                 <div>
                     {editedNoteType === 'NoteTxt' && (
                         <div>
-                            <label>Title:</label>
-                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            {/* <label>Title:</label> */}
+                            {/* <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} /> */}
                             <label>Text:</label>
                             <textarea value={editedText} onChange={e => setEditedText(e.target.value)} />
                         </div>
