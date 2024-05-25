@@ -3,14 +3,14 @@ import { MailToolsHover } from './MailToolsHover.jsx'
 const { useParams, useNavigate } = ReactRouter
 const { useState, useEffect, useRef } = React
 
-export function MailPreview({ email, onRemove, onToggleIsStar, onToggleIsRead, hoverMailId }) {
+export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsStar, onToggleIsRead, hoverMailId }) {
   const { subject, body, isRead, sentAt, from, to, isStar, id } = email
   const navigate = useNavigate()
 
   function mailDetailsNavigation(id, isRead) {
-    console.log('hi')
     onToggleIsRead(id, isRead)
     navigate(`/mail/details/${id}`)
+    setMailMainContent('details')
   }
 
   function addThreeDots(txt, limit) {
