@@ -1,5 +1,5 @@
 .email-header {
-    margin: 1em 4em 1em 2.5em;
+    margin: 1em 4em 1em 1em;
     grid-column: span 3;
     display: grid;
     grid-template-columns: 1fr 5fr 2em;
