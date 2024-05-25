@@ -141,7 +141,19 @@ function _createNotes() {
                         { txt: 'Coding power', doneAt: 187111111 }
                     ]
                 }
-            }
+            },
+            {
+                id: 'n105',
+                type: 'NoteVideo',
+                isPinned: true,
+                info: {
+                    url: 'https://www.youtube.com/watch?v=izGwDsrQ1eQ',
+                    title: 'Careless Whisper 😍'
+                },
+                style: {
+                    backgroundColor: 'pink'
+                }
+            },
         ]
         storageService.saveToStorage(NOTE_KEY, notes)
     }
