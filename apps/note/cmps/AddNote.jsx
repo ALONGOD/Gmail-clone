@@ -4,17 +4,18 @@ export function AddNote({ onAddNote }) {
     const [noteText, setNoteText] = useState('');
     const [noteType, setNoteType] = useState('NoteTxt');
     const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
-    const [imageUrl, setImageUrl] = useState(''); // For NoteImg type
-    const [todoText, setTodoText] = useState(''); // For NoteTodos type
+    const [imageUrl, setImageUrl] = useState('');
+    const [imageTitle, setImageTitle] = useState('');
+    const [todoText, setTodoText] = useState('');
 
     function handleSubmit(ev) {
         ev.preventDefault();
         let info;
         if (noteType === 'NoteImg') {
-            info = { url: imageUrl };
+            info = { title: imageTitle, url: imageUrl };
         } else if (noteType === 'NoteTodos') {
             const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
-            info = { title: noteText, todos }; // Include the title in the info object
+            info = { title: noteText, todos };
         } else {
             info = { txt: noteText };
         }
@@ -31,24 +32,38 @@ export function AddNote({ onAddNote }) {
         setNoteText('');
         setNoteType('NoteTxt');
         setNoteColor('#ADD8E6'); // Reset to default color
-        setImageUrl(''); // Reset imageUrl
-        setTodoText(''); // Reset todoText
+        setImageUrl('');
+        setImageTitle('');
+        setTodoText('');
     }
 
+    console.log('hi please save')
     const renderFormInputs = () => {
         switch (noteType) {
             case 'NoteImg':
                 return (
-                    <label className="note-input-label">
-                        Image URL:
-                        <input
-                            type="text"
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                            required
-                            className="note-input"
-                        />
-                    </label>
+                    <div>
+                        <label className="note-input-label">
+                            Title:
+                            <input
+                                type="text"
+                                value={imageTitle}
+                                onChange={(e) => setImageTitle(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            Image URL:
+                            <input
+                                type="text"
+                                value={imageUrl}
+                                onChange={(e) => setImageUrl(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
                 );
             case 'NoteTodos':
                 return (
