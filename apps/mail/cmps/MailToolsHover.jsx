@@ -3,9 +3,9 @@ export function MailToolsHover({ id, isRead, isStar, onRemove, onToggleIsRead, o
 
   return (
     <React.Fragment>
-      <i className="delete-btn fa-regular fa-trash-can" onClick={() => onRemove(id)}></i>
-      <i className={isStarClass} onClick={() => onToggleIsStar(id, !isStar)}></i>
-      <i className="fa-regular fa-envelope" onClick={() => onToggleIsRead(id, !isRead)}></i>
+      <i className="delete-btn fa-regular fa-trash-can" title="Remove mail" onClick={() => onRemove(id)}></i>
+      <i className={isStarClass} title="Star mail" onClick={() => onToggleIsStar(id, !isStar)}></i>
+      <i className="fa-regular fa-envelope" title="Un/read mail" onClick={() => onToggleIsRead(id, !isRead)}></i>
     </React.Fragment>
   )
 }
