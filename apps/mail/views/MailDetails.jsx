@@ -7,11 +7,10 @@ import { mailService } from '../services/mail.service.js'
 const { useParams, useNavigate } = ReactRouter
 const { useState, useEffect } = React
 
-export function MailDetails() {
+export function MailDetails({ setMailMainContent, onRemove }) {
   const [mail, setMail] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  const { useNavigate } = ReactRouter
   const { mailId } = useParams()
 
   const navigate = useNavigate()
@@ -41,7 +40,10 @@ export function MailDetails() {
       .remove(mailId)
       .then(() => {
         showSuccessMsg(`Mail successfully removed! ${mailId}`)
+        console.log('ho')
         navigate('/mail')
+        setMailMainContent('mailList')
+        console.log('ho')
       })
       .catch(err => {
         console.log('err:', err)
@@ -63,10 +65,15 @@ export function MailDetails() {
       })
   }
 
+  function backToMailList() {
+    setMailMainContent('mailList')
+    navigate('/mail')
+  }
+
   if (!mail) return <div>Loading...</div>
   return (
     <main className="mail-details-container">
-      <MailDetailsHeader removeMail={onRemoveMail} onToggleIsRead={() => onToggleIsRead(false)} />
+      <MailDetailsHeader backToMailList={backToMailList} onRemove={onRemoveMail} onToggleIsRead={() => onToggleIsRead(false)} />
       <MailDetailsMain mail={mail} />
     </main>
   )
