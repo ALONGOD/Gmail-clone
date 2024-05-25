@@ -76,53 +76,52 @@ export function NoteEdit() {
         setEditedTodos(updatedTodos);
     };
 
-    if (isLoading) return <h3>Loading...</h3>;
+    if (isLoading) return <h3 className="note-loading">Loading...</h3>;
 
     return (
-        <div>
-            <h1>Note Details</h1>
-            <p>Note ID: {params.noteId}</p>
+        <div className="note-container">
+            <h1 className="note-heading">Note Edit</h1>
+            {/* <p className="note-id">Note ID: {params.noteId}</p> */}
             {note && (
-                <div>
+                <div className="note-details">
                     {editedNoteType === 'NoteTxt' && (
-                        <div>
-                            <label>Text:</label>
-                            <textarea value={editedText} onChange={e => setEditedText(e.target.value)} />
+                        <div className="note-text">
+                            <label className="note-label">Text:</label>
+                            <textarea className="note-textarea" value={editedText} onChange={e => setEditedText(e.target.value)} />
                         </div>
                     )}
                     {editedNoteType === 'NoteTodos' && (
-                        <div>
-                            <label>Title:</label>
-                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
-                            <ul>
+                        <div className="note-todos">
+                            <label className="note-label">Title:</label>
+                            <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <ul className="note-todo-list">
                                 {editedTodos.map((todo, index) => (
-                                    <li key={index}>
-                                        <input type="text" value={todo.txt} onChange={e => handleTodoTextChange(index, e.target.value)} />
+                                    <li className="note-todo-item" key={index}>
+                                        <input className="note-todo-input" type="text" value={todo.txt} onChange={e => handleTodoTextChange(index, e.target.value)} />
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     )}
                     {editedNoteType === 'NoteImg' && (
-                        <div>
-                            <label>Title:</label>
-                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
-                            <label>Image URL:</label>
-                            <input type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Renamed from editedImageUrl */}
+                        <div className="note-image">
+                            <label className="note-label">Title:</label>
+                            <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <label className="note-label">Image URL:</label>
+                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Renamed from editedImageUrl */}
                         </div>
                     )}
                     {editedNoteType === 'NoteVideo' && (
-                        <div>
-                            <label>Title:</label>
-                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
-                            <label>Video URL:</label>
-                            <input type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Updated to set video URL */}
+                        <div className="note-video">
+                            <label className="note-label">Title:</label>
+                            <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <label className="note-label">Video URL:</label>
+                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Updated to set video URL */}
                         </div>
                     )}
-                    <button onClick={handleSave}>Save</button>
+                    <button className="note-save-button" onClick={handleSave}>Save</button>
                 </div>
             )}
         </div>
     );
 }
-
