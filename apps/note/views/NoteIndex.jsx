@@ -9,6 +9,7 @@ import { noteService } from '../services/note.service.js'
 import { NoteFilter } from '../cmps/NoteFilter.jsx'
 import { AddNote } from '../cmps/AddNote.jsx'
 import { NotesSidebar } from '../cmps/NotesSidebar.jsx'
+import { NoteHeader } from '../cmps/NoteHeader.jsx'
 
 // import { NoteHeader } from '../cmps/NoteHeader.jsx'
 // import { noteUtilsService } from '../services/note.utils.service.js'
@@ -81,23 +82,7 @@ export function NoteIndex() {
 
 
     return <React.Fragment>
-        <div className="header">
-            <div className="sidebar-header">
-                <img
-                    className="sidebar-menu-btn"
-                    src="assets/img/menu-btn.svg"
-                    onClick={() => setToggleMenu(state => !state)}
-                />
-                <img
-                    className="header-icon"
-                    src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-keep-icon.png"
-                />
-            </div>
-
-            <div className="search-bar">
-                <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            </div>
-        </div>
+        <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <div className='note-grid'>
             <aside><NotesSidebar /></aside>
             <main>
