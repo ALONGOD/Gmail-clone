@@ -58,7 +58,12 @@ export function NoteEdit() {
             .catch(error => {
                 console.error('Error saving note:', error);
                 alert('Failed to save note. Please try again.');
+            })
+            .finally(() => {
+                navigate('/note'); // Navigate back to '/note' regardless of success or failure
             });
+
+
     };
 
     const handleTodoTextChange = (index, newText) => {
