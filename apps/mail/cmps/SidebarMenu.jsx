@@ -3,7 +3,7 @@ import { SidebarLabel } from './SidebarLabel.jsx'
 const { useState, useEffect } = React
 const { useNavigate } = ReactRouter
 
-export function SidebarMenu({ hoveredSidebar, setSidebarHover, filterBy, onSetFilterBy, unreadMailsCount }) {
+export function SidebarMenu({ setToggleComposeMail, hoveredSidebar, setSidebarHover, filterBy, onSetFilterBy, unreadMailsCount }) {
   const [folderToEdit, setFolderToEdit] = useState({ folder: filterBy.folder })
   const labels = ['inbox', 'starred', 'sent', 'drafts']
   const { folder } = filterBy
@@ -22,6 +22,7 @@ export function SidebarMenu({ hoveredSidebar, setSidebarHover, filterBy, onSetFi
       search: `?compose=new`,
     })
     setSidebarHover(false)
+    setToggleComposeMail(true)
   }
 
   return (
