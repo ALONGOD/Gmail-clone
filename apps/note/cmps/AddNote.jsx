@@ -4,17 +4,22 @@ export function AddNote({ onAddNote }) {
     const [noteText, setNoteText] = useState('');
     const [noteType, setNoteType] = useState('NoteTxt');
     const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
-    const [imageUrl, setImageUrl] = useState(''); // For NoteImg type
-    const [todoText, setTodoText] = useState(''); // For NoteTodos type
+    const [imageUrl, setImageUrl] = useState('');
+    const [imageTitle, setImageTitle] = useState('');
+    const [todoText, setTodoText] = useState('');
+    const [videoUrl, setVideoUrl] = useState('');
+    const [videoTitle, setVideoTitle] = useState('');
 
     function handleSubmit(ev) {
         ev.preventDefault();
         let info;
         if (noteType === 'NoteImg') {
-            info = { url: imageUrl };
+            info = { title: imageTitle, url: imageUrl };
         } else if (noteType === 'NoteTodos') {
             const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
-            info = { title: 'Todos', todos };
+            info = { title: noteText, todos };
+        } else if (noteType === 'NoteVideo') {
+            info = { title: videoTitle, url: videoUrl };
         } else {
             info = { txt: noteText };
         }
@@ -31,37 +36,89 @@ export function AddNote({ onAddNote }) {
         setNoteText('');
         setNoteType('NoteTxt');
         setNoteColor('#ADD8E6'); // Reset to default color
-        setImageUrl(''); // Reset imageUrl
-        setTodoText(''); // Reset todoText
+        setImageUrl('');
+        setImageTitle('');
+        setTodoText('');
+        setVideoUrl('');
+        setVideoTitle('');
     }
 
     const renderFormInputs = () => {
         switch (noteType) {
             case 'NoteImg':
                 return (
-                    <label className="note-input-label">
-                        Image URL:
-                        <input
-                            type="text"
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                            required
-                            className="note-input"
-                        />
-                    </label>
+                    <div>
+                        <label className="note-input-label">
+                            Title:
+                            <input
+                                type="text"
+                                value={imageTitle}
+                                onChange={(e) => setImageTitle(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            Image URL:
+                            <input
+                                type="text"
+                                value={imageUrl}
+                                onChange={(e) => setImageUrl(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
                 );
             case 'NoteTodos':
                 return (
-                    <label className="note-input-label">
-                        Todos (comma separated):
-                        <input
-                            type="text"
-                            value={todoText}
-                            onChange={(e) => setTodoText(e.target.value)}
-                            required
-                            className="note-input"
-                        />
-                    </label>
+                    <div>
+                        <label className="note-input-label">
+                            Title:
+                            <input
+                                type="text"
+                                value={noteText}
+                                onChange={(e) => setNoteText(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            Todos (comma separated):
+                            <input
+                                type="text"
+                                value={todoText}
+                                onChange={(e) => setTodoText(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
+                );
+            case 'NoteVideo':
+                return (
+                    <div>
+                        <label className="note-input-label">
+                            Title:
+                            <input
+                                type="text"
+                                value={videoTitle}
+                                onChange={(e) => setVideoTitle(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            Video URL:
+                            <input
+                                type="text"
+                                value={videoUrl}
+                                onChange={(e) => setVideoUrl(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
                 );
             default:
                 return (
@@ -98,6 +155,7 @@ export function AddNote({ onAddNote }) {
                 <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
                 <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
+                <i className="far fa-play-circle note-type-icon" onClick={() => setNoteType('NoteVideo')}></i>
             </div>
         </div>
     );

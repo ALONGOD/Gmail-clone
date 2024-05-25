@@ -22,13 +22,17 @@ export const noteService = {
 // window.cs = noteService
 
 function query(filterBy = {}) {
-    // console.log(filterBy)
+    console.log(filterBy)
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.search) {
                 const regExp = new RegExp(filterBy.search, 'i')
                 notes = notes.filter(note => regExp.test(note.info.txt || note.info.title))
 
+            }
+
+            if (filterBy.type) {
+                notes = notes.filter(note => note.type === filterBy.type);
             }
 
 
@@ -137,7 +141,19 @@ function _createNotes() {
                         { txt: 'Coding power', doneAt: 187111111 }
                     ]
                 }
-            }
+            },
+            {
+                id: 'n105',
+                type: 'NoteVideo',
+                isPinned: true,
+                info: {
+                    url: 'https://www.youtube.com/watch?v=izGwDsrQ1eQ',
+                    title: 'Careless Whisper 😍'
+                },
+                style: {
+                    backgroundColor: 'red'
+                }
+            },
         ]
         storageService.saveToStorage(NOTE_KEY, notes)
     }

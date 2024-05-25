@@ -16,7 +16,7 @@ export function NoteTodos({ note }) {
 
     return (
         <article className="note-preview-todo">
-            <h2>TODO:</h2>
+            <h2>{note.info.title}</h2>
             <ul>
                 {todos.map((todo) => (
                     <li key={todo.txt}>

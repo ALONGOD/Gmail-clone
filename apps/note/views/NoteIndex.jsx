@@ -9,6 +9,7 @@ import { noteService } from '../services/note.service.js'
 import { NoteFilter } from '../cmps/NoteFilter.jsx'
 import { AddNote } from '../cmps/AddNote.jsx'
 import { NotesSidebar } from '../cmps/NotesSidebar.jsx'
+import { NoteHeader } from '../cmps/NoteHeader.jsx'
 
 // import { NoteHeader } from '../cmps/NoteHeader.jsx'
 // import { noteUtilsService } from '../services/note.utils.service.js'
@@ -70,7 +71,20 @@ export function NoteIndex() {
     }
 
     function onAddNote(newNote) {
-        setNotes(prevNotes => [...prevNotes, newNote])
+        noteService.save(newNote).then(savedNote => {
+            setNotes(prevNotes => [...prevNotes, savedNote]);
+        });
+    }
+
+    function onChangeColor(noteId, color) {
+        noteService.get(noteId).then(note => {
+            note.style = { ...note.style, backgroundColor: color };
+            noteService.save(note).then(updatedNote => {
+                // Update the local state or re-fetch the notes as necessary
+                // For example, if using a state hook:
+                setNotes(prevNotes => prevNotes.map(n => n.id === updatedNote.id ? updatedNote : n));
+            });
+        });
     }
 
 
@@ -79,30 +93,14 @@ export function NoteIndex() {
 
 
     return <React.Fragment>
-        <div className="header">
-            <div className="sidebar-header">
-                <img
-                    className="sidebar-menu-btn"
-                    src="assets/img/menu-btn.svg"
-                    onClick={() => setToggleMenu(state => !state)}
-                />
-                <img
-                    className="header-icon"
-                    src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-keep-icon.png"
-                />
-            </div>
-
-            <div className="search-bar">
-                <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            </div>
-        </div>
+        <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <div className='note-grid'>
             <aside><NotesSidebar /></aside>
             <main>
                 <AddNote onAddNote={onAddNote} />
 
 
-                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} />
+                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} onChangeColor={onChangeColor} />
             </main>
         </div>
     </React.Fragment>
