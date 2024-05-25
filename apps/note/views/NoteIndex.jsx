@@ -11,18 +11,19 @@ import { NoteFilter } from '../cmps/NoteFilter.jsx'
 import { AddNote } from '../cmps/AddNote.jsx'
 import { NotesSidebar } from '../cmps/NotesSidebar.jsx'
 import { NoteHeader } from '../cmps/NoteHeader.jsx'
+const { Outlet, useSearchParams, useParams } = ReactRouterDOM
 
 // import { NoteHeader } from '../cmps/NoteHeader.jsx'
 // import { noteUtilsService } from '../services/note.utils.service.js'
 // import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 export function NoteIndex() {
+    const [searchParams, setSearchParams] = useSearchParams()
     const [notes, setNotes] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-    const [filterBy, setFilterBy] = useState({
-        search: ''
-    })
+    const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchParams))
 
     useEffect(() => {
+        setSearchParams(filterBy)
         loadNotes();
     }, [filterBy]);
 
