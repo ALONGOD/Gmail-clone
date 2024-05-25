@@ -76,6 +76,17 @@ export function NoteIndex() {
         });
     }
 
+    function onChangeColor(noteId, color) {
+        noteService.get(noteId).then(note => {
+            note.style = { ...note.style, backgroundColor: color };
+            noteService.save(note).then(updatedNote => {
+                // Update the local state or re-fetch the notes as necessary
+                // For example, if using a state hook:
+                setNotes(prevNotes => prevNotes.map(n => n.id === updatedNote.id ? updatedNote : n));
+            });
+        });
+    }
+
 
     // console.log(notes)
     // if (isLoading) return <h3>Loading...</h3>
@@ -89,7 +100,7 @@ export function NoteIndex() {
                 <AddNote onAddNote={onAddNote} />
 
 
-                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} />
+                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} onChangeColor={onChangeColor} />
             </main>
         </div>
     </React.Fragment>
