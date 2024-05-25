@@ -14,7 +14,7 @@ export function AddNote({ onAddNote }) {
             info = { url: imageUrl };
         } else if (noteType === 'NoteTodos') {
             const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
-            info = { title: 'Todos', todos };
+            info = { title: noteText, todos }; // Include the title in the info object
         } else {
             info = { txt: noteText };
         }
@@ -52,16 +52,28 @@ export function AddNote({ onAddNote }) {
                 );
             case 'NoteTodos':
                 return (
-                    <label className="note-input-label">
-                        Todos (comma separated):
-                        <input
-                            type="text"
-                            value={todoText}
-                            onChange={(e) => setTodoText(e.target.value)}
-                            required
-                            className="note-input"
-                        />
-                    </label>
+                    <div>
+                        <label className="note-input-label">
+                            Title:
+                            <input
+                                type="text"
+                                value={noteText}
+                                onChange={(e) => setNoteText(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            Todos (comma separated):
+                            <input
+                                type="text"
+                                value={todoText}
+                                onChange={(e) => setTodoText(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
                 );
             default:
                 return (
