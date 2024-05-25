@@ -18,6 +18,7 @@
 
 /* notes app view css */
 @import './apps/note/views/NoteIndex.css';
+@import './apps/note/views/NoteEdit.css';
 
 /* Cmps */
 

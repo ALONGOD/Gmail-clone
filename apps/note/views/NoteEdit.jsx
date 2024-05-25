@@ -12,7 +12,7 @@ export function NoteEdit() {
     const [editedTitle, setEditedTitle] = useState('');
     const [editedText, setEditedText] = useState('');
     const [editedTodos, setEditedTodos] = useState([]);
-    const [editedImageUrl, setEditedImageUrl] = useState('');
+    const [editedMediaUrl, setEditedMediaUrl] = useState(''); // Renamed from editedImageUrl
     const [editedNoteType, setEditedNoteType] = useState('');
 
     const params = useParams();
@@ -24,14 +24,14 @@ export function NoteEdit() {
             .then(note => {
                 console.log(note);
                 setNote(note);
-                setEditedTitle(note.info.title || ''); // Initialize edited fields with note data
+                setEditedTitle(note.info.title || '');
                 setEditedText(note.info.txt || '');
                 setEditedTodos(note.info.todos || []);
-                setEditedImageUrl(note.info.url || '');
+                setEditedMediaUrl(note.info.url || ''); // Updated to set video URL
                 setEditedNoteType(note.type);
             })
             .catch(() => {
-                alert('Couldnt get note...');
+                alert('Couldn\'t get note...');
                 navigate('/note');
             })
             .finally(() => {
@@ -40,34 +40,28 @@ export function NoteEdit() {
     }, [params.noteId, navigate]);
 
     const handleSave = () => {
-        // Construct updated note object
         const updatedNote = {
             ...note,
             info: {
                 title: editedTitle,
                 txt: editedText,
                 todos: editedTodos,
-                url: editedImageUrl
+                url: editedMediaUrl // Updated to set video URL
             },
             type: editedNoteType
         };
 
-        // Save the updated note (assuming you have a saveNote function in your note service)
         noteService.save(updatedNote)
             .then(() => {
-                // alert('Note saved successfully!');
-                showSuccessMsg('Successfully edited note!')
+                showSuccessMsg('Successfully edited note!');
             })
             .catch(error => {
                 console.error('Error saving note:', error);
-                showErrorMsg('Couldn\'t edit note...')
-                // alert('Failed to save note. Please try again.');
+                showErrorMsg('Couldn\'t edit note...');
             })
             .finally(() => {
-                navigate('/note'); // Navigate back to '/note' regardless of success or failure
+                navigate('/note');
             });
-
-
     };
 
     const handleTodoTextChange = (index, newText) => {
@@ -82,45 +76,50 @@ export function NoteEdit() {
         setEditedTodos(updatedTodos);
     };
 
-    if (isLoading) return <h3>Loading...</h3>;
+    if (isLoading) return <h3 className="note-loading">Loading...</h3>;
 
     return (
-        <div>
-            <h1>Note Details</h1>
-            <p>Note ID: {params.noteId}</p>
+        <div className="note-container">
+            <h1 className="note-heading">Note Edit</h1>
+            {/* <p className="note-id">Note ID: {params.noteId}</p> */}
             {note && (
-                <div>
+                <div className="note-details">
                     {editedNoteType === 'NoteTxt' && (
-                        <div>
-                            {/* <label>Title:</label> */}
-                            {/* <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} /> */}
-                            <label>Text:</label>
-                            <textarea value={editedText} onChange={e => setEditedText(e.target.value)} />
+                        <div className="note-text">
+                            <label className="note-label">Text:</label>
+                            <textarea className="note-textarea" value={editedText} onChange={e => setEditedText(e.target.value)} />
                         </div>
                     )}
                     {editedNoteType === 'NoteTodos' && (
-                        <div>
-                            <label>Title:</label>
-                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
-                            <ul>
+                        <div className="note-todos">
+                            <label className="note-label">Title:</label>
+                            <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <ul className="note-todo-list">
                                 {editedTodos.map((todo, index) => (
-                                    <li key={index}>
-                                        {/* <input type="checkbox" checked={todo.completed} onChange={() => handleTodoCompletionChange(index)} /> */}
-                                        <input type="text" value={todo.txt} onChange={e => handleTodoTextChange(index, e.target.value)} />
+                                    <li className="note-todo-item" key={index}>
+                                        <input className="note-todo-input" type="text" value={todo.txt} onChange={e => handleTodoTextChange(index, e.target.value)} />
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     )}
                     {editedNoteType === 'NoteImg' && (
-                        <div>
-                            <label>Title:</label>
-                            <input type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
-                            <label>Image URL:</label>
-                            <input type="text" value={editedImageUrl} onChange={e => setEditedImageUrl(e.target.value)} />
+                        <div className="note-image">
+                            <label className="note-label">Title:</label>
+                            <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <label className="note-label">Image URL:</label>
+                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Renamed from editedImageUrl */}
                         </div>
                     )}
-                    <button onClick={handleSave}>Save</button>
+                    {editedNoteType === 'NoteVideo' && (
+                        <div className="note-video">
+                            <label className="note-label">Title:</label>
+                            <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <label className="note-label">Video URL:</label>
+                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Updated to set video URL */}
+                        </div>
+                    )}
+                    <button className="note-save-button" onClick={handleSave}>Save</button>
                 </div>
             )}
         </div>
