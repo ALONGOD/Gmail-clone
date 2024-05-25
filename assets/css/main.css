@@ -32,6 +32,7 @@
 @import './apps/mail/cmps/SidebarLabel.css';
 @import './apps/mail/cmps/MailDetailsMain.css';
 @import './apps/mail/cmps/MailDetailsHeader.css';
+@import './apps/mail/cmps/MailAppHeader.css';
 
 /* note app cmps  */
 @import './apps/note/cmps/NoteList.css';

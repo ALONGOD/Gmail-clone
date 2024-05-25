@@ -1,7 +1,13 @@
+body {
+  overflow: hidden;
+}
+
 div.email-grid {
+  height: 100vh;
   background-color: var(--main-bg-color-email);
   display: grid;
   align-content: start;
+  /* overflow-y: hidden; */
   grid-template-columns: 4.5em 5fr 2em;
 }
 
@@ -16,25 +22,6 @@ div.email-grid.sidebar-open {
   height: max-content;
 }
 
-.email-header {
-  margin: 1em 4em 1em 2.5em;
-  grid-column: span 3;
-  display: grid;
-  grid-template-columns: 1fr 5fr 2em;
-}
-
-.email-logo {
-  width: 2em;
-  height: auto;
-
-}
-
-.email-heading {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  grid-column: 1;
-}
 
 .sidebar-mail-btn {
   fill: darkgray;
