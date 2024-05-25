@@ -12,6 +12,7 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor })
 
     const handleColorChange = (noteId, color) => {
         onChangeColor(noteId, color);
+        toggleColorPicker(noteId); // Close the color picker
     };
 
     const toggleColorPicker = (noteId) => {
