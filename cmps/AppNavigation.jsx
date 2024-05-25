@@ -1,22 +1,21 @@
-const { Link, NavLink } = ReactRouterDOM
+const { Link, NavLink, useNavigate } = ReactRouterDOM
 const { useState } = React
 
-export function AppHeader() {
+export function AppNavigation() {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [appHeader, setAppHeader] = useState(null)
+  const navigate = useNavigate()
 
-  console.log(toggleMenu)
+  function navigateLink(params) {
+    setToggleMenu(false)
+    navigate(params)
+  }
 
   return (
     <header className="app-header">
-      {/* <Link to="/">
-            <h1>APPSUS</h1>
-        </Link> */}
       <div className="nav-container">
         <div>
           <svg width="50" height="50" viewBox="0 0 100 100" className="menu-toggle-btn" onClick={() => setToggleMenu(state => !state)}>
-            {' '}
-            {/* Adjust the width and height here */}
             <g>
               <circle cx="20" cy="20" r="6" fill="black" />
               <circle cx="40" cy="20" r="6" fill="black" />
@@ -33,18 +32,22 @@ export function AppHeader() {
 
         {toggleMenu && (
           <nav>
-            <NavLink to="/" onClick={() => setToggleMenu(false)}>
-              Home
-            </NavLink>
-            <NavLink to="/about" onClick={() => setToggleMenu(false)}>
-              About
-            </NavLink>
-            <NavLink to="/mail" onClick={() => setToggleMenu(false)}>
-              Mail
-            </NavLink>
-            <NavLink to="/note" onClick={() => setToggleMenu(false)}>
-              Note
-            </NavLink>
+            <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/')}>
+              <i className="head-icon fa-solid fa-house"></i>
+              <NavLink to="/">Home</NavLink>
+            </div>
+            <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/about')}>
+              <i className="head-icon fa-solid fa-info"></i>
+              <NavLink to="/about">About</NavLink>
+            </div>
+            <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/mail')}>
+              <i className="head-icon fa-regular fa-envelope "></i>
+              <NavLink to="/mail">Mail</NavLink>
+            </div>
+            <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/note')}>
+              <i className="head-icon fa-regular fa-note-sticky "></i>
+              <NavLink to="/note">Note</NavLink>
+            </div>
           </nav>
         )}
       </div>
