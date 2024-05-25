@@ -151,7 +151,7 @@ function _createNotes() {
                     title: 'Careless Whisper 😍'
                 },
                 style: {
-                    backgroundColor: 'pink'
+                    backgroundColor: 'red'
                 }
             },
         ]

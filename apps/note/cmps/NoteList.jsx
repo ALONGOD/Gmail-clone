@@ -14,9 +14,9 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate }) {
                         <button onClick={() => onRemove(note.id)} className='fa fa-trash'></button>
                         <button onClick={() => onPin(note.id)} className={`fa ${note.isPinned ? 'fa-thumbtack' : 'fa-map-pin'}`}></button>
                         <button onClick={() => onDuplicate(note.id)} className='fa fa-clone'></button>
-                        <Link to={`/note/${note.id}`}>
+                        {/* <Link to={`/note/${note.id}`}>
                             <button className='fa fa-info-circle'></button>
-                        </Link>
+                        </Link> */}
                         <Link to={`/note/edit/${note.id}`}>
                             <button className='fa fa-edit'></button>
                         </Link>

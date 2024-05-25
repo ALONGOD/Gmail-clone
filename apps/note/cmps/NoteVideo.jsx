@@ -2,6 +2,7 @@
 export function NoteVideo({ note }) {
     // return <div>hi video</div>
     const embedUrl = note.info && note.info.url; // Check if embedUrl exists
+    console.log(note.info.url)
 
     return (
         <div className="note-video-container">

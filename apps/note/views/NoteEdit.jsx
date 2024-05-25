@@ -101,7 +101,7 @@ export function NoteEdit() {
                             <ul>
                                 {editedTodos.map((todo, index) => (
                                     <li key={index}>
-                                        <input type="checkbox" checked={todo.completed} onChange={() => handleTodoCompletionChange(index)} />
+                                        {/* <input type="checkbox" checked={todo.completed} onChange={() => handleTodoCompletionChange(index)} /> */}
                                         <input type="text" value={todo.txt} onChange={e => handleTodoTextChange(index, e.target.value)} />
                                     </li>
                                 ))}
