@@ -15,7 +15,6 @@ export const mailService = {
   get,
   remove,
   save,
-  getFilterFromSearchParams,
   getLoggedInUser,
   getEmptyMail,
   getFilterFromSearchParams,
@@ -44,7 +43,7 @@ function query(filterBy = {}) {
 
     if (filterBy.search) {
       const regExp = new RegExp(filterBy.search, 'i')
-      mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body))
+      mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body) || regExp.test(mail.from) || regExp.test(mail.to))
       console.log(mails)
     }
 
@@ -133,3 +132,5 @@ function getFilterFromSearchParams(searchParams) {
     isStarred: searchParams.get('isStarred') || '',
   }
 }
+
+function getContentFromSearchParams(searchParams) {}
