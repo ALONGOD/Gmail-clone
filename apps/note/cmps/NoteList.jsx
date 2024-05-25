@@ -37,7 +37,7 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor })
                                 <button className='fa fa-edit'></button>
                             </Link>
                             <button onClick={() => toggleColorPicker(note.id)} style={{ position: 'relative' }} className='fa fa-paint-brush'></button>
-                            <Link to={`/mail/${note.id}`} className="action-button">
+                            <Link to={`/mail/details/${note.id}`} className="action-button">
                                 <button className='fa fa-envelope'></button>
                             </Link>
                         </div>
