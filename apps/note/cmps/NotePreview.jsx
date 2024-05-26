@@ -2,6 +2,7 @@ import { NoteImg } from '../cmps/NoteImg.jsx'
 import { NoteTodos } from '../cmps/NoteTodos.jsx'
 import { NoteTxt } from '../cmps/NoteTxt.jsx'
 import { NoteVideo } from '../cmps/NoteVideo.jsx'
+import { NoteAudio } from '../cmps/NoteAudio.jsx'
 
 
 
@@ -11,6 +12,7 @@ export function NotePreview({ note }) {
         NoteImg,
         NoteVideo,
         NoteTodos,
+        NoteAudio
     }
     const NoteComponent = componentMap[note.type]
     // console.log(NoteComponent)

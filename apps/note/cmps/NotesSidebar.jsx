@@ -3,9 +3,9 @@
 export function NotesSidebar() {
     return (
         <div className="note-sidebar">
-            <div className="note-sidebar-header">
-                <h2>Keep</h2>
-            </div>
+            {/* <div className="note-sidebar-header"> */}
+            {/* <h2>Keep</h2> */}
+            {/* </div> */}
             <div className="note-sidebar-menu">
                 <ul>
                     <li><i className="far fa-lightbulb"></i> <a href="#">Notes</a></li>

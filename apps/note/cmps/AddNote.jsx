@@ -28,7 +28,7 @@ export function AddNote({ onAddNote }) {
             info,
             createdAt: Date.now(),
             style: {
-                backgroundColor: noteColor
+                backgroundColor: '#f8f9da'
             },
             isPinned: false
         };
@@ -47,11 +47,11 @@ export function AddNote({ onAddNote }) {
         switch (noteType) {
             case 'NoteImg':
                 return (
-                    <div>
+                    <div className="note-inputs-container">
                         <label className="note-input-label">
                             <input
                                 type="text"
-                                placeholder="Enter note title..."
+                                placeholder="Title..."
 
                                 value={imageTitle}
                                 onChange={(e) => setImageTitle(e.target.value)}
@@ -61,7 +61,7 @@ export function AddNote({ onAddNote }) {
                         </label>
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter image URL..."
+                                placeholder="URL..."
 
                                 type="text"
                                 value={imageUrl}
@@ -74,10 +74,10 @@ export function AddNote({ onAddNote }) {
                 );
             case 'NoteTodos':
                 return (
-                    <div>
+                    <div className="note-inputs-container">
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter note title..."
+                                placeholder="Title..."
 
                                 type="text"
                                 value={noteText}
@@ -88,7 +88,7 @@ export function AddNote({ onAddNote }) {
                         </label>
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter todos..."
+                                placeholder="Todos..."
 
                                 type="text"
                                 value={todoText}
@@ -101,10 +101,10 @@ export function AddNote({ onAddNote }) {
                 );
             case 'NoteVideo':
                 return (
-                    <div>
+                    <div className="note-inputs-container">
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter note title..."
+                                placeholder="Title..."
 
                                 type="text"
                                 value={videoTitle}
@@ -115,7 +115,7 @@ export function AddNote({ onAddNote }) {
                         </label>
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter video url..."
+                                placeholder="URL..."
 
                                 type="text"
                                 value={videoUrl}
@@ -146,21 +146,20 @@ export function AddNote({ onAddNote }) {
         <div className="note-container">
             <form className="note-form" onSubmit={handleSubmit}>
                 {renderFormInputs()}
-                <label className="note-input-label">
-                    Note Color:
+                {/* <label className="note-input-label">
                     <input
                         type="color"
                         value={noteColor}
                         onChange={(e) => setNoteColor(e.target.value)}
                         className="note-input-color"
                     />
-                </label>
-                <button type="submit" className="note-submit-button">Save Note</button>
+                </label> */}
+                <button type="submit" className="note-submit-button">Add Note</button>
             </form>
             <div className="note-type-icons">
                 <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
-                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
+                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-play-circle note-type-icon" onClick={() => setNoteType('NoteVideo')}></i>
             </div>
         </div>

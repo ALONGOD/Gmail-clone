@@ -97,15 +97,27 @@ function _createNotes() {
         console.log('hi');
         const notes = [
             {
-                id: 'n101',
-                createdAt: 1112222,
-                type: 'NoteTxt',
+                id: 'n105',
+                type: 'NoteVideo',
                 isPinned: true,
-                style: {
-                    backgroundColor: 'lightblue'
-                },
                 info: {
-                    txt: 'Fullstack Me Baby!'
+                    url: 'https://www.youtube.com/watch?v=izGwDsrQ1eQ',
+                    title: 'Careless Whisper 🥵'
+                },
+                style: {
+                    backgroundColor: '#f8d0cc'
+                }
+            },
+            {
+                id: 'n103',
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+                    title: 'Steve'
+                },
+                style: {
+                    backgroundColor: '#f8f9da'
                 }
             },
             {
@@ -113,11 +125,11 @@ function _createNotes() {
                 type: 'NoteImg',
                 isPinned: true,
                 info: {
-                    url: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
-                    title: 'Bobi and Me'
+                    url: 'https://ca-times.brightspotcdn.com/dims4/default/d4248e0/2147483647/strip/true/crop/7510x4535+0+0/resize/2000x1208!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F67%2Fdd%2Fca48944f4fa7bf1c3910ca9d7982%2F1362404-sp-1027-string-bowling4-wjs.jpg',
+                    title: 'Alon and Idan after sprint'
                 },
                 style: {
-                    backgroundColor: 'pink'
+                    backgroundColor: '#c4d6e4'
                 }
             },
             {
@@ -126,7 +138,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: false,
                 style: {
-                    backgroundColor: 'orange'
+                    backgroundColor: '#c4d6e4'
                 },
                 info: {
                     txt: 'Thank You Morrrr!'
@@ -137,25 +149,15 @@ function _createNotes() {
                 type: 'NoteTodos',
                 isPinned: false,
                 info: {
-                    title: 'Get my stuff together',
+                    title: 'Things to do after sprint',
                     todos: [
-                        { txt: 'Driving license', doneAt: null },
-                        { txt: 'Coding power', doneAt: 187111111 }
+                        { txt: 'Eat', doneAt: null },
+                        { txt: 'Sleep', doneAt: 187111111 },
+                        { txt: 'Listen to careless whisper', doneAt: null }
                     ]
                 }
-            },
-            {
-                id: 'n105',
-                type: 'NoteVideo',
-                isPinned: true,
-                info: {
-                    url: 'https://www.youtube.com/watch?v=izGwDsrQ1eQ',
-                    title: 'Careless Whisper 🥵'
-                },
-                style: {
-                    backgroundColor: 'red'
-                }
-            },
+            }
+
         ]
         storageService.saveToStorage(NOTE_KEY, notes)
     }
