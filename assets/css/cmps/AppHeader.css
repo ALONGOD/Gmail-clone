@@ -50,11 +50,13 @@ header nav a {
 
 }
 
+.icon-container {
+    cursor: pointer;
+}
+
 .icon-container:hover .head-icon {
     animation: bounce;
-    /* referring directly to the animation's @keyframe declaration */
     animation-duration: 0.7s;
-    /* don't forget to set a duration! */
 }
 
 nav a.active {
@@ -67,7 +69,6 @@ nav a.active {
     justify-content: center;
     align-items: center;
     margin-inline-end: 1em;
-    cursor: pointer;
     border-radius: 50%;
 }
 

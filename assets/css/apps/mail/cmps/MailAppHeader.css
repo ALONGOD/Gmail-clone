@@ -2,8 +2,17 @@
     margin: 1em 4em 1em 1em;
     grid-column: span 3;
     display: grid;
-    grid-template-columns: 1fr 5fr 2em;
+    justify-items: start;
+    grid-template-columns: 11em 5fr 2em;
     height: var(--header-height);
+}
+
+
+
+.email-header .mail-filter {
+    grid-column: 2;
+    justify-content: center;
+    width: max-content;
 }
 
 .email-logo {

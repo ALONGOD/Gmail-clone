@@ -1,9 +1,9 @@
 aside .sidebar-label {
     display: grid;
     grid-template-columns: 100%;
-    align-items: center;
+    /* align-items: center; */
     justify-content: start;
-    width: 100%;
+    width: 3em;
     height: 2em;
     padding: 0.5em 0.8em;
     font-size: 14px;
@@ -15,10 +15,14 @@ aside .sidebar-label {
 
 
 .email-grid.sidebar-open .sidebar-label {
-    padding-inline: 1.8em;
-    width: 10em;
-    grid-template-columns: 3em 3em 2em;
+    padding-inline: 1.8em 0.5em;
+    width: 12em;
+    grid-template-columns: 3em 3em 5em;
     border-radius: 0 1em 1em 0;
+}
+
+.sidebar-label span {
+    justify-self: center;
 }
 
 .email-grid.sidebar-open .sidebar-label * {

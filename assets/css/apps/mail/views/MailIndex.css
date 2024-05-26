@@ -8,11 +8,11 @@ div.email-grid {
   display: grid;
   align-content: start;
   /* overflow-y: hidden; */
-  grid-template-columns: 4.5em 5fr 2em;
+  grid-template-columns: 6.5em 5fr 2em;
 }
 
 div.email-grid.sidebar-open {
-  grid-template-columns: 10em 5fr 2em;
+  grid-template-columns: 11em 5fr 2em;
 }
 
 .email-grid>main {

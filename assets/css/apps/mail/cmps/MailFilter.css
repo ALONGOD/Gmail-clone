@@ -7,7 +7,7 @@
 }
 
 .mail-filter input[type="text"] {
-    width: 60%;
+    width: 50em;
     border: 0;
     border-radius: 2em;
     background-color: var(--input-blue);

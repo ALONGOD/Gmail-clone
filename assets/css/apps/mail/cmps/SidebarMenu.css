@@ -8,21 +8,29 @@
 
 /* Sidebar Menu */
 
+aside {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
 aside .sidebar-menu {
   display: flex;
   justify-content: center;
+  align-items: start;
   flex-direction: column;
   background-color: white;
-  /* margin-inline-start: 0.5em; */
   width: 100%;
-  padding-inline: 1em;
+  padding-inline: 1.8em;
   background-color: rgb(246, 248, 252);
   margin-block-start: 2em;
   transition: 0.2s;
 }
 
 div.email-grid.sidebar-open .sidebar-menu {
+  align-items: start;
   padding-inline: 0;
+  width: 100%;
 }
 
 /* Compose Button */
