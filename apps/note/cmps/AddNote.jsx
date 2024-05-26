@@ -35,13 +35,15 @@ export function AddNote({ onAddNote }) {
         };
         onAddNote && onAddNote(newNote);
         setNoteText('');
-        setNoteType('NoteTxt');
+        setNoteType('');
         setNoteColor('#ADD8E6'); // Reset to default color
         setImageUrl('');
         setImageTitle('');
         setTodoText('');
         setVideoUrl('');
         setVideoTitle('');
+        setNoteTextTitle('');
+
     }
 
     const renderFormInputs = () => {

@@ -97,7 +97,7 @@ function _createNotes() {
         console.log('hi');
         const notes = [
             {
-                id: 'n105',
+                id: 'n101',
                 type: 'NoteVideo',
                 isPinned: true,
                 info: {
@@ -109,7 +109,7 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n103',
+                id: 'n102',
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
@@ -133,7 +133,7 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n102',
+                id: 'n104',
                 createdAt: 1112222,
                 type: 'NoteTxt',
                 isPinned: false,
@@ -141,11 +141,12 @@ function _createNotes() {
                     backgroundColor: '#c4d6e4'
                 },
                 info: {
+                    title: 'Thank You',
                     txt: 'Thank You Morrrr!'
                 }
             },
             {
-                id: 'n104',
+                id: 'n105',
                 type: 'NoteTodos',
                 isPinned: false,
                 info: {
@@ -153,7 +154,7 @@ function _createNotes() {
                     todos: [
                         { txt: 'Eat', doneAt: null },
                         { txt: 'Sleep', doneAt: 187111111 },
-                        { txt: 'Listen to careless whisper', doneAt: null }
+                        { txt: 'Listen to careless whisper ;)', doneAt: null }
                     ]
                 }
             }
