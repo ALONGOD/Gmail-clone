@@ -2,7 +2,8 @@ const { useState, useEffect } = React
 
 export function AddNote({ onAddNote }) {
     const [noteText, setNoteText] = useState('');
-    const [noteType, setNoteType] = useState('NoteTxt');
+    const [noteTextTitle, setNoteTextTitle] = useState('');
+    const [noteType, setNoteType] = useState('');
     const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
     const [imageUrl, setImageUrl] = useState('');
     const [imageTitle, setImageTitle] = useState('');
@@ -21,7 +22,7 @@ export function AddNote({ onAddNote }) {
         } else if (noteType === 'NoteVideo') {
             info = { title: videoTitle, url: videoUrl };
         } else {
-            info = { txt: noteText };
+            info = { title: noteTextTitle, txt: noteText };
         }
         const newNote = {
             type: noteType,
@@ -126,16 +127,44 @@ export function AddNote({ onAddNote }) {
                         </label>
                     </div>
                 );
+            case 'NoteTxt':
+                return (
+                    <div className="note-inputs-container">
+                        <label className="note-input-label">
+                            <input
+                                placeholder="Title..."
+
+                                type="text"
+                                value={noteTextTitle}
+                                onChange={(e) => setNoteTextTitle(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            <input
+                                placeholder="Text..."
+
+                                type="text"
+                                value={noteText}
+                                onChange={(e) => setNoteText(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
+                );
             default:
                 return (
                     <label className="note-input-label">
                         <input
-                            placeholder="Enter note text..."
+                            placeholder="What's on your mind?..."
                             type="text"
                             value={noteText}
                             onChange={(e) => setNoteText(e.target.value)}
                             required
                             className="note-input"
+                            onClick={() => setNoteType("NoteTxt")}
                         />
                     </label>
                 );
