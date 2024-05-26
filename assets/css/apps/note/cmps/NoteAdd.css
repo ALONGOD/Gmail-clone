@@ -50,7 +50,7 @@
 
 .note-submit-button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #ffbf00;
     color: white;
     border: none;
     border-radius: 5px;
@@ -60,7 +60,7 @@
 }
 
 .note-submit-button:hover {
-    background-color: #45a049;
+    background-color: #ffae00;
     /* Darker green on hover */
 }
 

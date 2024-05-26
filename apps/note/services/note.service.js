@@ -102,7 +102,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#f8e5c5'
+                    backgroundColor: '#f8d0cc'
                 },
                 info: {
                     txt: 'Fullstack Me Baby!'
@@ -117,7 +117,7 @@ function _createNotes() {
                     title: 'Bobi and Me'
                 },
                 style: {
-                    backgroundColor: '#f8d0cc'
+                    backgroundColor: '#f8f9da'
                 }
             },
             {
@@ -126,7 +126,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: false,
                 style: {
-                    backgroundColor: '#dde6ea'
+                    backgroundColor: '#c4d6e4'
                 },
                 info: {
                     txt: 'Thank You Morrrr!'

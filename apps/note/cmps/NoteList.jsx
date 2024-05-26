@@ -25,7 +25,7 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor })
     return (
         <div className="note-list">
             {notes.map(note => {
-                const backgroundColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : 'yellow';
+                const backgroundColor = note.style && note.style.backgroundColor ? note.style.backgroundColor : '#f8e5c5';
                 return (
                     <div key={note.id} className='note-card' style={{ backgroundColor }}>
                         <NotePreview note={note} />
