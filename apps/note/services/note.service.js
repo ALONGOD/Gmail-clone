@@ -150,7 +150,7 @@ function _createNotes() {
                 isPinned: true,
                 info: {
                     url: 'https://www.youtube.com/watch?v=izGwDsrQ1eQ',
-                    title: 'Careless Whisper 😍'
+                    title: 'Careless Whisper 🥵'
                 },
                 style: {
                     backgroundColor: 'red'
