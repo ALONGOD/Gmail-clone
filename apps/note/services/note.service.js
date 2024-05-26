@@ -157,7 +157,16 @@ function _createNotes() {
                         { txt: 'Listen to careless whisper ;)', doneAt: null }
                     ]
                 }
-            }
+            },
+            {
+                id: 'n106',
+                type: 'NoteAudio',
+                isPinned: false,
+                info: {
+                    title: 'שמש 😎',
+                    url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
+                }
+            },
 
         ]
         storageService.saveToStorage(NOTE_KEY, notes)
