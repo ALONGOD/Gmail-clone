@@ -149,8 +149,8 @@ function _createNotes() {
                 type: 'NoteVideo',
                 isPinned: true,
                 info: {
-                    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                    title: 'Never gonna give you up'
+                    url: 'https://www.youtube.com/watch?v=izGwDsrQ1eQ',
+                    title: 'Careless Whisper 🥵'
                 },
                 style: {
                     backgroundColor: 'red'
