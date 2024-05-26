@@ -6,7 +6,7 @@ import { NotePreview } from "../cmps/NotePreview.jsx";
 export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor }) {
     const [colorPickerVisibility, setColorPickerVisibility] = useState({});
 
-    const colorPalette = ['#FFEB3B', '#FFC107', '#FF5722', '#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#4CAF50'];
+    const colorPalette = ['#eceae7', '#efe3dd', '#ebd8e7', '#c4d6e4', '#dde6ea', '#d4e7dc', '#e9efdb', '#f8f9da', '#f8e5c5', '#f8d0cc'];
 
     if (!notes) return null;
 
