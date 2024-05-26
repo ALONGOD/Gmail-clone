@@ -28,7 +28,7 @@ export function AddNote({ onAddNote }) {
             info,
             createdAt: Date.now(),
             style: {
-                backgroundColor: noteColor
+                backgroundColor: '#f8f9da'
             },
             isPinned: false
         };
@@ -146,21 +146,20 @@ export function AddNote({ onAddNote }) {
         <div className="note-container">
             <form className="note-form" onSubmit={handleSubmit}>
                 {renderFormInputs()}
-                <label className="note-input-label">
-                    Note Color:
+                {/* <label className="note-input-label">
                     <input
                         type="color"
                         value={noteColor}
                         onChange={(e) => setNoteColor(e.target.value)}
                         className="note-input-color"
                     />
-                </label>
-                <button type="submit" className="note-submit-button">Save Note</button>
+                </label> */}
+                <button type="submit" className="note-submit-button">Add Note</button>
             </form>
             <div className="note-type-icons">
                 <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
-                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
+                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-play-circle note-type-icon" onClick={() => setNoteType('NoteVideo')}></i>
             </div>
         </div>
