@@ -4,6 +4,7 @@ export const asyncStorageService = {
   post,
   put,
   remove,
+  _save,
 }
 
 function query(entityType, delay = 500) {
@@ -55,6 +56,8 @@ function remove(entityType, entityId) {
 // Private functions
 
 function _save(entityType, entities) {
+  console.log('entityType', entityType)
+  console.log('entities', entities)
   localStorage.setItem(entityType, JSON.stringify(entities))
 }
 

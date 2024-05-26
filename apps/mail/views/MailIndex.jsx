@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
-const { useSearchParams, useParams } = ReactRouterDOM
+const { useLocation } = ReactRouter
+const { useSearchParams } = ReactRouterDOM
 // import gmailLogo from "../../../assets/img/mail-img";
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
@@ -8,26 +9,34 @@ import { SidebarMenu } from '../cmps/SidebarMenu.jsx'
 import { mailService } from '../services/mail.service.js'
 import { MailAppHeader } from '../cmps/MailAppHeader.jsx'
 import { ComposeEmail } from '../cmps/ComposeEmail.jsx'
+import { MailDetails } from './MailDetails.jsx'
 
 export function MailIndex() {
+  // WILL NEED TO BE DELETED
+  const [mailMainContent, setMailMainContent] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
-
+  const [emails, setEmails] = useState(null)
   const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchParams))
   const [toggleSidebar, setToggleSidebar] = useState(false)
-  const [sidebarHover, setSidebarHover] = useState(false)
-  const [emails, setEmails] = useState(null)
   const [unreadMailsCount, setUnreadMailsCount] = useState(0)
+  const [sidebarHover, setSidebarHover] = useState(false)
   const [toggleComposeMail, setToggleComposeMail] = useState(false)
+  // const [mailMainContent, setMailMainContent] = useState('mailList')
+
+  const { pathname } = useLocation()
 
   useEffect(() => {
-    // if (searchParams.get('compose') === 'new') {
-    //   setToggleComposeMail(true)
-    // }
+    if (pathname.includes('details')) {
+      setMailMainContent('details')
+    } else {
+      setMailMainContent('mailList')
+    }
+  }, [location])
+
+  useEffect(() => {
     setSearchParams(filterBy)
     loadMails()
   }, [filterBy])
-
-  console.log(unreadMailsCount)
 
   useEffect(() => {
     if (!emails) return
@@ -115,6 +124,13 @@ export function MailIndex() {
       })
   }
 
+  function readAllEmails() {
+    const updatedMails = emails.map(email => ({ ...email, isRead: true }))
+    mailService.saveMails(updatedMails).then(setEmails(updatedMails))
+  }
+
+  console.log(unreadMailsCount)
+  console.log(filterBy)
   const hoveredSidebar = sidebarHover || toggleSidebar
 
   return (
@@ -123,9 +139,13 @@ export function MailIndex() {
         <h3>...Loading</h3>
       ) : (
         <div className={`email-grid ${hoveredSidebar ? 'sidebar-open' : ''}`}>
-          <MailAppHeader setSidebarHover={setSidebarHover} setToggleSidebar={setToggleSidebar} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
-          <MailList emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />
-          <SidebarMenu setToggleComposeMail={setToggleComposeMail} hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
+          <div className="email-header">
+            <MailAppHeader setToggleSidebar={setToggleSidebar} />
+            <MailFilter setMailMainContent={setMailMainContent} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
+          </div>
+          {mailMainContent === 'mailList' && <MailList setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />}
+          {mailMainContent === 'details' && <MailDetails setMailMainContent={setMailMainContent} onRemove={onRemove} />}
+          <SidebarMenu mailMainContent={mailMainContent} setMailMainContent={setMailMainContent} setToggleComposeMail={setToggleComposeMail} hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
           {toggleComposeMail && <ComposeEmail setToggleComposeMail={setToggleComposeMail} />}
         </div>
       )}

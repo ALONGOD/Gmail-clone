@@ -17,12 +17,18 @@ header div.nav-container {
 }
 
 header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
+    overflow: hidden;
     margin-top: 1em;
     right: 0;
     border-radius: 1em;
-    border: 3px rgb(246, 248, 252) solid;
-    padding: 4em;
+    height: 150px;
+    width: 300px;
+    border: 5px rgb(236, 242, 255) solid;
+    padding: 1em;
     background-color: white;
 }
 
@@ -32,14 +38,28 @@ header h1 {
 
 header nav a {
     margin: .5em;
+    color: rgb(63, 82, 107);
+    font-weight: 200;
 }
 
+.head-icon {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    color: rgb(63, 82, 107);
+    cursor: pointer;
 
+}
+
+.icon-container:hover .head-icon {
+    animation: bounce;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 0.7s;
+    /* don't forget to set a duration! */
+}
 
 nav a.active {
-    scale: 1.1;
-    font-weight: bold;
-    text-decoration: overline;
+    /* scale: 1.1; */
+    font-weight: 600;
 }
 
 .sidebar-toggle-btn {

@@ -15,10 +15,10 @@ export const mailService = {
   get,
   remove,
   save,
-  getFilterFromSearchParams,
   getLoggedInUser,
   getEmptyMail,
   getFilterFromSearchParams,
+  saveMails,
 }
 
 function getLoggedInUser() {
@@ -26,13 +26,7 @@ function getLoggedInUser() {
 }
 
 function query(filterBy = {}) {
-  return asyncStorageService.query(MAIL_KEY).then(mails => {
-    if (filterBy.search) {
-      const regExp = new RegExp(filterBy.search, 'i')
-      mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body))
-      console.log(mails)
-    }
-
+  return asyncStorageService.query(MAIL_KEY, 100).then(mails => {
     if (filterBy.folder) {
       switch (filterBy.folder) {
         case 'inbox':
@@ -41,9 +35,16 @@ function query(filterBy = {}) {
         case 'starred':
           mails = mails.filter(mail => mail.isStar)
           break
-        case '':
+        case 'sent':
+          mails = mails.filter(mail => mail.from === loggedinUser.email)
           break
       }
+    }
+
+    if (filterBy.search) {
+      const regExp = new RegExp(filterBy.search, 'i')
+      mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body) || regExp.test(mail.from) || regExp.test(mail.to))
+      console.log(mails)
     }
 
     mails = mails.sort((a, b) => b.sentAt - a.sentAt)
@@ -105,6 +106,10 @@ function _createMails() {
   }
 }
 
+function saveMails(mails) {
+  return Promise.resolve(asyncStorageService._save(MAIL_KEY, mails))
+}
+
 function getEmptyMail(subject = '', body = '', to = '') {
   return {
     id: '',
@@ -127,3 +132,5 @@ function getFilterFromSearchParams(searchParams) {
     isStarred: searchParams.get('isStarred') || '',
   }
 }
+
+function getContentFromSearchParams(searchParams) {}

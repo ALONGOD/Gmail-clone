@@ -1,16 +1,22 @@
 import { utilService } from '../../../services/util.service.js'
 
 const { useState, useEffect, useRef } = React
+const { useLocation, useNavigate } = ReactRouter
 
-export function MailFilter({ filterBy, onSetFilterBy }) {
+export function MailFilter({ setMailMainContent, filterBy, onSetFilterBy }) {
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-  // const debounceOnSearch = useRef(utilService.debounce())
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
 
   useEffect(() => {
     onSetFilterBy(filterByToEdit)
   }, [filterByToEdit])
 
   function handleChange({ target }) {
+    if (pathname.includes('details')) {
+      setMailMainContent('mailList')
+      navigate('/mail')
+    }
     const { name, value } = target
     setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }))
   }
