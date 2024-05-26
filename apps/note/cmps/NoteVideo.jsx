@@ -1,22 +1,25 @@
-
 export function NoteVideo({ note }) {
-    // return <div>hi video</div>
-    const embedUrl = note.info && note.info.url; // Check if embedUrl exists
-    console.log(note.info.url)
+    // Ensure note and note.info exist
+    if (!note || !note.info) {
+        return null;
+    }
+
+    // Replace 'watch?v=' with 'embed/' in the URL
+    const embedUrl = note.info.url.replace('watch?v=', 'embed/');
 
     return (
-        <div className="note-video-container">
-            <h2 className="note-video-title">{note.info.title}</h2>
-            {embedUrl && (
+        <article className="note-video" style={note.style ? { backgroundColor: note.style.backgroundColor } : {}}>
+            {note.info.title && <h2 className="note-title">{note.info.title}</h2>}
+            <div className="video-container">
                 <iframe
-                    className="note-video-iframe"
-                    width="200"
-                    height="150"
-                    src={note.info.url}
+                    className="video"
+                    width="300"
+                    height="170"
+                    src={embedUrl}
                     title={note.info.title}
                     allowFullScreen
                 ></iframe>
-            )}
-        </div>
+            </div>
+        </article>
     );
 }
