@@ -12,7 +12,6 @@ import { ComposeEmail } from '../cmps/ComposeEmail.jsx'
 import { MailDetails } from './MailDetails.jsx'
 
 export function MailIndex() {
-  // WILL NEED TO BE DELETED
   const [mailMainContent, setMailMainContent] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
   const [emails, setEmails] = useState(null)
@@ -21,7 +20,6 @@ export function MailIndex() {
   const [unreadMailsCount, setUnreadMailsCount] = useState(0)
   const [sidebarHover, setSidebarHover] = useState(false)
   const [toggleComposeMail, setToggleComposeMail] = useState(false)
-  // const [mailMainContent, setMailMainContent] = useState('mailList')
 
   const { pathname } = useLocation()
 
