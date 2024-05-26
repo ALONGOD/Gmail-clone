@@ -1,19 +1,8 @@
-.header-icon {
-    width: 3em;
-    height: 4.5em;
-    padding-left: 1em;
-}
-
-.sidebar-menu-btn {
-    width: 3em;
-    height: 4.5em;
-}
-
+/* Styles for the header */
 .header {
     position: relative;
     padding: 20px;
     background-color: white;
-    /* z-index: -1; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -28,6 +17,38 @@
     left: 0;
 }
 
+/* Styles for the elements inside the sidebar header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-header .sidebar-menu-btn {
+    width: 2em;
+    height: 3em;
+}
+
+.sidebar-header .header-icon {
+    width: 4em;
+    height: 3em;
+    padding-left: 1em;
+}
+
+.sidebar-header .note-sidebar-keep {
+    padding-left: 1em;
+    font-size: 1.5em;
+    /* Adjust font size as needed */
+    color: #333;
+    /* Adjust color as needed */
+}
+
+/* Styles for the search bar */
+.search-bar {
+    margin-left: 8vw;
+    /* This will push the search bar to the right */
+}
+
+/* Styles for the sidebar menu (unchanged) */
 .note-sidebar {
     width: 20vw;
     height: 100%;
