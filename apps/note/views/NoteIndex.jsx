@@ -30,6 +30,7 @@ export function NoteIndex() {
     function loadNotes() {
         noteService.query(filterBy).then(notesRes => {
             setNotes(sortNotes(notesRes));
+            setIsLoading(false)
         });
     }
 
@@ -100,6 +101,8 @@ export function NoteIndex() {
 
     // console.log(notes)
     // if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <h3 className="note-loading">Loading...</h3>;
+
 
 
     return <React.Fragment>
