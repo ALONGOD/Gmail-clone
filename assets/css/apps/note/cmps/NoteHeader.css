@@ -1,0 +1,34 @@
+/* Styles for the header */
+.header {
+    position: relative;
+    padding: 0.6em;
+    background-color: white;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    border-bottom: 2px solid lightgray;
+}
+
+/* Styles for the elements inside the sidebar header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-header .sidebar-menu-btn {
+    width: 1em;
+    height: 1.5em;
+}
+
+.sidebar-header .header-icon {
+    width: 3em;
+    height: 2.5em;
+    padding-left: 1em;
+}
+
+.sidebar-header .note-sidebar-keep {
+    font-size: 22px;
+    margin-left: 0.5em;
+    line-height: 24px;
+    /* Adjust font size as needed */
+    color: #333;
+    /* Adjust color as needed */
+}

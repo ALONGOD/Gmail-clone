@@ -2,6 +2,7 @@
     /* Mail Variables */
     --main-bg-color-email: rgb(246, 248, 252);
     --input-blue: rgb(234, 241, 251);
+    --input-gray:rgb(241,243,244);
     --compose-btn-blue: rgb(194, 231, 255);
     --header-height: 8vh;
     --footer-height: 2em;

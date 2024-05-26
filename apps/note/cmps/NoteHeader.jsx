@@ -16,9 +16,7 @@ export function NoteHeader({ filterBy, onSetFilterBy }) {
                     />
                     <article className="note-sidebar-keep">Keep</article>
                 </div>
-                <div className="search-bar">
                     <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                </div>
             </div>
         </React.Fragment>
     );

@@ -17,7 +17,7 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
 
     // return <div>hii</div>
     return (
-        <section className="mail-filter flex flex-row">
+        <section className="note-filter flex flex-row">
             <input onChange={handleChange} value={search} name="search" type="text" placeholder="Search..." />
             <img src="assets/img/search-icon.png" />
 
