@@ -47,11 +47,11 @@ export function AddNote({ onAddNote }) {
         switch (noteType) {
             case 'NoteImg':
                 return (
-                    <div>
+                    <div className="note-inputs-container">
                         <label className="note-input-label">
                             <input
                                 type="text"
-                                placeholder="Enter note title..."
+                                placeholder="Title..."
 
                                 value={imageTitle}
                                 onChange={(e) => setImageTitle(e.target.value)}
@@ -61,7 +61,7 @@ export function AddNote({ onAddNote }) {
                         </label>
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter image URL..."
+                                placeholder="URL..."
 
                                 type="text"
                                 value={imageUrl}
@@ -74,10 +74,10 @@ export function AddNote({ onAddNote }) {
                 );
             case 'NoteTodos':
                 return (
-                    <div>
+                    <div className="note-inputs-container">
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter note title..."
+                                placeholder="Title..."
 
                                 type="text"
                                 value={noteText}
@@ -88,7 +88,7 @@ export function AddNote({ onAddNote }) {
                         </label>
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter todos..."
+                                placeholder="Todos..."
 
                                 type="text"
                                 value={todoText}
@@ -101,10 +101,10 @@ export function AddNote({ onAddNote }) {
                 );
             case 'NoteVideo':
                 return (
-                    <div>
+                    <div className="note-inputs-container">
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter note title..."
+                                placeholder="Title..."
 
                                 type="text"
                                 value={videoTitle}
@@ -115,7 +115,7 @@ export function AddNote({ onAddNote }) {
                         </label>
                         <label className="note-input-label">
                             <input
-                                placeholder="Enter video url..."
+                                placeholder="URL..."
 
                                 type="text"
                                 value={videoUrl}

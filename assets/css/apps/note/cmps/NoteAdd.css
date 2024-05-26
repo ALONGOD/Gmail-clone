@@ -8,7 +8,7 @@
     border-radius: 8px;
     box-shadow: none;
     /* Removed the box-shadow for a flatter design */
-    width: 35vw;
+    width: 45vw;
     /* Set width to 35% of viewport width */
     margin: 20px auto;
     border: 1px solid #ddd;
@@ -88,4 +88,8 @@
 
 .note-type-icon:hover {
     color: #000;
+}
+
+.note-inputs-container {
+    display: flex;
 }
