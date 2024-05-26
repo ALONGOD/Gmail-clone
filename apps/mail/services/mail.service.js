@@ -27,19 +27,20 @@ function getLoggedInUser() {
 
 function query(filterBy = {}) {
   return asyncStorageService.query(MAIL_KEY, 100).then(mails => {
+    console.log(mails);
     if (filterBy.folder) {
       switch (filterBy.folder) {
         case 'inbox':
-          mails = mails.filter(mail => mail.type === 'inbox')
+          mails = mails.filter(mail => mail.to === loggedinUser.email)
           break
-        case 'starred':
-          mails = mails.filter(mail => mail.isStar)
-          break
-        case 'sent':
-          mails = mails.filter(mail => mail.from === loggedinUser.email)
-          break
-      }
-    }
+          case 'starred':
+            mails = mails.filter(mail => mail.isStar)
+            break
+            case 'sent':
+              mails = mails.filter(mail => mail.from === loggedinUser.email)
+              break
+            }
+          }
 
     if (filterBy.search) {
       const regExp = new RegExp(filterBy.search, 'i')
@@ -48,6 +49,7 @@ function query(filterBy = {}) {
     }
 
     mails = mails.sort((a, b) => b.sentAt - a.sentAt)
+    console.log(mails);
 
     return mails
   })
@@ -86,6 +88,7 @@ function _setNextPrevmailId(mail) {
 
 function _createMails() {
   let emails = storageService.loadFromStorage(MAIL_KEY)
+  console.log(emails);
   if (!emails || !emails.length) {
     emails = []
     for (var i = 0; i < 20; i++) {
