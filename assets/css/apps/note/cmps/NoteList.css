@@ -3,7 +3,7 @@
      display: flex;
      flex-wrap: wrap;
      justify-content: flex-start;
-     height: 40vh;
+     height: 70vh;
      overflow-y: auto;
      /* Adjust as needed */
  }
