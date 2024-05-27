@@ -19,7 +19,7 @@ export const noteService = {
 // For Debug (easy access from console):
 // window.cs = noteService
 
-function query(filterBy = {}) {
+function query(filterBy = { folder: 'note' }) {
     console.log(filterBy)
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
