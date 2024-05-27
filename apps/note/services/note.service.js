@@ -80,7 +80,7 @@ function getFilterFromSearchParams(searchParams) {
     return {
         // txt: searchParams.get('txt') || '',
         // minSpeed: +searchParams.get('minSpeed') || '',
-        folder: searchParams.get('folder') || '',
+        folder: searchParams.get('folder') || 'note',
         type: searchParams.get('type') || '',
         search: searchParams.get('search') || '',
     }
