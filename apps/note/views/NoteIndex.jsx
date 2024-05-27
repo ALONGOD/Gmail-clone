@@ -40,7 +40,7 @@ export function NoteIndex() {
             setIsLoading(false)
         })
     }
-    
+
     function onPin(noteId) {
         noteService
             .togglePin(noteId)
@@ -58,7 +58,7 @@ export function NoteIndex() {
             .then(duplicatedNote => {
                 console.log(duplicatedNote)
                 // duplicatedNote.isDuplicated = false
-                setNotes(prevNotes => sortNotes([...prevNotes, duplicatedNote]))
+                setNotes(prevNotes => ([...prevNotes, duplicatedNote]))
                 showSuccessMsg('Note duplicated successfully!')
             })
             .catch(err => {
