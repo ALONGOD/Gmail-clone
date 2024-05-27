@@ -53,7 +53,7 @@ export function NoteEdit() {
 
         noteService.save(updatedNote)
             .then(() => {
-                showSuccessMsg('Successfully edited note!');
+                showSuccessMsg('Note edited successfully!');
             })
             .catch(error => {
                 console.error('Error saving note:', error);

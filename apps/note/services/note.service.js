@@ -33,6 +33,13 @@ function query(filterBy = {}) {
                 notes = notes.filter(note => note.type === filterBy.type);
             }
 
+            if (filterBy.folder === 'trash') {
+                notes = notes.filter(note => note.isTrash === true)
+            }
+            if (filterBy.folder === 'notes') {
+                notes = notes.filter(note => note.isTrash !== true)
+            }
+
 
 
             return notes
@@ -71,7 +78,7 @@ function getFilterFromSearchParams(searchParams) {
     return {
         // txt: searchParams.get('txt') || '',
         // minSpeed: +searchParams.get('minSpeed') || '',
-        folder: searchParams.get('folder') || '', 
+        folder: searchParams.get('folder') || '',
         type: searchParams.get('type') || '',
         search: searchParams.get('search') || '',
     }
