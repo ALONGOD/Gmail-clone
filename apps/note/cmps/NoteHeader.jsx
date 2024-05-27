@@ -1,6 +1,6 @@
 import { NoteFilter } from '../cmps/NoteFilter.jsx'
 
-export function NoteHeader({ filterBy, onSetFilterBy }) {
+export function NoteHeader({ filterBy, onSetFilterBy, setToggleSidebar }) {
     return (
         <React.Fragment>
             <div className="header">
@@ -8,7 +8,7 @@ export function NoteHeader({ filterBy, onSetFilterBy }) {
                     <img
                         className="sidebar-menu-btn"
                         src="assets/img/menu-btn.svg"
-                        onClick={() => setToggleMenu(state => !state)}
+                        onClick={() => setToggleSidebar(state => !state)}
                     />
                     <img
                         className="header-icon"
