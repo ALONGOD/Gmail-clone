@@ -77,14 +77,11 @@ export function NoteIndex() {
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
                 showSuccessMsg('Note removed successfully!!')
-
-                // showSuccessMsg(`Car (${noteId}) removed successfully!`)
             })
             .catch(err => {
                 console.log('err:', err)
                 showErrorMsg("Couldn't remove note...")
 
-                // showErrorMsg('There was a problem')
             })
     }
 
@@ -99,8 +96,6 @@ export function NoteIndex() {
         noteService.get(noteId).then(note => {
             note.style = { ...note.style, backgroundColor: color };
             noteService.save(note).then(updatedNote => {
-                // Update the local state or re-fetch the notes as necessary
-                // For example, if using a state hook:
                 setNotes(prevNotes => prevNotes.map(n => n.id === updatedNote.id ? updatedNote : n));
             });
         });
@@ -109,7 +104,6 @@ export function NoteIndex() {
     function onTrash(noteId) {
         console.log('hi trash');
 
-        // Find the note to be trashed and update its isTrash property
         const noteToTrash = notes.find(note => note.id === noteId);
         if (!noteToTrash) {
             console.error('Note not found');
@@ -122,7 +116,6 @@ export function NoteIndex() {
         noteService
             .save(updatedNote)
             .then(() => {
-                // Re-fetch the notes to update the state
                 loadNotes();
                 showSuccessMsg('Note moved to trash successfully!');
             })
@@ -134,8 +127,6 @@ export function NoteIndex() {
 
 
 
-    // console.log(notes)
-    // if (isLoading) return <h3>Loading...</h3>
     if (isLoading) return <h3 className="note-loading">Loading...</h3>;
 
     const isSidebarOpen = sidebarHover || toggleSidebar
@@ -148,6 +139,7 @@ export function NoteIndex() {
                     folder={filterBy.folder}
                     setSidebarHover={setSidebarHover}
                     onSetFilterBy={onSetFilterBy}
+                    isSidebarOpen={isSidebarOpen}
                     filterBy={filterBy}
                 />
             </aside>
