@@ -1,17 +1,29 @@
 // import React from React;
+const { Link, useLocation } = ReactRouterDOM;
 
 export function NotesSidebar() {
+    const location = useLocation();
+
     return (
         <div className="note-sidebar">
-            {/* <div className="note-sidebar-header"> */}
-            {/* <h2>Keep</h2> */}
-            {/* </div> */}
             <div className="note-sidebar-menu">
                 <ul>
-                    <li><i className="far fa-lightbulb"></i> <a href="#">Notes</a></li>
-                    <li><i className="far fa-bell"></i> <a href="#">Reminders</a></li>
-                    <li><i className="fas fa-archive"></i> <a href="#">Archive</a></li>
-                    <li><i className="fas fa-trash"></i> <a href="#">Trash</a></li>
+                    <li className={location.pathname === "/note" ? "active" : ""}>
+                        <i className="far fa-lightbulb"></i>
+                        <Link to="/note">Notes</Link>
+                    </li>
+                    <li className={location.pathname === "/note/reminders" ? "active" : ""}>
+                        <i className="far fa-bell"></i>
+                        <Link to="/note/reminders">Reminders</Link>
+                    </li>
+                    <li className={location.pathname === "/note/archive" ? "active" : ""}>
+                        <i className="fas fa-archive"></i>
+                        <Link to="/note/archive">Archive</Link>
+                    </li>
+                    <li className={location.pathname === "/note/trash" ? "active" : ""}>
+                        <i className="fas fa-trash"></i>
+                        <Link to="/note/trash">Trash</Link>
+                    </li>
                 </ul>
             </div>
         </div>

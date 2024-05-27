@@ -54,9 +54,9 @@
     /* Increased border-radius for button-like appearance */
 }
 
-.note-sidebar-menu ul li:first-child {
+.note-sidebar-menu ul li.active {
     background-color: #feefc3;
-    /* Same as hover color to indicate it's active */
+    /* Active background color */
     border-radius: 25px;
-    /* Additional styles to indicate active state */
+    /* Active border-radius */
 }
