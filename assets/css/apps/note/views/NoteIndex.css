@@ -2,7 +2,7 @@
  .note-grid {
      display: grid;
      align-content: start;
-     grid-template-columns: 1fr 4fr;
+     grid-template-columns: 1fr 5.5fr;
      width: 100vw;
      height: 100vh;
  }

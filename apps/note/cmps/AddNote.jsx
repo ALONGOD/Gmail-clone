@@ -1,3 +1,5 @@
+import { utilService } from "../../../services/util.service";
+
 const { useState, useEffect } = React
 
 export function AddNote({ onAddNote }) {
@@ -17,7 +19,7 @@ export function AddNote({ onAddNote }) {
         if (noteType === 'NoteImg') {
             info = { title: imageTitle, url: imageUrl };
         } else if (noteType === 'NoteTodos') {
-            const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
+            const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: Date.now() }));
             info = { title: noteText, todos };
         } else if (noteType === 'NoteVideo') {
             info = { title: videoTitle, url: videoUrl };

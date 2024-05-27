@@ -1,3 +1,5 @@
+import { utilService } from "../../../services/util.service";
+
 const { useState, useEffect } = React;
 
 export function NoteTodos({ note }) {
@@ -5,7 +7,7 @@ export function NoteTodos({ note }) {
 
     const handleTodoClick = (clickedTodo) => {
         const updatedTodos = todos.map(todo =>
-            todo === clickedTodo ? { ...todo, doneAt: todo.doneAt ? null : Date.now() } : todo
+            todo === clickedTodo ? { ...todo, doneAt: todo.doneAt ? null : Date.now(), todoId: utilService.makeId(4) } : todo
         );
         setTodos(updatedTodos);
     };
@@ -19,7 +21,7 @@ export function NoteTodos({ note }) {
             <h2>{note.info.title}</h2>
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.txt}>
+                    <li key={todo.todoId}>
                         <span
                             onClick={() => handleTodoClick(todo)}
                             className={isDoneClass(todo)}

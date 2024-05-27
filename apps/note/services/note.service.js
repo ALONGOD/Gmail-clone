@@ -160,9 +160,9 @@ function _createNotes() {
                 info: {
                     title: 'Things to do after sprint',
                     todos: [
-                        { txt: 'Eat', doneAt: null },
-                        { txt: 'Sleep', doneAt: 187111111 },
-                        { txt: 'Listen to careless whisper ;)', doneAt: null }
+                        { txt: 'Eat', doneAt: 187111111, id: utilService.makeId(4) },
+                        { txt: 'Sleep', doneAt: 187111111, id: utilService.makeId(4) },
+                        { txt: 'Listen to careless whisper ;)', doneAt: null, id: utilService.makeId(4) }
                     ]
                 }
             },
