@@ -91,10 +91,6 @@ export function NoteIndex() {
       })
   }
 
-  function onSetFilterBy(newFilter) {
-    setFilterBy({ ...newFilter })
-  }
-
   function onAddNote(newNote) {
     noteService.save(newNote).then(savedNote => {
       setNotes(prevNotes => [...prevNotes, savedNote])
@@ -102,31 +98,27 @@ export function NoteIndex() {
     })
   }
 
-  function onChangeColor(noteId, color) {
-    noteService.get(noteId).then(note => {
-      note.style = { ...note.style, backgroundColor: color }
-      noteService.save(note).then(updatedNote => {
-        // Update the local state or re-fetch the notes as necessary
-        // For example, if using a state hook:
-        setNotes(prevNotes =>
-          prevNotes.map(n => (n.id === updatedNote.id ? updatedNote : n))
-        )
-      })
-    })
-  }
+    function onChangeColor(noteId, color) {
+        noteService.get(noteId).then(note => {
+            note.style = { ...note.style, backgroundColor: color };
+            noteService.save(note).then(updatedNote => {
+                // Update the local state or re-fetch the notes as necessary
+                // For example, if using a state hook:
+                setNotes(prevNotes => prevNotes.map(n => n.id === updatedNote.id ? updatedNote : n));
+            });
+        });
+    }
 
-  if (isLoading) return <h3 className="note-loading">Loading...</h3>
 
-  const isSidebarOpen = sidebarHover || toggleSidebar
+    // console.log(notes)
+    // if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <h3 className="note-loading">Loading...</h3>;
 
-  return (
-    <React.Fragment>
-      <NoteHeader
-        filterBy={filterBy}
-        onSetFilterBy={onSetFilterBy}
-        setToggleSidebar={setToggleSidebar}
-      />
-      <div className={`note-grid ${isSidebarOpen ? 'active' : ''}`}>
+    const isSidebarOpen = sidebarHover || toggleSidebar
+
+    return <React.Fragment>
+        <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+        <div className={`note-grid ${isSidebarOpen ? 'active' : ''}`}>
         <aside>
           <NotesSidebar
             folder={filterBy.folder}
@@ -135,19 +127,12 @@ export function NoteIndex() {
             filterBy={filterBy}
           />
         </aside>
-        <main>
-          <AddNote onAddNote={onAddNote} />
+            <main>
+                <AddNote onAddNote={onAddNote} />
 
-          <NoteList
-            folder={filterBy.folder}
-            notes={notes}
-            onRemove={removeNote}
-            onPin={onPin}
-            onDuplicate={onDuplicate}
-            onChangeColor={onChangeColor}
-          />
-        </main>
-      </div>
+
+                <NoteList folder={filterBy.folder} notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} onChangeColor={onChangeColor} />
+            </main>
+        </div>
     </React.Fragment>
-  )
 }
