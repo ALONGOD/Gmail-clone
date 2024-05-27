@@ -3,7 +3,7 @@ const { useState, useEffect, useRef } = React;
 
 import { NotePreview } from "../cmps/NotePreview.jsx";
 
-export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor }) {
+export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor, onTrash }) {
     const [colorPickerVisibility, setColorPickerVisibility] = useState({});
 
     const colorPalette = ['#eceae7', '#efe3dd', '#ebd8e7', '#c4d6e4', '#dde6ea', '#d4e7dc', '#e9efdb', '#f8f9da', '#f8e5c5', '#f8d0cc'];
@@ -30,7 +30,13 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor })
                     <div key={note.id} className='note-card' style={{ backgroundColor }}>
                         <NotePreview note={note} />
                         <div className="note-actions">
-                            <button onClick={() => onRemove(note.id)} className='fa fa-trash'></button>
+                            <button onClick={() => {
+                                if (!note.isTrash) {
+                                    onTrash(note.id);
+                                } else {
+                                    onRemove(note.id);
+                                }
+                            }} className='fa fa-trash'></button>
                             <button onClick={() => onPin(note.id)} className={`fa ${note.isPinned ? 'fa-thumbtack' : 'fa-map-pin'}`}></button>
                             <button onClick={() => onDuplicate(note.id)} className='fa fa-clone'></button>
                             <Link to={`/note/edit/${note.id}`} className="action-button">

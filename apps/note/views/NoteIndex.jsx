@@ -98,6 +98,20 @@ export function NoteIndex() {
         });
     }
 
+    function onTrashFilter() {
+        setFilterBy({ ...filterBy, isTrash: true });
+    }
+
+    function onTrash(noteId) {
+        const updatedNotes = notes.map(note => {
+            if (note.id === noteId) {
+                return { ...note, isTrash: true };
+            }
+            return note;
+        });
+        setNotes(updatedNotes);
+    }
+
 
     // console.log(notes)
     // if (isLoading) return <h3>Loading...</h3>
@@ -113,7 +127,7 @@ export function NoteIndex() {
                 <AddNote onAddNote={onAddNote} />
 
 
-                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} onChangeColor={onChangeColor} />
+                <NoteList notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} onChangeColor={onChangeColor} onTrash={onTrash} />
             </main>
         </div>
     </React.Fragment>

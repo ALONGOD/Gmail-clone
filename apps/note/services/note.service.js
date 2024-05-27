@@ -162,6 +162,7 @@ function _createNotes() {
                 id: 'n106',
                 type: 'NoteAudio',
                 isPinned: false,
+                isTrash: true,
                 info: {
                     title: 'שמש 😎',
                     url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
