@@ -40,6 +40,8 @@ function query(filterBy = {}) {
                 notes = notes.filter(note => note.isTrash !== true)
             }
 
+            notes.sort((a, b) => b.isPinned - a.isPinned)
+
 
 
             return notes

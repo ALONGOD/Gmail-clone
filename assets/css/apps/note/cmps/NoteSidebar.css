@@ -19,13 +19,13 @@
     padding: 0 10px;
 }
 
-.note-sidebar-menu ul {
+.note-sidebar-menu {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.note-sidebar-menu ul li {
+.note-sidebar-menu li {
     padding: 18px 0;
     border-bottom: 1px solid #ddd;
     display: flex;
@@ -34,27 +34,27 @@
     /* Added transition for smooth effect */
 }
 
-.note-sidebar-menu ul li:last-child {
+.note-sidebar-menu li:last-child {
     border-bottom: none;
 }
 
-.note-sidebar-menu ul li a {
+.note-sidebar-menu li a {
     text-decoration: none;
     color: #555;
     margin-left: 10px;
 }
 
-.note-sidebar-menu ul li a:hover {
+.note-sidebar-menu li a:hover {
     color: #000;
 }
 
-.note-sidebar-menu ul li:hover {
+.note-sidebar-menu li:hover {
     background-color: #f1f3f4;
     border-radius: 25px;
     /* Increased border-radius for button-like appearance */
 }
 
-.note-sidebar-menu ul li.active {
+.note-sidebar-menu li.active {
     background-color: #feefc3;
     /* Active background color */
     border-radius: 25px;

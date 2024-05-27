@@ -1,7 +1,5 @@
-const { useNavigate } = ReactRouter
 
 export function NoteSidebarLabel({ label, folder, handleChange }) {
-    const navigate = useNavigate()
 
     const logo = folderLogo(label)
 
@@ -16,7 +14,7 @@ export function NoteSidebarLabel({ label, folder, handleChange }) {
   }
 
   return (
-    <li className={location.pathname === '/note' ? 'active' : ''} onClick={() =>handleChange(label)}>
+    <li className={`${location.pathname === '/note' ? 'active' : ''} flex flex-row`} onClick={() =>handleChange(label)}>
       <i className={logo}></i>
       <h4>{label}</h4>
     </li>

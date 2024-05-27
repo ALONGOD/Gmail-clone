@@ -36,14 +36,11 @@ export function NoteIndex() {
 
     function loadNotes() {
         noteService.query(filterBy).then(notesRes => {
-            setNotes(sortNotes(notesRes))
+            setNotes(notesRes)
             setIsLoading(false)
         })
     }
-
-    function sortNotes(notes) {
-        return notes.sort((a, b) => b.isPinned - a.isPinned)
-    }
+    
     function onPin(noteId) {
         noteService
             .togglePin(noteId)
