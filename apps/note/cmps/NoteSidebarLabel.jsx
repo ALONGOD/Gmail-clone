@@ -1,5 +1,5 @@
 
-export function NoteSidebarLabel({ label, folder, handleChange }) {
+export function NoteSidebarLabel({ isSidebarOpen, label, folder, handleChange, isOpen }) {
 
     const logo = folderLogo(label)
 
@@ -16,7 +16,7 @@ export function NoteSidebarLabel({ label, folder, handleChange }) {
   return (
     <li className={`${location.pathname === '/note' ? 'active' : ''} flex flex-row`} onClick={() =>handleChange(label)}>
       <i className={logo}></i>
-      <h4>{label}</h4>
+      {isSidebarOpen && <h4>{label}</h4>}
     </li>
   )
 }
