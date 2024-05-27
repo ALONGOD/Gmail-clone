@@ -129,8 +129,6 @@ export function NoteIndex() {
         </aside>
             <main>
                 <AddNote onAddNote={onAddNote} />
-
-
                 <NoteList folder={filterBy.folder} notes={notes} onRemove={removeNote} onPin={onPin} onDuplicate={onDuplicate} onChangeColor={onChangeColor} />
             </main>
         </div>
