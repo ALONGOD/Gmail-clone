@@ -1,6 +1,4 @@
 export function NoteAudio({ note }) {
-    // Ensure note and note.info exist
-    console.log(note.info.url);
     if (!note || !note.info) {
         return null;
     }
@@ -9,15 +7,13 @@ export function NoteAudio({ note }) {
         <article className="note-audio" style={note.style ? { backgroundColor: note.style.backgroundColor } : {}}>
             {note.info.title && <h2 className="note-title">{note.info.title}</h2>}
             <div className="audio-container">
-                <iframe
-                    src={note.info.url}
-                    width="300"
-                    height="70"
-                    frameBorder="0"
-                    allow="autoplay"
-                >
-                </iframe>
+                <audio controls style={{ width: '300px', height: '70px' }}>
+                    <source src={note.info.url} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         </article>
     );
 }
+
+export default NoteAudio;
