@@ -13,7 +13,7 @@ export function NoteVideo({ note }) {
             <div className="video-container">
                 <iframe
                     className="video"
-                    width="300"
+                    width="220"
                     height="170"
                     src={embedUrl}
                     title={note.info.title}
