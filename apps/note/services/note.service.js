@@ -12,8 +12,6 @@ export const noteService = {
     save,
     getEmptynote,
     getDefaultFilter,
-    getSpeedStats,
-    getVendorStats,
     getFilterFromSearchParams,
     togglePin,
     duplicate,
@@ -73,8 +71,9 @@ function getFilterFromSearchParams(searchParams) {
     return {
         // txt: searchParams.get('txt') || '',
         // minSpeed: +searchParams.get('minSpeed') || '',
-        search: searchParams.get('search') || '',
+        folder: searchParams.get('folder') || '', 
         type: searchParams.get('type') || '',
+        search: searchParams.get('search') || '',
     }
 }
 
