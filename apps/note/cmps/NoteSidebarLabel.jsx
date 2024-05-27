@@ -8,10 +8,10 @@ export function NoteSidebarLabel({ label, folder, handleChange }) {
   function folderLogo(label) {
     switch (label) {
       case 'notes':
-        return 'far fa-lightbulb'
+        return 'fa-regular fa-lightbulb'
 
-      case 'notes':
-        return 'fas fa-trash'
+      case 'trash':
+        return 'fa-regular fa-trash-can'
     }
   }
 
