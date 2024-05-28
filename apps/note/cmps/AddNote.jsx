@@ -19,7 +19,7 @@ export function AddNote({ onAddNote }) {
         if (noteType === 'NoteImg') {
             info = { title: imageTitle, url: imageUrl };
         } else if (noteType === 'NoteTodos') {
-            const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: Date.now() }));
+            const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
             info = { title: noteText, todos };
         } else if (noteType === 'NoteVideo') {
             info = { title: videoTitle, url: videoUrl };
@@ -31,14 +31,14 @@ export function AddNote({ onAddNote }) {
             info,
             createdAt: Date.now(),
             style: {
-                backgroundColor: '#f8f9da'
+                backgroundColor: '#f8e5c5'
             },
             isPinned: false
         };
         onAddNote && onAddNote(newNote);
         setNoteText('');
         setNoteType('');
-        setNoteColor('#ADD8E6'); // Reset to default color
+        setNoteColor('#f8e5c5'); // Reset to default color
         setImageUrl('');
         setImageTitle('');
         setTodoText('');
