@@ -1,8 +1,3 @@
-.note-grid.active .note-sidebar-menu li {
-
-    background-color: #feefc3;
-}
-
 .note-sidebar {
     width: 100%;
     height: 100%;
@@ -10,21 +5,8 @@
     padding-top: 20px;
 }
 
-.note-sidebar-header {
-    padding: 10px;
-    text-align: center;
-}
-
-.note-sidebar-header h2 {
-    margin: 0;
-    color: #333;
-}
-
 .note-sidebar-menu {
     padding: 0 10px;
-}
-
-.note-sidebar-menu {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -35,37 +17,62 @@
     border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center;
-    transition: background-color 0.3s, border-radius 0.3s;
-    /* Added transition for smooth effect */
+    transition: background-color 0.3s, border-radius 0.3s, padding 0.3s;
+    cursor: pointer;
 }
 
 .note-sidebar-menu li:last-child {
     border-bottom: none;
 }
 
-.note-sidebar-menu li a {
-    text-decoration: none;
-    color: #555;
-    margin-left: 10px;
-}
-
-.note-sidebar-menu li a:hover {
-    color: #000;
-}
-
 .note-sidebar-menu li:hover {
     background-color: #f1f3f4;
     border-radius: 25px;
-    /* Increased border-radius for button-like appearance */
 }
 
 .note-sidebar-menu li.active {
     background-color: #feefc3;
-    /* Active background color */
     border-radius: 25px;
-    /* Active border-radius */
+}
+
+.note-sidebar-menu li.active:hover {
+    background-color: #feefc3;
+    /* Ensure active items maintain their background on hover */
 }
 
 .note-sidebar-menu h4 {
     text-transform: capitalize;
+    margin-left: 10px;
+    /* Ensure label text has some space from icon */
+}
+
+.note-sidebar-menu li i {
+    margin-left: 10px;
+    /* Ensure icons are aligned properly */
+}
+
+.note-sidebar-menu li:not(.active):not(:hover) h4 {
+    display: none;
+    /* Hide the label text when not hovering and not active */
+}
+
+.note-sidebar-menu li:not(.active):hover h4 {
+    display: inline;
+    /* Show the label text on hover if not active */
+}
+
+.note-sidebar-menu li.active h4 {
+    display: inline;
+    /* Ensure the label text is always shown for the active item */
+}
+
+.note-sidebar-menu li i {
+    margin-right: 10px;
+    /* Ensure icons have some space from the edge */
+}
+
+.note-sidebar-menu li.active i,
+.note-sidebar-menu li:hover i {
+    margin-right: 10px;
+    /* Ensure icons have space from the text */
 }
