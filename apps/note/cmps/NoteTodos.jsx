@@ -7,7 +7,7 @@ export function NoteTodos({ note }) {
 
     const handleTodoClick = (clickedTodo) => {
         const updatedTodos = todos.map(todo =>
-            todo === clickedTodo ? { ...todo, doneAt: todo.doneAt ? null : Date.now(), todoId: utilService.makeId(4) } : todo
+            todo === clickedTodo ? { ...todo, doneAt: todo.doneAt ? null : Date.now() } : todo
         );
         setTodos(updatedTodos);
     };
@@ -21,7 +21,7 @@ export function NoteTodos({ note }) {
             <h2>{note.info.title}</h2>
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.todoId}>
+                    <li key={todo.txt}>
                         <span
                             onClick={() => handleTodoClick(todo)}
                             className={isDoneClass(todo)}
