@@ -1,7 +1,6 @@
 import { utilService } from '../../../services/util.service.js'
 import { MailToolsHover } from './MailToolsHover.jsx'
-const { useParams, useNavigate } = ReactRouter
-const { useState, useEffect, useRef } = React
+const { useNavigate } = ReactRouter
 
 export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsStar, onToggleIsRead, hoverMailId }) {
   const { subject, body, isRead, sentAt, from, to, isStar, id } = email

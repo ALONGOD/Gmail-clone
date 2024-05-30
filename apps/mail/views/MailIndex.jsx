@@ -19,7 +19,8 @@ export function MailIndex() {
   const [toggleSidebar, setToggleSidebar] = useState(false)
   const [unreadMailsCount, setUnreadMailsCount] = useState(0)
   const [sidebarHover, setSidebarHover] = useState(false)
-  const [toggleComposeMail, setToggleComposeMail] = useState(false)
+
+  const hasComposeParam = searchParams.has('compose')
 
   const { pathname } = useLocation()
 
@@ -32,7 +33,9 @@ export function MailIndex() {
   }, [location])
 
   useEffect(() => {
-    setSearchParams(filterBy)
+    if (!hasComposeParam) {
+      setSearchParams(filterBy)
+    }
     loadMails()
   }, [filterBy])
 
@@ -127,8 +130,6 @@ export function MailIndex() {
     mailService.saveMails(updatedMails).then(setEmails(updatedMails))
   }
 
-  console.log(unreadMailsCount)
-  console.log(filterBy)
   const hoveredSidebar = sidebarHover || toggleSidebar
 
   return (
@@ -141,10 +142,11 @@ export function MailIndex() {
             <MailAppHeader setToggleSidebar={setToggleSidebar} />
             <MailFilter setMailMainContent={setMailMainContent} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           </div>
-          {mailMainContent === 'mailList' && <MailList setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} mails={emails} />}
-          {mailMainContent === 'details' && <MailDetails setMailMainContent={setMailMainContent} onRemove={onRemove} />}
-          <SidebarMenu mailMainContent={mailMainContent} setMailMainContent={setMailMainContent} setToggleComposeMail={setToggleComposeMail} hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
-          {toggleComposeMail && <ComposeEmail setToggleComposeMail={setToggleComposeMail} />}
+          {mailMainContent === 'mailList' && <MailList setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} />}
+          {mailMainContent === 'details' && <MailDetails setMailMainContent={setMailMainContent} />}
+          <SidebarMenu mailMainContent={mailMainContent} setMailMainContent={setMailMainContent}  hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
+          {/* {toggleComposeMail && <ComposeEmail setToggleComposeMail={setToggleComposeMail} />} */}
+          {hasComposeParam && <ComposeEmail />}
         </div>
       )}
     </React.Fragment>
