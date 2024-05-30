@@ -1,3 +1,5 @@
+import { utilService } from "../../../services/util.service";
+
 const { useState, useEffect } = React
 
 export function AddNote({ onAddNote }) {
@@ -29,14 +31,14 @@ export function AddNote({ onAddNote }) {
             info,
             createdAt: Date.now(),
             style: {
-                backgroundColor: '#f8f9da'
+                backgroundColor: '#f8e5c5'
             },
             isPinned: false
         };
         onAddNote && onAddNote(newNote);
         setNoteText('');
         setNoteType('');
-        setNoteColor('#ADD8E6'); // Reset to default color
+        setNoteColor('#f8e5c5'); // Reset to default color
         setImageUrl('');
         setImageTitle('');
         setTodoText('');

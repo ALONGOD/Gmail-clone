@@ -1,7 +1,8 @@
  /* note index */
  .note-grid {
      display: grid;
-     grid-template-columns: 1fr 4fr;
+     align-content: start;
+     grid-template-columns: 1fr 5.5fr;
      width: 100vw;
      height: 100vh;
  }

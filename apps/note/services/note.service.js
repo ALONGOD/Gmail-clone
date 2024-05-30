@@ -19,7 +19,7 @@ export const noteService = {
 // For Debug (easy access from console):
 // window.cs = noteService
 
-function query(filterBy = {}) {
+function query(filterBy = { folder: 'note' }) {
     console.log(filterBy)
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
@@ -80,7 +80,7 @@ function getFilterFromSearchParams(searchParams) {
     return {
         // txt: searchParams.get('txt') || '',
         // minSpeed: +searchParams.get('minSpeed') || '',
-        folder: searchParams.get('folder') || 'notes',
+        folder: searchParams.get('folder') || 'note',
         type: searchParams.get('type') || '',
         search: searchParams.get('search') || '',
     }
@@ -160,9 +160,9 @@ function _createNotes() {
                 info: {
                     title: 'Things to do after sprint',
                     todos: [
-                        { txt: 'Eat', doneAt: null },
-                        { txt: 'Sleep', doneAt: 187111111 },
-                        { txt: 'Listen to careless whisper ;)', doneAt: null }
+                        { txt: 'Eat', doneAt: 187111111, id: utilService.makeId(4) },
+                        { txt: 'Sleep', doneAt: 187111111, id: utilService.makeId(4) },
+                        { txt: 'Listen to careless whisper ;)', doneAt: null, id: utilService.makeId(4) }
                     ]
                 }
             },

@@ -14,7 +14,7 @@ export function NoteVideo({ note }) {
                 <iframe
                     className="video"
                     width="220"
-                    height="170"
+                    height="140"
                     src={embedUrl}
                     title={note.info.title}
                     allowFullScreen
