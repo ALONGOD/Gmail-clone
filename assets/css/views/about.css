@@ -1,0 +1,45 @@
+.about {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(27,61,77);
+    color: white;
+}
+
+.about h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.about h3 {
+    margin-bottom: 2em;
+}
+
+.about h4 {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.about ul {
+    margin-bottom: 2em;
+}
+
+.about li {
+    list-style-type: disc;
+    margin-bottom: 1em;
+}
+
+
+.about li span {
+    font-weight: 600;
+}
+
+/* .about */
+
+.about img {
+    width: 10em;
+    height: 10em;
+}

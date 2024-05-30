@@ -36,10 +36,6 @@ export function AppNavigation() {
               <i className="head-icon fa-solid fa-house"></i>
               <NavLink to="/">Home</NavLink>
             </div>
-            <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/about')}>
-              <i className="head-icon fa-solid fa-info"></i>
-              <NavLink to="/about">About</NavLink>
-            </div>
             <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/mail')}>
               <i className="head-icon fa-regular fa-envelope "></i>
               <NavLink to="/mail">Mail</NavLink>
@@ -47,6 +43,10 @@ export function AppNavigation() {
             <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/note')}>
               <i className="head-icon fa-regular fa-note-sticky "></i>
               <NavLink to="/note">Note</NavLink>
+            </div>
+            <div className="icon-container flex flex-column justify-center align-center" onClick={() => navigateLink('/about')}>
+              <i className="head-icon fa-solid fa-info"></i>
+              <NavLink to="/about">About</NavLink>
             </div>
           </nav>
         )}
