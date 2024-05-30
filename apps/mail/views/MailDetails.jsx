@@ -63,6 +63,13 @@ export function MailDetails({ setMailMainContent }) {
       })
   }
 
+  function addMailAsNote() {
+    navigate({
+      pathname: '/note',
+      search: `?subject=${mail.subject}&body=${mail.body}`,
+    })
+  }
+
   function backToMailList() {
     setMailMainContent('mailList')
     navigate('/mail')
@@ -71,7 +78,7 @@ export function MailDetails({ setMailMainContent }) {
   if (!mail) return <div>Loading...</div>
   return (
     <main className="mail-details-container">
-      <MailDetailsHeader backToMailList={backToMailList} onRemove={onRemoveMail} onToggleIsRead={() => onToggleIsRead(false)} />
+      <MailDetailsHeader addMailAsNote={addMailAsNote} backToMailList={backToMailList} onRemove={onRemoveMail} onToggleIsRead={() => onToggleIsRead(false)} />
       <MailDetailsMain mail={mail} />
     </main>
   )
