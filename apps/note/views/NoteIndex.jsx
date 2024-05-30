@@ -30,9 +30,16 @@ export function NoteIndex() {
     const [toggleSidebar, setToggleSidebar] = useState(false)
 
     useEffect(() => {
+        const body = searchParams.get('body')
+        const subject = searchParams.get('subject')
+
+        if (body || subject) {
+            const newNote = noteService.saveMailNote(body, subject)
+        }
         setSearchParams(filterBy)
         loadNotes()
     }, [filterBy])
+
 
     function loadNotes() {
         noteService.query(filterBy).then(notesRes => {
