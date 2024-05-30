@@ -1,11 +1,20 @@
-.note-sidebar {
+.note-grid.active .note-sidebar-menu li {
     width: 100%;
+}
+
+.note-sidebar {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 2em;
     height: 100%;
     background-color: white;
     padding-top: 20px;
 }
 
 .note-sidebar-menu {
+    justify-content: start;
+    align-items: start;
     padding: 0 10px;
     list-style-type: none;
     padding: 0;

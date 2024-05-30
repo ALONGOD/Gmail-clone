@@ -7,7 +7,9 @@
      height: 100vh;
  }
 
- .note-grid aside {
+ .note-grid .note-grid aside {
+     display: flex;
+     justify-content: start;
      grid-column: 1;
  }
 
