@@ -2,9 +2,18 @@
  .note-grid {
      display: grid;
      align-content: start;
-     grid-template-columns: 1fr 5.5fr;
-     width: 100vw;
+     grid-template-columns: 0.1fr 5.5fr;
+     width: 97vw;
      height: 100vh;
+ }
+
+ .note-grid.active {
+     display: grid;
+     align-content: start;
+     grid-template-columns: 0.6fr 5.5fr;
+     /* width: 100vw; */
+     height: 100vh;
+
  }
 
  .note-grid .note-grid aside {

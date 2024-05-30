@@ -7,6 +7,7 @@
      width: 90%;
      padding-block-end: 50px;
      overflow-y: auto;
+     margin-left: 6em;
  }
 
  .note-list-item {
@@ -17,6 +18,10 @@
      margin-block-end: 10px;
      cursor: auto;
      break-inside: avoid;
+     word-wrap: break-word;
+     /* Ensures long words break onto a new line */
+     overflow-wrap: break-word;
+     /* Ensures long words break onto a new line */
  }
 
  .note-card img {

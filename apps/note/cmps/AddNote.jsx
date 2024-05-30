@@ -9,7 +9,7 @@ export function AddNote({ onAddNote }) {
     const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
     const [imageUrl, setImageUrl] = useState('');
     const [imageTitle, setImageTitle] = useState('');
-    const [todoText, setTodoText] = useState('');
+    const [todoItems, setTodoItems] = useState(['']);
     const [videoUrl, setVideoUrl] = useState('');
     const [videoTitle, setVideoTitle] = useState('');
 
@@ -19,7 +19,9 @@ export function AddNote({ onAddNote }) {
         if (noteType === 'NoteImg') {
             info = { title: imageTitle, url: imageUrl };
         } else if (noteType === 'NoteTodos') {
-            const todos = todoText.split(',').map(todo => ({ txt: todo.trim(), doneAt: null }));
+            const todos = todoItems
+                .filter(todo => todo.trim() !== '') // Filter out empty todos
+                .map(todo => ({ txt: todo.trim(), doneAt: null })); // Map remaining todos
             info = { title: noteText, todos };
         } else if (noteType === 'NoteVideo') {
             info = { title: videoTitle, url: videoUrl };
@@ -41,12 +43,21 @@ export function AddNote({ onAddNote }) {
         setNoteColor('#f8e5c5'); // Reset to default color
         setImageUrl('');
         setImageTitle('');
-        setTodoText('');
+        setTodoItems(['']);
         setVideoUrl('');
         setVideoTitle('');
         setNoteTextTitle('');
-
     }
+
+    const handleTodoChange = (index, value) => {
+        const newTodoItems = [...todoItems];
+        newTodoItems[index] = value;
+        setTodoItems(newTodoItems);
+
+        if (index === todoItems.length - 1 && value.trim() !== '') {
+            setTodoItems([...todoItems, '']);
+        }
+    };
 
     const renderFormInputs = () => {
         switch (noteType) {
@@ -57,7 +68,6 @@ export function AddNote({ onAddNote }) {
                             <input
                                 type="text"
                                 placeholder="Title..."
-
                                 value={imageTitle}
                                 onChange={(e) => setImageTitle(e.target.value)}
                                 required
@@ -67,7 +77,6 @@ export function AddNote({ onAddNote }) {
                         <label className="note-input-label">
                             <input
                                 placeholder="URL..."
-
                                 type="text"
                                 value={imageUrl}
                                 onChange={(e) => setImageUrl(e.target.value)}
@@ -83,7 +92,6 @@ export function AddNote({ onAddNote }) {
                         <label className="note-input-label">
                             <input
                                 placeholder="Title..."
-
                                 type="text"
                                 value={noteText}
                                 onChange={(e) => setNoteText(e.target.value)}
@@ -91,17 +99,17 @@ export function AddNote({ onAddNote }) {
                                 className="note-input"
                             />
                         </label>
-                        <label className="note-input-label">
-                            <input
-                                placeholder="Todos..."
-
-                                type="text"
-                                value={todoText}
-                                onChange={(e) => setTodoText(e.target.value)}
-                                required
-                                className="note-input"
-                            />
-                        </label>
+                        {todoItems.map((todo, index) => (
+                            <label key={index} className="note-input-label">
+                                <input
+                                    placeholder={`Todo ${index + 1}...`}
+                                    type="text"
+                                    value={todo}
+                                    onChange={(e) => handleTodoChange(index, e.target.value)}
+                                    className="note-input"
+                                />
+                            </label>
+                        ))}
                     </div>
                 );
             case 'NoteVideo':
@@ -110,7 +118,6 @@ export function AddNote({ onAddNote }) {
                         <label className="note-input-label">
                             <input
                                 placeholder="Title..."
-
                                 type="text"
                                 value={videoTitle}
                                 onChange={(e) => setVideoTitle(e.target.value)}
@@ -121,7 +128,6 @@ export function AddNote({ onAddNote }) {
                         <label className="note-input-label">
                             <input
                                 placeholder="URL..."
-
                                 type="text"
                                 value={videoUrl}
                                 onChange={(e) => setVideoUrl(e.target.value)}
@@ -137,7 +143,6 @@ export function AddNote({ onAddNote }) {
                         <label className="note-input-label">
                             <input
                                 placeholder="Title..."
-
                                 type="text"
                                 value={noteTextTitle}
                                 onChange={(e) => setNoteTextTitle(e.target.value)}
@@ -148,7 +153,6 @@ export function AddNote({ onAddNote }) {
                         <label className="note-input-label">
                             <input
                                 placeholder="Text..."
-
                                 type="text"
                                 value={noteText}
                                 onChange={(e) => setNoteText(e.target.value)}
