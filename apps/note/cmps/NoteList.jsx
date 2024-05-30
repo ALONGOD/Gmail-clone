@@ -1,4 +1,4 @@
-const { Link } = ReactRouterDOM;
+const { Link, navigate } = ReactRouterDOM;
 const { useState, useEffect, useRef } = React;
 
 import { NotePreview } from "../cmps/NotePreview.jsx";
@@ -22,6 +22,13 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor, o
         }));
     };
 
+    function onSendMail(note) {
+        navigate({
+            pathname: '/mail',
+            search: `?compose=note&subject=${note.info.title}&body=${note.info.txt}`,
+        })
+    }
+
     return (
         <div className="note-list">
             {notes.map(note => {
@@ -39,12 +46,12 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor, o
                             }} className='fa fa-trash'></button>
                             <button onClick={() => onPin(note.id)} className={`fa ${note.isPinned ? 'fa-thumbtack' : 'fa-map-pin'}`}></button>
                             <button onClick={() => onDuplicate(note.id)} className='fa fa-clone'></button>
-                            <Link to={`/note/edit/${note.id}`} className="action-button">
-                                <button className='fa fa-edit'></button>
-                            </Link>
+                            {/* <Link to={`/note/edit/${note.id}`} className="action-button"> */}
+                            <button className='fa fa-edit'></button>
+                            {/* </Link> */}
                             <button onClick={() => toggleColorPicker(note.id)} style={{ position: 'relative' }} className='fa fa-paint-brush'></button>
-                            <Link to={`/mail/details/${note.id}`} className="action-button">
-                                <button className='fa fa-envelope'></button>
+                            <Link to={`/mail?compose=note&subject=${note.info.title}&body=${note.info.txt}`} className="action-button">
+                                <button onClick={onSendMail} className='fa fa-envelope'></button>
                             </Link>
                         </div>
                         {colorPickerVisibility[note.id] && (
