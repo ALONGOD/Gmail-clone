@@ -27,29 +27,47 @@ function getLoggedInUser() {
 
 function query(filterBy = {}) {
   return asyncStorageService.query(MAIL_KEY, 100).then(mails => {
-    console.log(mails);
+    console.log(mails)
     if (filterBy.folder) {
       switch (filterBy.folder) {
         case 'inbox':
           mails = mails.filter(mail => mail.to === loggedinUser.email)
           break
-          case 'starred':
-            mails = mails.filter(mail => mail.isStar)
-            break
-            case 'sent':
-              mails = mails.filter(mail => mail.from === loggedinUser.email)
-              break
-            }
-          }
+        case 'starred':
+          mails = mails.filter(mail => mail.isStar)
+          break
+        case 'sent':
+          mails = mails.filter(mail => mail.from === loggedinUser.email)
+          break
+      }
+    }
 
     if (filterBy.search) {
       const regExp = new RegExp(filterBy.search, 'i')
-      mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body) || regExp.test(mail.from) || regExp.test(mail.to))
+      mails = mails.filter(
+        mail =>
+          regExp.test(mail.subject) ||
+          regExp.test(mail.body) ||
+          regExp.test(mail.from) ||
+          regExp.test(mail.to)
+      )
       console.log(mails)
     }
 
+    if (filterBy.isRead) {
+      switch (filterBy.isRead) {
+        case 'read':
+          mails = mails.filter(mail => mail.isRead)
+          break
+
+        case 'unread':
+          mails = mails.filter(mail => !mail.isRead)
+          break
+      }
+    }
+
     mails = mails.sort((a, b) => b.sentAt - a.sentAt)
-    console.log(mails);
+    console.log(mails)
 
     return mails
   })
@@ -79,7 +97,9 @@ function _setNextPrevmailId(mail) {
   return asyncStorageService.query(MAIL_KEY).then(mails => {
     const mailIdx = mails.findIndex(currMail => currMail.id === mail.id)
     const nextmail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
-    const prevmail = mails[mailIdx - 1] ? mails[mailIdx - 1] : mails[mails.length - 1]
+    const prevmail = mails[mailIdx - 1]
+      ? mails[mailIdx - 1]
+      : mails[mails.length - 1]
     mail.nextmailId = nextmail.id
     mail.prevmailId = prevmail.id
     return mail
@@ -88,7 +108,7 @@ function _setNextPrevmailId(mail) {
 
 function _createMails() {
   let emails = storageService.loadFromStorage(MAIL_KEY)
-  console.log(emails);
+  console.log(emails)
   if (!emails || !emails.length) {
     emails = []
     for (var i = 0; i < 20; i++) {

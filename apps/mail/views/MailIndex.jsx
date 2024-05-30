@@ -142,7 +142,7 @@ export function MailIndex() {
             <MailAppHeader setToggleSidebar={setToggleSidebar} />
             <MailFilter setMailMainContent={setMailMainContent} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           </div>
-          {mailMainContent === 'mailList' && <MailList setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} />}
+          {mailMainContent === 'mailList' && <MailList filterBy={filterBy} onSetFilterBy={onSetFilterBy} setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} />}
           {mailMainContent === 'details' && <MailDetails setMailMainContent={setMailMainContent} />}
           <SidebarMenu mailMainContent={mailMainContent} setMailMainContent={setMailMainContent}  hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
           {/* {toggleComposeMail && <ComposeEmail setToggleComposeMail={setToggleComposeMail} />} */}

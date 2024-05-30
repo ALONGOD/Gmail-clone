@@ -2,12 +2,12 @@ import { MailListActions } from './MailListActions.jsx'
 import { MailPreview } from './MailPreview.jsx'
 const { useState } = React
 
-export function MailList({ setMailMainContent, readAllEmails, emails, onRemove, onToggleIsStar, onToggleIsRead }) {
+export function MailList({ onSetFilterBy, filterBy, setMailMainContent, readAllEmails, emails, onRemove, onToggleIsStar, onToggleIsRead }) {
   const [hoverMailId, setHoverMailId] = useState()
 
   return (
     <main className="content-container grid full">
-      <MailListActions readAllEmails={readAllEmails} />
+      <MailListActions readAllEmails={readAllEmails} onSetFilterBy={onSetFilterBy} filterBy={filterBy}/>
       <ul className="mail-list full">
         {emails.map(email => {
           const isReadClass = email.isRead ? 'read' : ''

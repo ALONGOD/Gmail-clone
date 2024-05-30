@@ -1,13 +1,17 @@
-const { useState } = React
+const { useState, useEffect } = React
 
-export function MailListActions({ readAllEmails }) {
+export function MailListActions({ readAllEmails, onSetFilterBy, filterBy }) {
   const [toggleList, setToggleList] = useState(false);
-  const [filterByToEdit, setfilterByToEdit] = useState();
+  const [filterByToEdit, setFilterByToEdit] = useState({...filterBy});
+  
+  useEffect(() => {
+    onSetFilterBy(filterByToEdit)
+  }, [filterByToEdit])
   
 
   const arrowClass = toggleList ? 'fa-solid fa-caret-up' : 'fa-solid fa-caret-down'
 
-  function handleChange(name, value) {
+  function handleChange(value) {
     setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, isRead: value }))
   }
   
