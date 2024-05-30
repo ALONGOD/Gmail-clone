@@ -17,6 +17,10 @@
      margin-block-end: 10px;
      cursor: auto;
      break-inside: avoid;
+     word-wrap: break-word;
+     /* Ensures long words break onto a new line */
+     overflow-wrap: break-word;
+     /* Ensures long words break onto a new line */
  }
 
  .note-card img {

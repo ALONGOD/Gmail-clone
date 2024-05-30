@@ -13,6 +13,10 @@ export function AddNote({ onAddNote }) {
     const [videoUrl, setVideoUrl] = useState('');
     const [videoTitle, setVideoTitle] = useState('');
 
+
+
+
+
     function handleSubmit(ev) {
         ev.preventDefault();
         let info;
