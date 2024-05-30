@@ -1,10 +1,14 @@
 import { utilService } from '../../../services/util.service.js'
 import { MailToolsHover } from './MailToolsHover.jsx'
 const { useNavigate } = ReactRouter
+const { useSearchParams } = ReactRouterDOM
 
 export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsStar, onToggleIsRead, hoverMailId }) {
   const { subject, body, isRead, sentAt, from, to, isStar, id } = email
+  const [ searchParams ] = useSearchParams()
   const navigate = useNavigate()
+
+  const currentFolder = searchParams.get('folder')
 
   function mailDetailsNavigation(id, isRead) {
     onToggleIsRead(id, isRead)
@@ -20,6 +24,12 @@ export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsSta
     }
   }
 
+  if (currentFolder === 'sent') {
+   var leftColContent = 'To: ' + to
+} else {
+   var leftColContent = from
+}
+
   return (
     <React.Fragment>
       <div className="mail-options-1 flex flex-row align-center justify-center">
@@ -27,14 +37,12 @@ export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsSta
       </div>
 
       <div className="mail-preview" onClick={() => mailDetailsNavigation(id, true)}>
-        <h3 className="email-sender">{from}</h3>
-        <p className="mail-subject">
-          {subject.slice(0, 20)}
-          {addThreeDots(subject, 20)}
+        <h3 className="email-sender">{leftColContent}</h3>
+        <p className="mail-subject text-overflow-manage">
+          {subject}
         </p>
-        <p className="mail-body">
-          {body.slice(0, 50)}
-          {addThreeDots(body, 50)}
+        <p className="mail-body text-overflow-manage">
+          {body}
         </p>
       </div>
       <div className="mail-tools flex flex-row align-center">

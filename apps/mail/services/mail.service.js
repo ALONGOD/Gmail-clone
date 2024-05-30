@@ -27,7 +27,6 @@ function getLoggedInUser() {
 
 function query(filterBy = {}) {
   return asyncStorageService.query(MAIL_KEY, 100).then(mails => {
-    console.log(mails)
     if (filterBy.folder) {
       switch (filterBy.folder) {
         case 'inbox':
@@ -51,7 +50,6 @@ function query(filterBy = {}) {
           regExp.test(mail.from) ||
           regExp.test(mail.to)
       )
-      console.log(mails)
     }
 
     if (filterBy.isRead) {
@@ -67,7 +65,6 @@ function query(filterBy = {}) {
     }
 
     mails = mails.sort((a, b) => b.sentAt - a.sentAt)
-    console.log(mails)
 
     return mails
   })

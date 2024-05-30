@@ -13,6 +13,7 @@ export function MailListActions({ readAllEmails, onSetFilterBy, filterBy }) {
 
   function handleChange(value) {
     setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, isRead: value }))
+    setToggleList(false)
   }
   
 
