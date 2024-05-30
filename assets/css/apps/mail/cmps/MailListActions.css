@@ -1,4 +1,5 @@
 .mail-list-actions {
+    position: relative;
     border-radius: 1em 1em 0 0;
     padding: 0 1.3em;
     height: 5vh;
@@ -27,4 +28,23 @@
 
 .mail-list-actions .mark-all-read {
     margin-inline-start: 1em;
+}
+
+.sort-options-container {
+    cursor: pointer;
+    position: absolute;
+    top: 40px;
+    border-radius: 8px;
+    background-color: white;
+    padding: 0.8em;
+}
+
+.sort-options-container > * {
+    font-weight: 200;
+    font-size: 14px;
+    padding: 0.2em;
+}
+
+.sort-options-container > *:hover {
+    background-color: lightgray;
 }
