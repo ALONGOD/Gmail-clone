@@ -1,13 +1,14 @@
  /* note index */
  .note-grid {
      display: grid;
-     align-content: start;
      grid-template-columns: 1fr 4fr;
      width: 100vw;
      height: 100vh;
  }
 
- .note-grid aside {
+ .note-grid .note-grid aside {
+     display: flex;
+     justify-content: start;
      grid-column: 1;
  }
 

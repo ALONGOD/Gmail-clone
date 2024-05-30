@@ -17,7 +17,7 @@ export function NotesSidebar({isSidebarOpen, folder, setSidebarHover, filterBy, 
 
   return (
     <div className="note-sidebar">
-      <ul className="note-sidebar-menu"onMouseEnter={() => setSidebarHover(true)} onMouseLeave={() => setSidebarHover(false)}>
+      <ul className="note-sidebar-menu flex flex-column" onMouseEnter={() => setSidebarHover(true)} onMouseLeave={() => setSidebarHover(false)}>
         {labels.map(label => {
           return <NoteSidebarLabel
             key={label}

@@ -1,9 +1,12 @@
 .note-grid.active .note-sidebar-menu li {
-    background-color: blue;
+    width: 100%;
 }
 
 .note-sidebar {
-    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 2em;
     height: 100%;
     background-color: white;
     padding-top: 20px;
@@ -20,6 +23,8 @@
 }
 
 .note-sidebar-menu {
+    justify-content: start;
+    align-items: start;
     padding: 0 10px;
 }
 
@@ -27,15 +32,6 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
-
-.note-sidebar-menu li {
-    padding: 18px 0;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s, border-radius 0.3s;
-    /* Added transition for smooth effect */
 }
 
 .note-sidebar-menu li:last-child {
