@@ -37,6 +37,10 @@
     font-weight: 200;
 }
 
+.mail.read {
+    background-color: var(--main-bg-color-email);
+}
+
 .mail p.mail-subject {
     grid-column: 3;
     font-weight: 600;
@@ -50,7 +54,7 @@
 }
 
 .mail-tools .sent-at {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .mail h4 {

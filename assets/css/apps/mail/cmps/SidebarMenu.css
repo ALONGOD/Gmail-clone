@@ -8,7 +8,7 @@
 
 /* Sidebar Menu */
 
-aside {
+.email-grid aside {
   display: flex;
   justify-content: center;
   align-items: start;

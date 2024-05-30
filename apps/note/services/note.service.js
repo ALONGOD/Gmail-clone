@@ -145,6 +145,7 @@ function _createNotes() {
                 createdAt: 1112222,
                 type: 'NoteTxt',
                 isPinned: false,
+                isTrash: true,
                 style: {
                     backgroundColor: '#c4d6e4'
                 },
@@ -166,16 +167,16 @@ function _createNotes() {
                     ]
                 }
             },
-            {
-                id: 'n106',
-                type: 'NoteAudio',
-                isPinned: false,
-                isTrash: true,
-                info: {
-                    title: 'שמש 😎',
-                    url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
-                }
-            },
+            // {
+            //     id: 'n106',
+            //     type: 'NoteAudio',
+            //     isPinned: false,
+            //     isTrash: true,
+            //     info: {
+            //         title: 'שמש 😎',
+            //         url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
+            //     }
+            // },
 
         ]
         storageService.saveToStorage(NOTE_KEY, notes)

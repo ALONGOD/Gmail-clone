@@ -1,4 +1,9 @@
+const { useState } = React
+
 export function MailListActions({ readAllEmails }) {
+  const [toggleList, setToggleList] = useState(false);
+  
+
   return (
     <div className="mail-list-actions flex flex-row align-center">
       <div className="mail-list-checkbox-container">
