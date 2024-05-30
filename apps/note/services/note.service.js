@@ -15,6 +15,7 @@ export const noteService = {
     getFilterFromSearchParams,
     togglePin,
     duplicate,
+    saveMailNote
 }
 // For Debug (easy access from console):
 // window.cs = noteService
@@ -256,4 +257,21 @@ function duplicate(noteId) {
             return savedDuplicatedNote;
         });
     });
+}
+
+function saveMailNote(text, subject) {
+    const note = {
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: '#c4d6e4'
+        },
+        info: {
+            title: subject,
+            txt: text
+        }
+    }
+
+    save(note)
 }
