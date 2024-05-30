@@ -5,8 +5,12 @@ div.email-grid {
   background-color: var(--main-bg-color-email);
   display: grid;
   align-content: start;
-  /* overflow-y: hidden; */
+  overflow-y: hidden;
   grid-template-columns: 6.5em 5fr 2em;
+}
+
+.email-grid input:focus-visible {
+  outline: unset;
 }
 
 div.email-grid.sidebar-open {
