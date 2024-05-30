@@ -9,17 +9,22 @@ export function MailDetailsMain({ mail }) {
   }
 
   console.log(mail)
-  const { subject, body, isRead, sentAt, from, to, isStar, id } = mail
+  const { subject, body, sentAt, from } = mail
   return (
     <main className="mail-details-main">
       <h1 className="subject">{subject}</h1>
       <div className="dates flex flex-row">
-        <h3 className="mail-from">
-          From: <span>{from}</span>
-        </h3>
-        <h4 className="sent-at">{utilService.formatDate(sentAt)}</h4>
+        <img src="assets/img/Unknown_person.jpg" alt="" />
+        <div className="flex flex-column">
+          <div className="flex flex-row">
+            <h3 className="mail-from">
+              From: <span>{from}</span>
+            </h3>
+            <h4 className="sent-at">{utilService.formatDate(sentAt)}</h4>
+          </div>
+          <h3 className="mail-to">{getUser('fsaf', 'to')}</h3>
+        </div>
       </div>
-      <h3 className="mail-to">{getUser('fsaf', 'to')}</h3>
       <p className="body">{body}</p>
     </main>
   )
