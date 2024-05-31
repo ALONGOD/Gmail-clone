@@ -1,4 +1,10 @@
-export function SidebarLabel({ hoveredSidebar, label, folder, handleChange, unreadMailsCount }) {
+export function SidebarLabel({
+  hoveredSidebar,
+  label,
+  folder,
+  handleChange,
+  unreadMailsCount,
+}) {
   function folderLogo(label) {
     var logo
     switch (label) {
@@ -10,6 +16,9 @@ export function SidebarLabel({ hoveredSidebar, label, folder, handleChange, unre
         break
       case 'sent':
         logo = 'fa-regular fa-paper-plane'
+        break
+      case 'removed':
+        logo = 'fa-regular fa-trash-can'
         break
       case 'drafts':
         logo = 'fa-regular fa-file'

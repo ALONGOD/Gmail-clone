@@ -28,6 +28,9 @@ function getLoggedInUser() {
 function query(filterBy = {}) {
   return asyncStorageService.query(MAIL_KEY, 100).then(mails => {
     if (filterBy.folder) {
+      if (filterBy.folder !== 'removed') {
+        mails = mails.filter(mail => !mail.removedAt)
+      }
       switch (filterBy.folder) {
         case 'inbox':
           mails = mails.filter(mail => mail.to === loggedinUser.email)
@@ -37,6 +40,9 @@ function query(filterBy = {}) {
           break
         case 'sent':
           mails = mails.filter(mail => mail.from === loggedinUser.email)
+          break
+        case 'removed':
+          mails = mails.filter(mail => mail.removedAt !== null)
           break
       }
     }

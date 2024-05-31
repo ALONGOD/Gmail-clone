@@ -5,7 +5,7 @@ const { useNavigate } = ReactRouter
 
 export function SidebarMenu({ mailMainContent, setMailMainContent, hoveredSidebar, setSidebarHover, filterBy, onSetFilterBy, unreadMailsCount }) {
   const [folderToEdit, setFolderToEdit] = useState({ folder: filterBy.folder })
-  const labels = ['inbox', 'starred', 'sent', 'drafts']
+  const labels = ['inbox', 'starred', 'sent', 'drafts', 'removed']
   const { folder } = filterBy
   const navigate = useNavigate()
 
