@@ -1,4 +1,4 @@
-const { Link, navigate } = ReactRouterDOM;
+const { Link, useNavigate } = ReactRouterDOM;
 const { useState, useEffect, useRef } = React;
 
 import { NotePreview } from "../cmps/NotePreview.jsx";
@@ -7,6 +7,7 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor, o
     const [colorPickerVisibility, setColorPickerVisibility] = useState({});
 
     const colorPalette = ['#eceae7', '#efe3dd', '#ebd8e7', '#c4d6e4', '#dde6ea', '#d4e7dc', '#e9efdb', '#f8f9da', '#f8e5c5', '#f8d0cc'];
+    const navigate = useNavigate();
 
     if (!notes) return null;
 
@@ -23,10 +24,21 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor, o
     };
 
     function onSendMail(note) {
+        let subject = note.info.title;
+        let body = '';
+
+        if (note.type === 'NoteTxt') {
+            body = note.info.txt;
+        } else if (note.type === 'NoteTodos') {
+            body = note.info.todos.map(todo => `- ${todo.txt}`).join('\n');
+        }
+        console.log(subject)
+        console.log(body)
+
         navigate({
             pathname: '/mail',
-            search: `?compose=note&subject=${note.info.title}&body=${note.info.txt}`,
-        })
+            search: `?compose=note&subject=${(subject)}&body=${(body)}`,
+        });
     }
 
     return (
@@ -50,9 +62,10 @@ export function NoteList({ notes, onRemove, onPin, onDuplicate, onChangeColor, o
                             <button className='fa fa-edit'></button>
                             {/* </Link> */}
                             <button onClick={() => toggleColorPicker(note.id)} style={{ position: 'relative' }} className='fa fa-paint-brush'></button>
-                            <Link to={`/mail?compose=note&subject=${note.info.title}&body=${note.info.txt}`} className="action-button">
-                                <button onClick={onSendMail} className='fa fa-envelope'></button>
-                            </Link>
+
+                            {(note.type === 'NoteTodos' || note.type === 'NoteTxt') && (
+                                <button onClick={() => onSendMail(note)} className='fa fa-envelope'></button>
+                            )}
                         </div>
                         {colorPickerVisibility[note.id] && (
                             <div className='color-palette' style={{ position: 'absolute', top: '0', left: '40px', display: 'flex', flexDirection: 'row' }}>
