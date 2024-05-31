@@ -15,9 +15,9 @@
 }
 
 .note-sidebar {
-    display: flex;
+    /* display: flex;
     justify-content: start;
-    align-items: start;
+    align-items: start; */
     width: 2em;
     height: 100%;
     background-color: white;
