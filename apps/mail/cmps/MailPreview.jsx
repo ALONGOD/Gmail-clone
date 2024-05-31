@@ -3,7 +3,7 @@ import { MailToolsHover } from './MailToolsHover.jsx'
 const { useNavigate } = ReactRouter
 const { useSearchParams } = ReactRouterDOM
 
-export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsStar, onToggleIsRead, hoverMailId }) {
+export function MailPreview({ setMailMainContent, email, mailToRemoveFolder, onToggleIsStar, onToggleIsRead, hoverMailId }) {
   const { subject, body, isRead, sentAt, from, to, isStar, id } = email
   const [ searchParams ] = useSearchParams()
   const navigate = useNavigate()
@@ -16,13 +16,6 @@ export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsSta
     setMailMainContent('details')
   }
 
-  function addThreeDots(txt, limit) {
-    if (txt.length > limit) {
-      return '...'
-    } else {
-      return ''
-    }
-  }
 
   if (currentFolder === 'sent') {
    var leftColContent = 'To: ' + to
@@ -47,7 +40,7 @@ export function MailPreview({ setMailMainContent, email, onRemove, onToggleIsSta
       </div>
       <div className="mail-tools flex flex-row align-center">
         {hoverMailId !== id && <h4 className="sent-at">{utilService.getTimeOfSent(sentAt)}</h4>}
-        {hoverMailId === id && <MailToolsHover id={id} isRead={isRead} isStar={isStar} onRemove={onRemove} onToggleIsRead={onToggleIsRead} onToggleIsStar={onToggleIsStar} />}
+        {hoverMailId === id && <MailToolsHover id={id} isRead={isRead} isStar={isStar} mailToRemoveFolder={mailToRemoveFolder} onToggleIsRead={onToggleIsRead} onToggleIsStar={onToggleIsStar} />}
       </div>
     </React.Fragment>
   )

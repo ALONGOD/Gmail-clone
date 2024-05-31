@@ -130,6 +130,17 @@ export function MailIndex() {
     mailService.saveMails(updatedMails).then(setEmails(updatedMails))
   }
 
+  function mailToRemoveFolder(id) {
+    const updatedMail = emails.find(mail => mail.id === id)
+    if (updatedMail.removedAt !== null) {
+      return onRemove(id)
+    }
+    updatedMail.removedAt = new Date().getTime()
+    mailService.save(updatedMail)
+    .then(setEmails(prevMails => prevMails.filter(email => email.id !== id)))
+  }
+
+  console.log(emails);
   const hoveredSidebar = sidebarHover || toggleSidebar
 
   return (
@@ -142,7 +153,7 @@ export function MailIndex() {
             <MailAppHeader setToggleSidebar={setToggleSidebar} />
             <MailFilter setMailMainContent={setMailMainContent} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
           </div>
-          {mailMainContent === 'mailList' && <MailList filterBy={filterBy} onSetFilterBy={onSetFilterBy} setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} onRemove={onRemove} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} />}
+          {mailMainContent === 'mailList' && <MailList filterBy={filterBy} onSetFilterBy={onSetFilterBy} setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} mailToRemoveFolder={mailToRemoveFolder} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} />}
           {mailMainContent === 'details' && <MailDetails setMailMainContent={setMailMainContent} />}
           <SidebarMenu mailMainContent={mailMainContent} setMailMainContent={setMailMainContent}  hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
           {/* {toggleComposeMail && <ComposeEmail setToggleComposeMail={setToggleComposeMail} />} */}
