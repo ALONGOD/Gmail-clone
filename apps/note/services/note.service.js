@@ -21,7 +21,7 @@ export const noteService = {
 // window.cs = noteService
 
 function query(filterBy = { folder: 'note' }) {
-    console.log(filterBy)
+    // console.log(filterBy)
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.search) {

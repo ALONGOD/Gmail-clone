@@ -1,8 +1,8 @@
 
 export function NoteSidebarLabel({ isSidebarOpen, label, folder, handleChange, isOpen, folderToEdit }) {
-  console.log(location.pathname);
-  console.log(folderToEdit.folder);
-  console.log(label)
+  // console.log(location.pathname);
+  // console.log(folderToEdit.folder);
+  // console.log(label)
   // console.log(folderToEdit);
 
   const logo = folderLogo(label)
