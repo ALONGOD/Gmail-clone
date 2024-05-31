@@ -32,3 +32,21 @@
     color: #333;
     /* Adjust color as needed */
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+
+    .sidebar-header .sidebar-menu-btn,
+    .sidebar-header .header-icon {
+        width: 2.5em;
+        /* Adjusted width for smaller screens */
+        height: 1.5em;
+        /* Adjusted height for smaller screens */
+    }
+
+    .sidebar-header .note-sidebar-keep {
+        font-size: 14px;
+        margin-right: 5px;
+        /* Adjusted font size for smaller screens */
+    }
+}

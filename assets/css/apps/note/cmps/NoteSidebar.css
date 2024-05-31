@@ -35,7 +35,7 @@
 
 .note-sidebar-menu li {
     padding: 18px 0;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
     display: flex;
     align-items: center;
     transition: background-color 0.3s, border-radius 0.3s, padding 0.3s;

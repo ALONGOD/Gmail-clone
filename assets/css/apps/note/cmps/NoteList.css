@@ -4,7 +4,7 @@
      column-width: 250px;
      column-gap: 10px;
      margin-block-end: 10px;
-     width: 90%;
+     width: 92%;
      padding-block-end: 50px;
      overflow-y: auto;
      margin-left: 6em;
@@ -75,3 +75,61 @@
  }
 
  /* .note-actions {} */
+
+ /* Responsive styles */
+ @media (max-width: 1200px) {
+     .note-list {
+         column-count: 3;
+         column-width: auto;
+         margin-left: 2em;
+     }
+ }
+
+ @media (max-width: 768px) {
+     .note-list {
+         column-count: 2;
+         width: 100%;
+         margin-left: 1em;
+     }
+
+     .note-list-item {
+         padding: 10px;
+         font-size: 0.9em;
+     }
+
+     .note-card img {
+         max-height: 100px;
+     }
+
+     .note-card {
+         padding: 8px;
+         margin: 8px;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .note-list {
+         column-count: 2;
+         width: 50%;
+         margin-left: 1em;
+     }
+
+     .note-list-item {
+         padding: 8px;
+         font-size: 0.8em;
+     }
+
+     .note-card img {
+         max-height: 80px;
+     }
+
+     /* .note-video .video {
+         width: 100px;
+         height: 60px;
+     } */
+
+     .note-card {
+         padding: 6px;
+         margin: 6px;
+     }
+ }

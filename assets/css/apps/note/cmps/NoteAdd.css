@@ -97,3 +97,43 @@
 /* .note-inputs-container { */
 /* display: flex; */
 /* } */
+@media (max-width: 768px) {
+    .note-container {
+        width: 85vw;
+        /* Adjusted width for smaller screens */
+        margin-left: 5vw;
+        /* Moved more to the left */
+    }
+
+    .note-input-label {
+        width: 40vw;
+        /* Adjusted width for smaller screens */
+    }
+
+    .note-input,
+    .note-input-color {
+        width: 40vw;
+        /* Adjusted width for smaller screens */
+    }
+
+    .note-submit-button {
+        padding: 6px 12px;
+        /* Reduced padding for smaller screens */
+        font-size: 12px;
+        /* Smaller font size for smaller screens */
+    }
+
+    .note-type-icon {
+        font-size: 14px;
+        margin-right: 3px;
+
+        /* Smaller font size for smaller screens */
+    }
+
+    .note-type-icons {
+        display: flex;
+        /* Changed flex direction to row */
+        margin-left: 10px;
+        /* Move icons to the right */
+    }
+}
