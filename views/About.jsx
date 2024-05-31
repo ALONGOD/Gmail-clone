@@ -26,9 +26,10 @@ export function About() {
 
       <h2>Meet the Creators</h2>
       <p>
-        We are Idan and Alon, two passionate developers who believe in creating
+        We are <span>Idan and Alon</span>, two passionate developers who believe in creating
         practical and user-friendly solutions for everyday needs.
       </p>
+      <img src="assets/img/avatars.webp" alt="" />
       <p>
         Thank you for choosing our app. We hope it enhances your productivity
         and helps you stay organized.

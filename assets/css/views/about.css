@@ -42,4 +42,14 @@
 .about img {
     width: 10em;
     height: 10em;
+    border-radius: 50%;
+}
+
+.about img:not(:first-child) {
+    border: 1px solid lightgray;
+    margin-block: 1em;
+}
+
+.about span {
+    font-weight: 600;
 }
