@@ -99,7 +99,7 @@
 /* } */
 @media (max-width: 768px) {
     .note-container {
-        width: 65vw;
+        width: 85vw;
         /* Adjusted width for smaller screens */
         margin-left: 5vw;
         /* Moved more to the left */
@@ -107,14 +107,12 @@
 
     .note-input-label {
         width: 40vw;
-        font-size: 8px;
         /* Adjusted width for smaller screens */
     }
 
     .note-input,
     .note-input-color {
-        width: 20vw;
-        height: 20px;
+        width: 40vw;
         /* Adjusted width for smaller screens */
     }
 
@@ -123,8 +121,6 @@
         /* Reduced padding for smaller screens */
         font-size: 12px;
         /* Smaller font size for smaller screens */
-        position: relative;
-        /* right: 30px; */
     }
 
     .note-type-icon {
@@ -138,9 +134,6 @@
         display: flex;
         /* Changed flex direction to row */
         margin-left: 10px;
-        margin-right: 3px;
         /* Move icons to the right */
-        position: relative;
-        /* right: 30px; */
     }
 }
