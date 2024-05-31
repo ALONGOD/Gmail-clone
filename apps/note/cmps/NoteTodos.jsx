@@ -1,4 +1,4 @@
-import { utilService } from "../../../services/util.service";
+import { utilService } from "../../../services/util.service.js";
 
 const { useState, useEffect } = React;
 
@@ -21,7 +21,7 @@ export function NoteTodos({ note }) {
             <h2>{note.info.title}</h2>
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.txt}>
+                    <li key={utilService.makeId(4)}>
                         <span
                             onClick={() => handleTodoClick(todo)}
                             className={isDoneClass(todo)}

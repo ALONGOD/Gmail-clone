@@ -2,6 +2,18 @@
     width: 100%;
 }
 
+.note-grid.active .note-sidebar {
+    width: 100%;
+}
+
+.note-grid.active aside {
+    width: 100%;
+}
+
+.note-grid>aside {
+    grid-column: 1;
+}
+
 .note-sidebar {
     display: flex;
     justify-content: start;
@@ -60,11 +72,6 @@
     /* Ensure icons are aligned properly */
 }
 
-.note-sidebar-menu li:not(.active):not(:hover) h4 {
-    display: none;
-    /* Hide the label text when not hovering and not active */
-}
-
 .note-sidebar-menu li:not(.active):hover h4 {
     display: inline;
     /* Show the label text on hover if not active */
@@ -78,10 +85,4 @@
 .note-sidebar-menu li i {
     margin-left: 10px;
     /* Ensure icons have some space from the edge */
-}
-
-.note-sidebar-menu li.active i,
-.note-sidebar-menu li:hover i {
-    margin-right: 10px;
-    /* Ensure icons have space from the text */
 }
