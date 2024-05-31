@@ -110,7 +110,7 @@
  @media (max-width: 480px) {
      .note-list {
          column-count: 2;
-         width: 50%;
+         width: 80%;
          margin-left: 1em;
      }
 
@@ -123,10 +123,10 @@
          max-height: 80px;
      }
 
-     /* .note-video .video {
+     .note-video .video {
          width: 100px;
          height: 60px;
-     } */
+     }
 
      .note-card {
          padding: 6px;

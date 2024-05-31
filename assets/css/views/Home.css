@@ -4,9 +4,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(27,61,77);
+    background-color: rgb(27, 61, 77);
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden
  }
 
  .home img {

@@ -5,8 +5,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(27,61,77);
+    background-color: rgb(27, 61, 77);
     color: white;
+    overflow-x: hidden;
 }
 
 .about h1 {
