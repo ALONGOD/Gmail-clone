@@ -137,3 +137,9 @@
         /* Move icons to the right */
     }
 }
+
+.note-type-icon.selected {
+    background-color: #ccc;
+    /* Example background color for selected state */
+    border-radius: 50%;
+}

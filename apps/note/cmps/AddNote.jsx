@@ -18,6 +18,10 @@ export function AddNote({ onAddNote }) {
     const [mapLat, setMapLat] = useState('');
     const [mapLng, setMapLng] = useState('');
 
+    const handleNoteTypeChange = (type) => {
+        setNoteType(type === noteType ? '' : type);
+    };
+
     function handleSubmit(ev) {
         ev.preventDefault();
         let info;
@@ -261,12 +265,12 @@ export function AddNote({ onAddNote }) {
                 <button type="submit" className="note-submit-button">Add Note</button>
             </form>
             <div className="note-type-icons">
-                <i className="fas fa-font note-type-icon" onClick={() => setNoteType('NoteTxt')}></i>
-                <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
-                <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
-                <i className="far fa-play-circle note-type-icon" onClick={() => setNoteType('NoteVideo')}></i>
-                <i className="fas fa-music note-type-icon" onClick={() => setNoteType('NoteAudio')}></i> {/* New icon for audio notes */}
-                <i className="fas fa-map-marker-alt note-type-icon" onClick={() => setNoteType('NoteMap')}></i>
+                <i className={`fas fa-font note-type-icon ${noteType === 'NoteTxt' ? 'selected' : ''}`} onClick={() => handleNoteTypeChange('NoteTxt')}></i>
+                <i className={`far fa-list-alt note-type-icon ${noteType === 'NoteTodos' ? 'selected' : ''}`} onClick={() => handleNoteTypeChange('NoteTodos')}></i>
+                <i className={`far fa-image note-type-icon ${noteType === 'NoteImg' ? 'selected' : ''}`} onClick={() => handleNoteTypeChange('NoteImg')}></i>
+                <i className={`far fa-play-circle note-type-icon ${noteType === 'NoteVideo' ? 'selected' : ''}`} onClick={() => handleNoteTypeChange('NoteVideo')}></i>
+                <i className={`fas fa-music note-type-icon ${noteType === 'NoteAudio' ? 'selected' : ''}`} onClick={() => handleNoteTypeChange('NoteAudio')}></i>
+                <i className={`fas fa-map-marker-alt note-type-icon ${noteType === 'NoteMap' ? 'selected' : ''}`} onClick={() => handleNoteTypeChange('NoteMap')}></i>
             </div>
         </div>
     );
