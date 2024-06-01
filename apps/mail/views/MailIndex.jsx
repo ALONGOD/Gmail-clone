@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 const { useLocation } = ReactRouter
 const { useSearchParams } = ReactRouterDOM
-// import gmailLogo from "../../../assets/img/mail-img";
+
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { MailList } from '../cmps/MailList.jsx'
@@ -15,15 +15,27 @@ export function MailIndex() {
   const [mailMainContent, setMailMainContent] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
   const [emails, setEmails] = useState(null)
-  const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchParams))
+  const [filterBy, setFilterBy] = useState(
+    mailService.getFilterFromSearchParams(searchParams)
+  )
   const [toggleSidebar, setToggleSidebar] = useState(false)
   const [unreadMailsCount, setUnreadMailsCount] = useState(0)
   const [sidebarHover, setSidebarHover] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767)
 
   const hasComposeParam = searchParams.has('compose')
 
+  
   const { pathname } = useLocation()
-
+  
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+  
   useEffect(() => {
     if (pathname.includes('details')) {
       setMailMainContent('details')
@@ -31,14 +43,14 @@ export function MailIndex() {
       setMailMainContent('mailList')
     }
   }, [location])
-
+  
   useEffect(() => {
     if (!hasComposeParam) {
       setSearchParams(filterBy)
     }
     loadMails()
   }, [filterBy])
-
+  
   useEffect(() => {
     if (!emails) return
     if (filterBy.folder === 'starred') {
@@ -48,10 +60,15 @@ export function MailIndex() {
       setUnreadMailsCount(emails.filter(mail => !mail.isRead).length)
     }
   }, [emails])
-
+  
+  function handleResize() {
+    const currIsMobile = window.innerWidth <= 767
+    setIsMobile(currIsMobile)
+  }
+  
   function loadMails() {
     mailService
-      .query(filterBy)
+    .query(filterBy)
       .then(setEmails)
       .catch(err => console.log('err:', err))
   }
@@ -136,11 +153,11 @@ export function MailIndex() {
       return onRemove(id)
     }
     updatedMail.removedAt = new Date().getTime()
-    mailService.save(updatedMail)
-    .then(setEmails(prevMails => prevMails.filter(email => email.id !== id)))
+    mailService
+      .save(updatedMail)
+      .then(setEmails(prevMails => prevMails.filter(email => email.id !== id)))
   }
 
-  console.log(emails);
   const hoveredSidebar = sidebarHover || toggleSidebar
 
   return (
@@ -150,13 +167,44 @@ export function MailIndex() {
       ) : (
         <div className={`email-grid ${hoveredSidebar ? 'sidebar-open' : ''}`}>
           <div className="email-header">
-            <MailAppHeader setToggleSidebar={setToggleSidebar} />
-            <MailFilter setMailMainContent={setMailMainContent} onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
+            <MailAppHeader
+              isMobile={isMobile}
+              setToggleSidebar={setToggleSidebar}
+            />
+            <MailFilter
+              isMobile={isMobile}
+              setMailMainContent={setMailMainContent}
+              onSetFilterBy={onSetFilterBy}
+              filterBy={filterBy}
+            />
           </div>
-          {mailMainContent === 'mailList' && <MailList filterBy={filterBy} onSetFilterBy={onSetFilterBy} setMailMainContent={setMailMainContent} readAllEmails={readAllEmails} emails={emails} mailToRemoveFolder={mailToRemoveFolder} onToggleIsStar={onToggleIsStar} onToggleIsRead={onToggleIsRead} />}
-          {mailMainContent === 'details' && <MailDetails setMailMainContent={setMailMainContent} />}
-          <SidebarMenu mailMainContent={mailMainContent} setMailMainContent={setMailMainContent}  hoveredSidebar={hoveredSidebar} toggleSidebar={toggleSidebar} sidebarHover={sidebarHover} setSidebarHover={setSidebarHover} filterBy={filterBy} onSetFilterBy={onSetFilterBy} unreadMailsCount={unreadMailsCount} />
-          {/* {toggleComposeMail && <ComposeEmail setToggleComposeMail={setToggleComposeMail} />} */}
+          {mailMainContent === 'mailList' && (
+            <MailList
+              filterBy={filterBy}
+              onSetFilterBy={onSetFilterBy}
+              setMailMainContent={setMailMainContent}
+              readAllEmails={readAllEmails}
+              emails={emails}
+              mailToRemoveFolder={mailToRemoveFolder}
+              onToggleIsStar={onToggleIsStar}
+              onToggleIsRead={onToggleIsRead}
+            />
+          )}
+          {mailMainContent === 'details' && (
+            <MailDetails setMailMainContent={setMailMainContent} />
+          )}
+          <SidebarMenu
+            isMobile={isMobile}
+            mailMainContent={mailMainContent}
+            setMailMainContent={setMailMainContent}
+            hoveredSidebar={hoveredSidebar}
+            setToggleSidebar={setToggleSidebar}
+            sidebarHover={sidebarHover}
+            setSidebarHover={setSidebarHover}
+            filterBy={filterBy}
+            onSetFilterBy={onSetFilterBy}
+            unreadMailsCount={unreadMailsCount}
+          />
           {hasComposeParam && <ComposeEmail />}
         </div>
       )}

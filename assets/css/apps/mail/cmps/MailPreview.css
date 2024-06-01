@@ -19,7 +19,7 @@
     grid-column: 2;
     display: grid;
     align-items: center;
-    grid-template-columns: 4fr 6fr 12fr 1em;
+    grid-template-columns: 4fr 6fr 8fr 1em;
 }
 
 .mail:hover {
@@ -55,18 +55,18 @@
 .mail p.mail-subject {
     grid-column: 2;
     font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875em;
+    line-height: 1.25em;
     margin-inline-end: 1em;
 }
 
 .mail p.mail-body {
     grid-column: 3;
-    font-size: 14px;
+    font-size: 0.875em;
 }
 
 .mail-tools .sent-at {
-    font-size: 12px;
+    font-size: 0.75em;
 }
 
 .mail h4 {
@@ -80,8 +80,8 @@
 
 .email-sender {
     grid-column: 1;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875em;
+    line-height: 1.25em;
     margin-inline-end: 1em;
 }
 

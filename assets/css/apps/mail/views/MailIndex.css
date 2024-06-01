@@ -32,8 +32,14 @@ div.email-grid.sidebar-open {
   margin-inline: 1em;
 }
 
-.sidebar-mail-btn:hover {
+/* .sidebar-mail-btn:hover {
   margin-inline: 0;
+  padding: 1em;
+  border-radius: 50%;
+  background-color: lightgray;
+} */
+
+.email-grid.sidebar-open .sidebar-mail-btn {
   padding: 1em;
   border-radius: 50%;
   background-color: lightgray;

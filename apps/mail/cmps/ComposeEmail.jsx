@@ -2,10 +2,10 @@ import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.servic
 import { mailService } from '../services/mail.service.js'
 
 const { useSearchParams } = ReactRouterDOM
-const { useNavigate} = ReactRouter
+const { useNavigate } = ReactRouter
 const { useState, useEffect } = React
 
-export function ComposeEmail({ }) {
+export function ComposeEmail({}) {
   const [newMail, setNewMail] = useState(mailService.getEmptyMail())
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
@@ -17,7 +17,7 @@ export function ComposeEmail({ }) {
         var body = searchParams.get('body')
         const subject = searchParams.get('subject')
 
-        setNewMail((prevMail) => ({
+        setNewMail(prevMail => ({
           ...prevMail,
           body,
           subject,
@@ -32,8 +32,8 @@ export function ComposeEmail({ }) {
   function loadMail() {
     mailService
       .get(draftId)
-      .then(setMailToEdit)
-      .catch((err) => console.log('err:', err))
+      .then(setNewMail)
+      .catch(err => console.log('err:', err))
   }
 
   function handleChange({ name, value }) {
@@ -63,7 +63,34 @@ export function ComposeEmail({ }) {
   }
 
   function closeMail() {
+    const hasDataToSave = ['subject', 'body', 'to'].some(
+      key => newMail[key] !== ''
+    )
+    if (hasDataToSave) onSaveMailAsDraft()
+
+    const updatedSearchParams = new URLSearchParams(searchParams)
+    updatedSearchParams.delete('compose')
+
+      const newUrl = `${
+        window.location.pathname
+      }?${updatedSearchParams.toString()}`
+
+
+    // navigate(newUrl)
     navigate('/mail')
+  }
+
+  function onSaveMailAsDraft() {
+    mailService
+      .save(newMail)
+      .then(() => {
+        // throw new Error('error')
+        showSuccessMsg('Mail saved as draft')
+      })
+      .catch((err) => {
+        console.log('err:', err)
+        showErrorMsg("Error: Mail wasn't saved as draft")
+      })
   }
 
   const { to, subject, body } = newMail
@@ -75,13 +102,39 @@ export function ComposeEmail({ }) {
         <i className="close-mail-btn fa-solid fa-xmark" onClick={closeMail}></i>
       </div>
 
-      <form onSubmit={ev => handleMailSubmit(ev)} className="compose-body flex flex-column">
-        <input type="email" name="to" onChange={ev => handleChange(ev.target)} value={to} placeholder="To" />
-        <input type="text" name="subject" onChange={ev => handleChange(ev.target)} value={subject} placeholder="Subject" required/>
-        <textarea name="body" onChange={ev => handleChange(ev.target)} value={body}></textarea>
+      <form
+        onSubmit={ev => handleMailSubmit(ev)}
+        className="compose-body flex flex-column"
+      >
+        <input
+          type="email"
+          name="to"
+          onChange={ev => handleChange(ev.target)}
+          value={to}
+          placeholder="To"
+        />
+        <input
+          type="text"
+          name="subject"
+          onChange={ev => handleChange(ev.target)}
+          value={subject}
+          placeholder="Subject"
+          required
+        />
+        <textarea
+          name="body"
+          onChange={ev => handleChange(ev.target)}
+          value={body}
+        ></textarea>
         <div className="compose-footer flex flex-row justify-space-between align-center">
-          <button className="send-btn" disabled={!to}>Send</button>
-          <img src="assets/img/keep-img/google-keep-icon.svg" alt="google keep" onClick={addMailAsNote}/>
+          <button className="send-btn" disabled={!to}>
+            Send
+          </button>
+          <img
+            src="assets/img/keep-img/google-keep-icon.svg"
+            alt="google keep"
+            onClick={addMailAsNote}
+          />
         </div>
       </form>
     </div>

@@ -1,5 +1,7 @@
 .email-header {
-    margin: 1em 4em 1em 1em;
+    /* margin: 1em 4em 1em 1em; */
+    margin: 1em;
+    padding: 0 6em 0 0;
     grid-column: span 3;
     display: grid;
     justify-items: start;

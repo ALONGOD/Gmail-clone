@@ -11,16 +11,27 @@ export function MailPreview({ setMailMainContent, email, mailToRemoveFolder, onT
   const currentFolder = searchParams.get('folder')
 
   function mailDetailsNavigation(id, isRead) {
+    if (!email.sentAt) {
+      console.log('hi');
+      return navigate({
+        pathname: '/mail',
+        search: `?compose=${email.id}`,
+    })
+    }
     onToggleIsRead(id, isRead)
     navigate(`/mail/details/${id}`)
     setMailMainContent('details')
   }
 
-
+var leftColContent
   if (currentFolder === 'sent') {
-   var leftColContent = 'To: ' + to
+   leftColContent = 'To: ' + to
+} else if (currentFolder === 'inbox'){
+   leftColContent = from
+} else if (currentFolder === 'drafts') {
+  leftColContent = 'Draft'
 } else {
-   var leftColContent = from
+  leftColContent = from
 }
 
   return (
