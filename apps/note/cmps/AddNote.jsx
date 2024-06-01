@@ -6,12 +6,14 @@ export function AddNote({ onAddNote }) {
     const [noteText, setNoteText] = useState('');
     const [noteTextTitle, setNoteTextTitle] = useState('');
     const [noteType, setNoteType] = useState('');
-    const [noteColor, setNoteColor] = useState('#ADD8E6'); // Default color: lightblue
+    const [noteColor, setNoteColor] = useState('#f8e5c5');
     const [imageUrl, setImageUrl] = useState('');
     const [imageTitle, setImageTitle] = useState('');
     const [todoItems, setTodoItems] = useState(['']);
     const [videoUrl, setVideoUrl] = useState('');
     const [videoTitle, setVideoTitle] = useState('');
+    const [audioUrl, setAudioUrl] = useState('');
+    const [audioTitle, setAudioTitle] = useState('');
 
     function handleSubmit(ev) {
         ev.preventDefault();
@@ -25,6 +27,8 @@ export function AddNote({ onAddNote }) {
             info = { title: noteText, todos };
         } else if (noteType === 'NoteVideo') {
             info = { title: videoTitle, url: videoUrl };
+        } else if (noteType === 'NoteAudio') {
+            info = { title: audioTitle, url: audioUrl };
         } else {
             info = { title: noteTextTitle, txt: noteText };
         }
@@ -33,11 +37,12 @@ export function AddNote({ onAddNote }) {
             info,
             createdAt: Date.now(),
             style: {
-                backgroundColor: '#f8e5c5'
+                backgroundColor: noteColor
             },
             isPinned: false
         };
         onAddNote && onAddNote(newNote);
+        // Reset state
         setNoteText('');
         setNoteType('');
         setNoteColor('#f8e5c5'); // Reset to default color
@@ -46,6 +51,8 @@ export function AddNote({ onAddNote }) {
         setTodoItems(['']);
         setVideoUrl('');
         setVideoTitle('');
+        setAudioUrl('');
+        setAudioTitle('');
         setNoteTextTitle('');
     }
 
@@ -137,6 +144,31 @@ export function AddNote({ onAddNote }) {
                         </label>
                     </div>
                 );
+            case 'NoteAudio':
+                return (
+                    <div className="note-inputs-container">
+                        <label className="note-input-label">
+                            <input
+                                placeholder="Title..."
+                                type="text"
+                                value={audioTitle}
+                                onChange={(e) => setAudioTitle(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            <input
+                                placeholder="URL..."
+                                type="text"
+                                value={audioUrl}
+                                onChange={(e) => setAudioUrl(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
+                );
             case 'NoteTxt':
                 return (
                     <div className="note-inputs-container">
@@ -183,14 +215,6 @@ export function AddNote({ onAddNote }) {
         <div className="note-container">
             <form className="note-form" onSubmit={handleSubmit}>
                 {renderFormInputs()}
-                {/* <label className="note-input-label">
-                    <input
-                        type="color"
-                        value={noteColor}
-                        onChange={(e) => setNoteColor(e.target.value)}
-                        className="note-input-color"
-                    />
-                </label> */}
                 <button type="submit" className="note-submit-button">Add Note</button>
             </form>
             <div className="note-type-icons">
@@ -198,6 +222,7 @@ export function AddNote({ onAddNote }) {
                 <i className="far fa-list-alt note-type-icon" onClick={() => setNoteType('NoteTodos')}></i>
                 <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-play-circle note-type-icon" onClick={() => setNoteType('NoteVideo')}></i>
+                <i className="fas fa-music note-type-icon" onClick={() => setNoteType('NoteAudio')}></i> {/* New icon for audio notes */}
             </div>
         </div>
     );

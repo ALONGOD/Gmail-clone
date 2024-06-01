@@ -168,11 +168,41 @@ function _createNotes() {
                     ]
                 }
             },
+            {
+                id: 'n106',
+                type: 'NoteAudio',
+                isPinned: false,
+                isTrash: false,
+                info: {
+                    title: 'Some trance music',
+                    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+                }
+            },
+            {
+                id: 'n107',
+                type: 'NoteAudio',
+                isPinned: false,
+                isTrash: true,
+                info: {
+                    title: 'Some more trance music',
+                    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+                }
+            },
             // {
             //     id: 'n106',
-            //     type: 'NoteAudio',
+            //     type: 'NoteRecording',
             //     isPinned: false,
-            //     isTrash: true,
+            //     isTrash: false,
+            //     info: {
+            //         title: 'שמש 😎',
+            //         url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
+            //     }
+            // },
+            // {
+            //     id: 'n106',
+            //     type: 'NoteMap',
+            //     isPinned: false,
+            //     isTrash: false,
             //     info: {
             //         title: 'שמש 😎',
             //         url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
