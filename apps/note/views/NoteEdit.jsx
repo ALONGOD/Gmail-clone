@@ -12,8 +12,11 @@ export function NoteEdit() {
     const [editedTitle, setEditedTitle] = useState('');
     const [editedText, setEditedText] = useState('');
     const [editedTodos, setEditedTodos] = useState([]);
-    const [editedMediaUrl, setEditedMediaUrl] = useState(''); // Renamed from editedImageUrl
+    const [editedMediaUrl, setEditedMediaUrl] = useState('');
     const [editedNoteType, setEditedNoteType] = useState('');
+
+    const [editedLat, setEditedLat] = useState(0);
+    const [editedLng, setEditedLng] = useState(0);
 
     const params = useParams();
     const navigate = useNavigate();
@@ -22,13 +25,18 @@ export function NoteEdit() {
         setIsLoading(true);
         noteService.get(params.noteId)
             .then(note => {
-                console.log(note);
                 setNote(note);
                 setEditedTitle(note.info.title || '');
                 setEditedText(note.info.txt || '');
                 setEditedTodos(note.info.todos || []);
-                setEditedMediaUrl(note.info.url || ''); // Updated to set video URL
+                setEditedMediaUrl(note.info.url || '');
                 setEditedNoteType(note.type);
+
+                // Set map note coordinates if available
+                if (note.info.coords) {
+                    setEditedLat(note.info.coords.lat || 0);
+                    setEditedLng(note.info.coords.lng || 0);
+                }
             })
             .catch(() => {
                 alert('Couldn\'t get note...');
@@ -46,7 +54,8 @@ export function NoteEdit() {
                 title: editedTitle,
                 txt: editedText,
                 todos: editedTodos,
-                url: editedMediaUrl // Updated to set video URL
+                url: editedMediaUrl,
+                coords: { lat: editedLat, lng: editedLng } // Update map coordinates
             },
             type: editedNoteType
         };
@@ -64,24 +73,11 @@ export function NoteEdit() {
             });
     };
 
-    const handleTodoTextChange = (index, newText) => {
-        const updatedTodos = [...editedTodos];
-        updatedTodos[index].txt = newText;
-        setEditedTodos(updatedTodos);
-    };
-
-    const handleTodoCompletionChange = (index) => {
-        const updatedTodos = [...editedTodos];
-        updatedTodos[index].completed = !updatedTodos[index].completed;
-        setEditedTodos(updatedTodos);
-    };
-
     if (isLoading) return <h3 className="note-loading">Loading...</h3>;
 
     return (
         <div className="note-container">
             <h1 className="note-heading">Note Edit</h1>
-            {/* <p className="note-id">Note ID: {params.noteId}</p> */}
             {note && (
                 <div className="note-details">
                     {editedNoteType === 'NoteTxt' && (
@@ -108,7 +104,7 @@ export function NoteEdit() {
                             <label className="note-label">Title:</label>
                             <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
                             <label className="note-label">Image URL:</label>
-                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Renamed from editedImageUrl */}
+                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} />
                         </div>
                     )}
                     {editedNoteType === 'NoteVideo' && (
@@ -116,7 +112,17 @@ export function NoteEdit() {
                             <label className="note-label">Title:</label>
                             <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
                             <label className="note-label">Video URL:</label>
-                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} /> {/* Updated to set video URL */}
+                            <input className="note-input" type="text" value={editedMediaUrl} onChange={e => setEditedMediaUrl(e.target.value)} />
+                        </div>
+                    )}
+                    {editedNoteType === 'NoteMap' && (
+                        <div className="note-map">
+                            <label className="note-label">Title:</label>
+                            <input className="note-input" type="text" value={editedTitle} onChange={e => setEditedTitle(e.target.value)} />
+                            <label className="note-label">Latitude:</label>
+                            <input className="note-input" type="number" value={editedLat} onChange={e => setEditedLat(parseFloat(e.target.value))} />
+                            <label className="note-label">Longitude:</label>
+                            <input className="note-input" type="number" value={editedLng} onChange={e => setEditedLng(parseFloat(e.target.value))} />
                         </div>
                     )}
                     <button className="note-save-button" onClick={handleSave}>Save</button>
