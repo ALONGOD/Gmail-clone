@@ -47,7 +47,7 @@ export function NoteMap({ note }) {
     return (
         <div className="note-map-container">
             <h2>{note.info.title}</h2>
-            <div id={mapId} style={{ height: '140px', width: '250px' }}></div>
+            <div id={mapId} style={{ height: '140px', width: '220px' }}></div>
         </div>
     );
 }

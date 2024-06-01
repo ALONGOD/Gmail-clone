@@ -130,6 +130,16 @@ function _createNotes() {
                 }
             },
             {
+                id: 'n109',
+                type: 'NoteMap',
+                isPinned: true,
+                isTrash: false,
+                info: {
+                    title: 'New York',
+                    coords: { lat: 40.7128, lng: -74.0060 } // Coordinates for New York
+                }
+            },
+            {
                 id: 'n103',
                 type: 'NoteImg',
                 isPinned: true,
@@ -194,16 +204,7 @@ function _createNotes() {
                     backgroundColor: '#c4d6e4'
                 },
             },
-            {
-                id: 'n109',
-                type: 'NoteMap',
-                isPinned: true,
-                isTrash: false,
-                info: {
-                    title: 'New York',
-                    coords: { lat: 40.7128, lng: -74.0060 } // Coordinates for New York
-                }
-            },
+
             // {
             //     id: 'n108',
             //     type: 'NoteRecording',
