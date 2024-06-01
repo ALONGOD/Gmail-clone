@@ -1,13 +1,9 @@
  /* note list */
  .note-list {
-     column-count: 4;
-     column-width: 250px;
-     column-gap: 10px;
-     margin-block-end: 10px;
-     width: 90%;
-     padding-block-end: 50px;
-     overflow-y: auto;
-     margin-left: 6em;
+     display: flex;
+     flex-direction: column;
+     /* Stack children vertically */
+     align-items: flex-start;
  }
 
  .note-list-item {
@@ -74,4 +70,91 @@
      border-radius: 50%;
  }
 
- /* .note-actions {} */
+ .pinned-notes-section {
+     column-count: 4;
+     column-width: 250px;
+     column-gap: 10px;
+     margin-block-end: 10px;
+     width: 92%;
+     padding-block-end: 50px;
+     overflow-y: auto;
+     margin-left: 6em;
+ }
+
+ /* Unpinned Notes Section */
+ .unpinned-notes-section {
+     column-count: 4;
+     column-width: 250px;
+     column-gap: 10px;
+     margin-block-end: 10px;
+     width: 92%;
+     padding-block-end: 50px;
+     overflow-y: auto;
+     margin-left: 6em;
+ }
+
+ /* Responsive styles */
+ @media (max-width: 1200px) {
+
+     .pinned-notes-section,
+     .unpinned-notes-section {
+         column-count: 3;
+         margin-left: 2em;
+     }
+ }
+
+ @media (max-width: 768px) {
+
+     .pinned-notes-section,
+     .unpinned-notes-section {
+         column-count: 1;
+         column-width: 100%;
+         margin-left: 0;
+     }
+
+     .note-list-item {
+         padding: 10px;
+         font-size: 0.7em;
+     }
+
+     .note-card img {
+         max-height: 100px;
+     }
+
+     .note-card {
+         padding: 8px;
+         margin: 8px;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .note-list {
+         column-count: 2;
+         width: 80%;
+         margin-left: 1em;
+     }
+
+     .note-list-item {
+         padding: 8px;
+         font-size: 0.8em;
+     }
+
+     .note-card img {
+         max-height: 80px;
+     }
+
+     .note-video .video {
+         width: 100px;
+         height: 60px;
+     }
+
+     .note-audio {
+         width: 100px;
+         height: 60px;
+     }
+
+     .note-card {
+         padding: 6px;
+         margin: 6px;
+     }
+ }

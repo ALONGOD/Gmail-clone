@@ -2,7 +2,6 @@ export function NoteAudio({ note }) {
     if (!note || !note.info) {
         return null;
     }
-    console.log(note.info.url);
 
     return (
         <article className="note-audio" style={note.style ? { backgroundColor: note.style.backgroundColor } : {}}>
@@ -16,5 +15,3 @@ export function NoteAudio({ note }) {
         </article>
     );
 }
-
-export default NoteAudio;

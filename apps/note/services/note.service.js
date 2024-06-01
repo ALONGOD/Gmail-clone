@@ -21,7 +21,7 @@ export const noteService = {
 // window.cs = noteService
 
 function query(filterBy = { folder: 'note' }) {
-    console.log(filterBy)
+    // console.log(filterBy)
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
             if (filterBy.search) {
@@ -103,7 +103,7 @@ function _setNextPrevnoteId(note) {
 function _createNotes() {
     let notes = storageService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
-        console.log('hi');
+        // console.log('hi');
         const notes = [
             {
                 id: 'n101',
@@ -126,7 +126,17 @@ function _createNotes() {
                     title: 'Steve'
                 },
                 style: {
-                    backgroundColor: '#f8f9da'
+                    backgroundColor: '#e9efdb'
+                }
+            },
+            {
+                id: 'n109',
+                type: 'NoteMap',
+                isPinned: true,
+                isTrash: false,
+                info: {
+                    title: 'New York',
+                    coords: { lat: 40.7128, lng: -74.0060 } // Coordinates for New York
                 }
             },
             {
@@ -168,16 +178,44 @@ function _createNotes() {
                     ]
                 }
             },
+            {
+                id: 'n106',
+                type: 'NoteAudio',
+                isPinned: false,
+                isTrash: false,
+                info: {
+                    title: 'Some trance music',
+                    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+                },
+                style: {
+                    backgroundColor: '#f8e5c5'
+                },
+            },
+            {
+                id: 'n107',
+                type: 'NoteAudio',
+                isPinned: false,
+                isTrash: true,
+                info: {
+                    title: 'Some more trance music',
+                    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+                },
+                style: {
+                    backgroundColor: '#c4d6e4'
+                },
+            },
+
             // {
-            //     id: 'n106',
-            //     type: 'NoteAudio',
+            //     id: 'n108',
+            //     type: 'NoteRecording',
             //     isPinned: false,
-            //     isTrash: true,
+            //     isTrash: false,
             //     info: {
             //         title: 'שמש 😎',
             //         url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
             //     }
             // },
+            // {
 
         ]
         storageService.saveToStorage(NOTE_KEY, notes)

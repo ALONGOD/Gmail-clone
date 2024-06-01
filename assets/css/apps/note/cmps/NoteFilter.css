@@ -37,3 +37,22 @@
     color: #333;
     outline: none;
 }
+
+@media (max-width: 768px) {
+    .note-filter input[type="text"] {
+        width: 40vw;
+    }
+
+    .note-type-filter {
+        /* Add your custom styles here */
+        margin-left: 5px;
+        padding: 3px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #333;
+        outline: none;
+        width: 15vw;
+    }
+}
