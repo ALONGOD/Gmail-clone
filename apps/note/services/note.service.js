@@ -188,8 +188,18 @@ function _createNotes() {
                     url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
                 }
             },
+            {
+                id: 'n109',
+                type: 'NoteMap',
+                isPinned: false,
+                isTrash: false,
+                info: {
+                    title: 'New York',
+                    coords: { lat: 40.7128, lng: -74.0060 } // Coordinates for New York
+                }
+            },
             // {
-            //     id: 'n106',
+            //     id: 'n108',
             //     type: 'NoteRecording',
             //     isPinned: false,
             //     isTrash: false,
@@ -199,15 +209,6 @@ function _createNotes() {
             //     }
             // },
             // {
-            //     id: 'n106',
-            //     type: 'NoteMap',
-            //     isPinned: false,
-            //     isTrash: false,
-            //     info: {
-            //         title: 'שמש 😎',
-            //         url: 'https://on.soundcloud.com/PpofSQgpkVNAUa8Y6'
-            //     }
-            // },
 
         ]
         storageService.saveToStorage(NOTE_KEY, notes)
