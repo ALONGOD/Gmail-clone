@@ -186,7 +186,7 @@ export function AddNote({ onAddNote }) {
                     <div className="note-inputs-container">
                         <label className="note-input-label">
                             <input
-                                placeholder="Title..."
+                                placeholder="Location..."
                                 type="text"
                                 value={mapTitle}
                                 onChange={(e) => setMapTitle(e.target.value)}
