@@ -126,7 +126,7 @@ function _createNotes() {
                     title: 'Steve'
                 },
                 style: {
-                    backgroundColor: '#f8f9da'
+                    backgroundColor: '#e9efdb'
                 }
             },
             {
@@ -176,7 +176,10 @@ function _createNotes() {
                 info: {
                     title: 'Some trance music',
                     url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
-                }
+                },
+                style: {
+                    backgroundColor: '#f8e5c5'
+                },
             },
             {
                 id: 'n107',
@@ -186,12 +189,15 @@ function _createNotes() {
                 info: {
                     title: 'Some more trance music',
                     url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
-                }
+                },
+                style: {
+                    backgroundColor: '#c4d6e4'
+                },
             },
             // {
             //     id: 'n109',
             //     type: 'NoteMap',
-            //     isPinned: false,
+            //     isPinned: true,
             //     isTrash: false,
             //     info: {
             //         title: 'New York',
