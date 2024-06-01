@@ -120,6 +120,7 @@ function getRandomTimestamp(startDate, endDate) {
 }
 
 function getTimeOfSent(time) {
+  if (!time) return ''
   const date = new Date(time)
   const today = new Date()
 

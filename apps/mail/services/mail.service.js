@@ -44,6 +44,8 @@ function query(filterBy = {}) {
         case 'removed':
           mails = mails.filter(mail => mail.removedAt !== null)
           break
+        case 'drafts':
+          mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.sentAt)
       }
     }
 
