@@ -99,7 +99,7 @@
 /* } */
 @media (max-width: 768px) {
     .note-container {
-        width: 85vw;
+        width: 86vw;
         /* Adjusted width for smaller screens */
         margin-left: 5vw;
         /* Moved more to the left */
@@ -124,8 +124,8 @@
     }
 
     .note-type-icon {
-        font-size: 14px;
-        margin-right: 3px;
+        font-size: 12px;
+        margin-right: 2px;
 
         /* Smaller font size for smaller screens */
     }
@@ -133,7 +133,7 @@
     .note-type-icons {
         display: flex;
         /* Changed flex direction to row */
-        margin-left: 10px;
+        margin-left: 8px;
         /* Move icons to the right */
     }
 }

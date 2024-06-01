@@ -95,23 +95,26 @@
 
  /* Responsive styles */
  @media (max-width: 1200px) {
-     .note-list {
+
+     .pinned-notes-section,
+     .unpinned-notes-section {
          column-count: 3;
-         column-width: auto;
          margin-left: 2em;
      }
  }
 
  @media (max-width: 768px) {
-     .note-list {
-         column-count: 2;
-         width: 100%;
-         margin-left: 1em;
+
+     .pinned-notes-section,
+     .unpinned-notes-section {
+         column-count: 1;
+         column-width: 100%;
+         margin-left: 0;
      }
 
      .note-list-item {
          padding: 10px;
-         font-size: 0.9em;
+         font-size: 0.7em;
      }
 
      .note-card img {
@@ -141,6 +144,11 @@
      }
 
      .note-video .video {
+         width: 100px;
+         height: 60px;
+     }
+
+     .note-audio {
          width: 100px;
          height: 60px;
      }
