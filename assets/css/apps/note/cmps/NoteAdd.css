@@ -1,18 +1,13 @@
 .note-container {
     display: flex;
     align-items: center;
-    /* Align items horizontally */
     background-color: white;
     padding: 10px 20px;
-    /* Reduced padding for flatter height */
     border-radius: 8px;
     box-shadow: none;
-    /* Removed the box-shadow for a flatter design */
     width: 65vw;
-    /* Set width to 35% of viewport width */
     margin: 20px auto;
     border: 1px solid #ddd;
-    /* Added a border for a flatter look */
     box-sizing: border-box;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -20,7 +15,6 @@
 .note-form {
     display: flex;
     align-items: center;
-    /* Align items horizontally */
     flex-grow: 1;
 }
 
@@ -28,11 +22,9 @@
 
 .note-input-label {
     margin-right: 10px;
-    /* Spacing between label and input */
-    font-size: 14px;
+    font-size: 0.875em;
     color: #333;
     width: 35vw;
-    /* Darker color for better readability */
 }
 
 .note-input,

@@ -16,6 +16,7 @@
 /* @import './apps/note/views/NoteIndex.css'; */
 
 @import './apps/mail/views/MailIndex.css';
+@import './apps/mail/mq/mq.css';
 
 /* notes app view css */
 @import './apps/note/views/NoteIndex.css';
