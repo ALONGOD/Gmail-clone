@@ -103,7 +103,7 @@ function _setNextPrevnoteId(note) {
 function _createNotes() {
     let notes = storageService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
-        console.log('hi');
+        // console.log('hi');
         const notes = [
             {
                 id: 'n101',
@@ -188,16 +188,16 @@ function _createNotes() {
                     url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
                 }
             },
-            {
-                id: 'n109',
-                type: 'NoteMap',
-                isPinned: false,
-                isTrash: false,
-                info: {
-                    title: 'New York',
-                    coords: { lat: 40.7128, lng: -74.0060 } // Coordinates for New York
-                }
-            },
+            // {
+            //     id: 'n109',
+            //     type: 'NoteMap',
+            //     isPinned: false,
+            //     isTrash: false,
+            //     info: {
+            //         title: 'New York',
+            //         coords: { lat: 40.7128, lng: -74.0060 } // Coordinates for New York
+            //     }
+            // },
             // {
             //     id: 'n108',
             //     type: 'NoteRecording',
