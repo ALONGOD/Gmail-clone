@@ -4,8 +4,6 @@ import { NoteTxt } from '../cmps/NoteTxt.jsx'
 import { NoteVideo } from '../cmps/NoteVideo.jsx'
 import { NoteAudio } from '../cmps/NoteAudio.jsx'
 import { NoteMap } from '../cmps/NoteMap.jsx'
-import { NoteRecording } from '../cmps/NoteRecording.jsx'
-
 
 
 export function NotePreview({ note }) {
@@ -16,7 +14,6 @@ export function NotePreview({ note }) {
         NoteTodos,
         NoteAudio,
         NoteMap,
-        NoteRecording
     }
     const NoteComponent = componentMap[note.type]
     // console.log(NoteComponent)
