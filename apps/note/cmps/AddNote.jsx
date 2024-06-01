@@ -14,6 +14,9 @@ export function AddNote({ onAddNote }) {
     const [videoTitle, setVideoTitle] = useState('');
     const [audioUrl, setAudioUrl] = useState('');
     const [audioTitle, setAudioTitle] = useState('');
+    const [mapTitle, setMapTitle] = useState('');
+    const [mapLat, setMapLat] = useState('');
+    const [mapLng, setMapLng] = useState('');
 
     function handleSubmit(ev) {
         ev.preventDefault();
@@ -29,6 +32,8 @@ export function AddNote({ onAddNote }) {
             info = { title: videoTitle, url: videoUrl };
         } else if (noteType === 'NoteAudio') {
             info = { title: audioTitle, url: audioUrl };
+        } else if (noteType === 'NoteMap') {
+            info = { title: mapTitle, coords: { lat: parseFloat(mapLat), lng: parseFloat(mapLng) } };
         } else {
             info = { title: noteTextTitle, txt: noteText };
         }
@@ -54,6 +59,9 @@ export function AddNote({ onAddNote }) {
         setAudioUrl('');
         setAudioTitle('');
         setNoteTextTitle('');
+        setMapTitle('');
+        setMapLat('');
+        setMapLng('');
     }
 
     const handleTodoChange = (index, value) => {
@@ -169,6 +177,41 @@ export function AddNote({ onAddNote }) {
                         </label>
                     </div>
                 );
+            case 'NoteMap':
+                return (
+                    <div className="note-inputs-container">
+                        <label className="note-input-label">
+                            <input
+                                placeholder="Title..."
+                                type="text"
+                                value={mapTitle}
+                                onChange={(e) => setMapTitle(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            <input
+                                placeholder="Latitude..."
+                                type="text"
+                                value={mapLat}
+                                onChange={(e) => setMapLat(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                        <label className="note-input-label">
+                            <input
+                                placeholder="Longitude..."
+                                type="text"
+                                value={mapLng}
+                                onChange={(e) => setMapLng(e.target.value)}
+                                required
+                                className="note-input"
+                            />
+                        </label>
+                    </div>
+                );
             case 'NoteTxt':
                 return (
                     <div className="note-inputs-container">
@@ -223,6 +266,7 @@ export function AddNote({ onAddNote }) {
                 <i className="far fa-image note-type-icon" onClick={() => setNoteType('NoteImg')}></i>
                 <i className="far fa-play-circle note-type-icon" onClick={() => setNoteType('NoteVideo')}></i>
                 <i className="fas fa-music note-type-icon" onClick={() => setNoteType('NoteAudio')}></i> {/* New icon for audio notes */}
+                <i className="fas fa-map-marker-alt note-type-icon" onClick={() => setNoteType('NoteMap')}></i>
             </div>
         </div>
     );
