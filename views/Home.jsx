@@ -7,7 +7,7 @@ export function Home() {
         <footer>
             <Link to="/mail">Email</Link>
             <Link to="/note">Keep Notes</Link>
-            <Link to="/note">Keep Books</Link>
+            {/* <Link to="/note">Keep Books</Link> */}
             <Link to="/about">About</Link>
         </footer>
     </section>
