@@ -38,11 +38,11 @@ To run the Gmail Clone locally:
 
 ## 🔗 Link to the Project
 
-Check out the live Gmail Clone project [here](https://lnkd.in/dmyhQERg).
+Check out the live Gmail Clone project [here](https://alongod.github.io/Gmail-clone/).
 
 ## 🖥 GitHub Repository
 
-Find the source code [here](https://lnkd.in/dr_DGxs7).
+Find the source code [here](https://github.com/ALONGOD/Gmail-clone).
 
 ## 🙌 Credits
 
